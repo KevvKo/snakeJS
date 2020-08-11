@@ -1,17 +1,23 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <snakeJS msg="Welcome to Your Vue.js App"/>
+    <navigation msg="Navigation-Bar"/>
+    <mainBoard msg=" Main-Board"/>
+    <foot msg="footer"/>
   </div>
 </template>
 
 <script>
-import snakeJS from './components/snakeJS.vue'
+
+import navigation from './components/navigation.vue'
+import mainBoard from './components/mainBoard.vue'
+import foot from './components/footer.vue'
 
 export default {
   name: 'App',
   components: {
-    snakeJS
-  }
+    navigation,
+    mainBoard,
+    foot
+  },
 }
 </script>
