@@ -17,16 +17,26 @@ html, body, #app {
  }
 
 
+body {
+    font-family: 'Sriracha';
+    font-size: 30px;
+}
+
 /*navigation-styling*/
 
 .navigation {
     color: white;
-    height: 60px;
     background-color: #000000;
+}
+
+.navbarEntry:hover{
+    cursor: pointer;
+    background-color: #2B2B2B;
 }
 
 .navigation a, .navbarEntry{
     display: inline-block;
+    padding: 10px; 
 }
 
 /*mainboard-styling*/
