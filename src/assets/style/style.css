@@ -1,0 +1,43 @@
+/*
+Author: Kevin Klein
+Author URI: https://kevvko.github.io/playground/index.html
+*/
+
+
+/*general styling*/
+
+*{
+    box-sizing: border-box;
+}
+
+html, body, #app {
+
+    margin: 0px;
+    padding: 0px;
+ }
+
+
+/*navigation-styling*/
+
+.navigation {
+    color: white;
+    height: 60px;
+    background-color: #000000;
+}
+
+.navigation a, .navbarEntry{
+    display: inline-block;
+}
+
+/*mainboard-styling*/
+.mainBoard{
+    text-align: center;
+    width: 100%;
+}
+
+/*game-styling*/
+
+canvas {
+    display: inline;
+    background-color: #BCBCBC;
+}

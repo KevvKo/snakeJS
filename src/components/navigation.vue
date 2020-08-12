@@ -1,14 +1,20 @@
 <template>
-  <div class="menu">
-    <h1>{{ msg }}</h1>
+  <div class="navigation">
+    <navbarEntry msg="HighScores" />
+    <navbarEntry msg="Options" />
+    <navbarEntry msg="GitHub" />
+    <navbarEntry msg="Report Bugs" />
   </div>
 </template>
 
 <script>
-export default {
-  name: 'menu',
-  props: {
-    msg: String
+
+  import navbarEntry from './navbarEntry'
+
+  export default {
+    name: 'navigation',
+    components: {
+      navbarEntry
+    }
   }
-}
 </script>

@@ -1,14 +1,16 @@
 <template>
   <div class="mainBoard">
-    <h1>{{ msg }}</h1>
+    <gameBoard/>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'mainBoard',
-  props: {
-    msg: String
+  import gameBoard from './gameBoard'
+
+  export default {
+    name: 'mainBoard',
+    components: {
+      gameBoard
+    }
   }
-}
 </script>
