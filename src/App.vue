@@ -1,10 +1,8 @@
 <template>
-  <div id="app">
-    <div class="container">
+  <div id="app" class="container">
       <navigation/>
       <mainBoard/>
       <footbar text="SnakeJS - an open source project"/>
-    </div>
   </div>
 </template>
 
