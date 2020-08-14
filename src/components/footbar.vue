@@ -1,16 +1,15 @@
 <template>
-    <div class="navbarEntry">
-        <a v-bind:href="url"> {{ text }}</a>
+    <div class="footbar">
+        {{text}}
     </div>
 </template>
 
 <script>
     export default {
-        name: 'navbarEntry',
+        name: 'footbar',
         props: {
             url: String,
             text: String
         }
-
     }
 </script>

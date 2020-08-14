@@ -4,6 +4,10 @@ Author URI: https://kevvko.github.io/playground/index.html
 */
 
 
+/*variables for uniform design*/
+:root{
+    --main-txt-color: #13A418;
+}
 /*general styling*/
 
 *{
@@ -19,14 +23,13 @@ html, body, #app {
 
 body {
     font-family: 'Sriracha';
-    font-size: 30px;
 }
 
 /*navigation-styling*/
-
 .navigation {
-    color: white;
+    color: var(--main-txt-color);
     background-color: #000000;
+    font-size: 30px;
 }
 
 .navbarEntry:hover{
@@ -34,9 +37,12 @@ body {
     background-color: #2B2B2B;
 }
 
+
 .navigation a, .navbarEntry{
     display: inline-block;
     padding: 10px; 
+    text-decoration: none;
+    color: var(--main-txt-color);
 }
 
 /*mainboard-styling*/
@@ -50,4 +56,9 @@ body {
 canvas {
     display: inline;
     background-color: #BCBCBC;
+}
+
+/*footbar-styling*/
+.footbar{
+    
 }

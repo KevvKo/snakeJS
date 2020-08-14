@@ -1,9 +1,9 @@
 <template>
   <div class="navigation">
-    <navbarEntry msg="HighScores" />
-    <navbarEntry msg="Options" />
-    <navbarEntry msg="GitHub" />
-    <navbarEntry msg="Report Bugs" />
+    <navbarEntry text="HighScores" />
+    <navbarEntry text="Options" />
+    <navbarEntry url="https://github.com/KevvKo/snakeJS" text="GitHub" />
+    <navbarEntry url="https://github.com/KevvKo/snakeJS/issues" text="Report Bugs" />
   </div>
 </template>
 
