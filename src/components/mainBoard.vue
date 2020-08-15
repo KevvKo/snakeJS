@@ -1,8 +1,10 @@
 <template>
-  <div class="mainBoard">
-    <mainMenu/>
-    <scorebar/>
-    <gameBoard/>
+  <div class="mainBoard" >
+    <mainMenu title="SnakeJS"/>
+    <div class="game">
+      <scorebar/>
+      <gameBoard/>
+    </div>
   </div>
 </template>
 

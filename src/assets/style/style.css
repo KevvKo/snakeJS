@@ -10,6 +10,7 @@ Author URI: https://kevvko.github.io/playground/index.html
     --main-txt-color: white;
     --main-dark-color: #560027;
     --main-light-color: #bb467a;
+    --default-transition: 0.2s;
 }
 
 /*general styling*/
@@ -18,29 +19,36 @@ Author URI: https://kevvko.github.io/playground/index.html
     box-sizing: border-box;
 }
 
-html, body, #app {
+html, body{
     height: 100%;
     margin: 0px;
     padding: 0px;
  }
 
-
 body {
     font-family: 'Sriracha';
-    background-color: #E0E0E0;
+    background-color: #E2E2E2;
+
 }
 
+#app{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 /*navigation-styling*/
 .navigation {
+    height: min-content;
     color: var(--main-txt-color);
     background-color: var(--main-dark-color);
     font-size: 20px;
+    text-shadow: 4px 4px black;
 }
 
 .navbarEntry:hover{
     cursor: pointer;
     background-color: var(--main-light-color);
-    transition: 0.2s;
+    transition: var(--default-transition);
 }
 
 
@@ -56,14 +64,40 @@ body {
     text-align: center;
     width: 80%;
     margin: auto;
+    height: 100%;
 }
 
 /*mainMenu-styling*/
 
 .mainMenu{
-    width: 80%;
-    position: absolute;
+    width: 100%;
+    height: 100%;
     background-color: var(--main-primary-color);
+    color: var(--main-txt-color);
+    font-size: 50px;
+    text-shadow: 5px 5px black;
+}
+
+.mainMenu h1{
+    margin: 0;
+}
+
+.menuContent{
+    height: 80%;
+    top: -50%;
+    -ms-transform: translateY(25%);
+    transform: translateY(25%);
+}
+
+.mainMenuEntry:hover{
+    cursor: pointer;
+    background-color: var(--main-light-color );
+    transition: var(--default-transition);
+}
+/* game-styling*/
+
+.game{
+    display: none;
 }
 
 /*scorebar-styling*/
@@ -87,12 +121,12 @@ body {
 
 canvas {
     display: inline;
-    background-color: #BCBCBC;
+    background-color: #A4A4A4;
 }
 
 /*footbar-styling*/
 .footbar{
     font-size:0.9vw;
-    position: absolute;
-    bottom: 0;
+    height: min-content;
+
 }

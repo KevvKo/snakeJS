@@ -1,8 +1,4 @@
-class GameController{
-
-    constructor(){
-        return
-    }
+class WebController{
 
     rescaleCanvas(){
 
@@ -22,12 +18,13 @@ class GameController{
 
     }
 
-    run(){
+    addRenderingImprovements(){
 
         this.rescaleCanvas()
         window.addEventListener('resize', this.rescaleCanvas)
-        this.rescaleMainMenu()
+        
     }
+
 }
 
-export {GameController as default}
+export {WebController as default}
