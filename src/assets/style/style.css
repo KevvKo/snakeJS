@@ -58,6 +58,14 @@ body {
     margin: auto;
 }
 
+/*mainMenu-styling*/
+
+.mainMenu{
+    width: 80%;
+    position: absolute;
+    background-color: var(--main-primary-color);
+}
+
 /*scorebar-styling*/
 .scorebar{
     background-color: var(--main-primary-color);
