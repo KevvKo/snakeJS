@@ -74,12 +74,14 @@ body {
     height: 100%;
     background-color: var(--main-primary-color);
     color: var(--main-txt-color);
-    font-size: 50px;
+    font-size: 2.0vw;
     text-shadow: 5px 5px black;
 }
 
-.mainMenu h1{
-    margin: 0;
+.title{
+    margin-bottom: 10px;
+    font-size: 4.0vw;
+
 }
 
 .menuContent{
@@ -97,6 +99,7 @@ body {
 /* game-styling*/
 
 .game{
+    height: 100%;
     display: none;
 }
 

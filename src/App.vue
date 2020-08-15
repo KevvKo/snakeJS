@@ -22,6 +22,11 @@
       navigation,
       mainBoard,
       footbar
+    },
+
+    mounted: function(){
+      this.$WebController.addRenderingImprovements()
     }
   }
+
 </script>

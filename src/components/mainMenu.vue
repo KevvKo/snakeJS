@@ -1,10 +1,10 @@
 <template>
     <div class="mainMenu">
         <div class="menuContent">
-          <h1>{{title}}</h1>
-          <mainMenuEntry text= "Play"/>
-          <mainMenuEntry text="Username" />
-          <mainMenuEntry text="Change color"/>
+          <div class="title">{{title}}</div>
+          <mainMenuEntry @callback="startGame" text= "Play"/>
+          <mainMenuEntry @callack="setUserName" text="Username" />
+          <mainMenuEntry @callback="changeSnakeColor" text="Change color"/>
         </div>
     </div>
 </template>
@@ -15,11 +15,32 @@ import mainMenuEntry from './mainMenuEntry.vue'
 
   export default {
     name: 'mainMenu',
-    props:{
+    props: {
       title: String
     },
+    
     components: {
         mainMenuEntry
+    },
+
+    methods: {
+
+      startGame: function(){
+
+        document.querySelector('.mainMenu').style.display = "none"
+        document.querySelector('.game').style.display = "block"
+        this.$WebController.rescaleCanvas()
+
+      },
+
+      setUserName: function () {
+        return
+      },
+
+      changeSnakeColor: function() {
+        return
+      }
     }
+
   }
 </script>

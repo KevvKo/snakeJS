@@ -4,7 +4,10 @@ class WebController{
 
         let canvas = document.querySelector('canvas')
         let gameBoard = document.querySelector('.gameBoard')
+        let gameContent = document.querySelector('.game')
         canvas.width = gameBoard.offsetWidth
+        canvas.height = gameContent.offsetHeight
+
     
     }
 

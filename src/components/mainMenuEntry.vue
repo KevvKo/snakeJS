@@ -1,6 +1,6 @@
 <template>
     <div class="mainMenuEntry">
-      <div v-on:click="startGame">{{text}}</div>
+      <div v-on:click="$emit('callback')">{{text}}</div>
     </div>
 </template>
 
@@ -8,16 +8,8 @@
   export default {
     name: 'mainMenuEntry',
     props: {
-        text: String
-    },
-
-    methods: {
-      startGame: function(){
-
-        document.querySelector('.mainMenu').style.display = "none"
-        document.querySelector('.game').style.display = "block"
-
-      }
+        text: String,
+        callback: Function
     }
   }
     
