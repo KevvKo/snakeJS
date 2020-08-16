@@ -3,11 +3,11 @@ class WebController{
     rescaleCanvas(){
 
         let canvas = document.querySelector('canvas')
-        let gameBoard = document.querySelector('.gameBoard')
         let gameContent = document.querySelector('.game')
-        canvas.width = gameBoard.offsetWidth
-        canvas.height = gameContent.offsetHeight
 
+
+        canvas.width = gameContent.offsetWidth
+        window.addEventListener('resize', this.rescaleCanvas)
     
     }
 
@@ -20,14 +20,6 @@ class WebController{
         mainMenu.style.height = canvas.offsetHeight + scorebar.offsetHeight + 'px'
 
     }
-
-    addRenderingImprovements(){
-
-        this.rescaleCanvas()
-        window.addEventListener('resize', this.rescaleCanvas)
-        
-    }
-
 }
 
 export {WebController as default}

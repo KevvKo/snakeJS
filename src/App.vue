@@ -11,7 +11,7 @@
 </style>
 
 <script>
-
+  
   import navigation from './components/navigation.vue'
   import mainBoard from './components/mainBoard.vue'
   import footbar from './components/footbar.vue'
@@ -24,9 +24,7 @@
       footbar
     },
 
-    mounted: function(){
-      this.$WebController.addRenderingImprovements()
-    }
+
   }
 
 </script>
