@@ -41,7 +41,7 @@ body {
     height: min-content;
     color: var(--main-txt-color);
     background-color: var(--main-dark-color);
-    font-size: 20px;
+    font-size: 1.5vw;
     text-shadow: 4px 4px black;
 }
 
@@ -54,7 +54,7 @@ body {
 
 .navigation a, .navbarEntry{
     display: inline-block;
-    padding: 10px; 
+    padding: 8px; 
     text-decoration: none;
     color: var(--main-txt-color);
 }

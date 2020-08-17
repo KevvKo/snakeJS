@@ -11,7 +11,9 @@
 
 <script>
 
-import mainMenuEntry from './mainMenuEntry.vue'
+  import mainMenuEntry from './mainMenuEntry.vue'
+  //import Snake, { snake } from '../classes/snake'
+  import { game } from '../classes/game'
 
   export default {
     name: 'mainMenu',
@@ -31,6 +33,8 @@ import mainMenuEntry from './mainMenuEntry.vue'
         document.querySelector('.game').style.display = "block"
         this.$WebController.rescaleCanvas()
 
+        game.run()
+        
       },
 
       setUserName: function () {
