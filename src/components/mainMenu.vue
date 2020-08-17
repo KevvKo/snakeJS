@@ -2,9 +2,9 @@
     <div class="mainMenu">
         <div class="menuContent">
           <div class="title">{{title}}</div>
-          <mainMenuEntry @callback="startGame" text= "Play"/>
+          <mainMenuEntry @callback="changeToGame" text= "Play"/>
           <mainMenuEntry @callack="setUserName" text="Username" />
-          <mainMenuEntry @callback="changeSnakeColor" text="Change color"/>
+          <mainMenuEntry @callback="changeSnakeColor" text="Choose your color"/>
         </div>
     </div>
 </template>
@@ -25,7 +25,7 @@
 
     methods: {
 
-      startGame: function(){
+      changeToGame: function(){
 
         document.querySelector('.mainMenu').style.display = "none"
         document.querySelector('.gameArea').style.display = "block"

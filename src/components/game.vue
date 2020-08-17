@@ -1,7 +1,7 @@
 <template>
     <div class="game">
         <mainMenu title="SnakeJS"/>
-        <div class="gameArea">
+        <div class="gameArea" >
             <scorebar/>
             <gameBoard/>
         </div>
@@ -33,6 +33,7 @@
 
             load(){
                 Game.init()
+                Game.run()
             }
         }
     }
@@ -47,7 +48,7 @@
     }
 
     .gameArea{
-
+        height: 100%;
         display: none;
     }
 

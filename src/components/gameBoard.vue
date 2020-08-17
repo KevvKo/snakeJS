@@ -1,6 +1,6 @@
 <template>
   <div  class="gameBoard">
-      <canvas height="300"></canvas>
+      <canvas height="700"></canvas>
   </div>
 </template>
 
@@ -20,3 +20,9 @@
   }
 
 </script>
+
+<style>
+  .gameBoard{
+    height: 100%;
+  }
+</style>
