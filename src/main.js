@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import WebController from './classes/webController.js'
+import WebController from './assets/js/webController.js'
 
 
 Vue.prototype.$WebController = new WebController()

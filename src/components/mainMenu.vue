@@ -12,8 +12,6 @@
 <script>
 
   import mainMenuEntry from './mainMenuEntry.vue'
-  //import Snake, { snake } from '../classes/snake'
-  import { game } from '../classes/game'
 
   export default {
     name: 'mainMenu',
@@ -30,10 +28,8 @@
       startGame: function(){
 
         document.querySelector('.mainMenu').style.display = "none"
-        document.querySelector('.game').style.display = "block"
+        document.querySelector('.gameArea').style.display = "block"
         this.$WebController.rescaleCanvas()
-
-        game.run()
         
       },
 
@@ -48,3 +44,30 @@
 
   }
 </script>
+
+<style>
+  /*mainMenu-styling*/
+
+  .mainMenu{
+      width: 100%;
+      height: 100%;
+      background-color: var(--main-primary-color);
+      color: var(--main-txt-color);
+      font-size: 2.0vw;
+      text-shadow: 3px 3px black;
+  }
+
+  .title{
+      margin-bottom: 10px;
+      font-size: 4.0vw;
+
+  }
+
+  .menuContent{
+      height: 80%;
+      top: -50%;
+      -ms-transform: translateY(25%);
+      transform: translateY(25%);
+  }
+
+</style>

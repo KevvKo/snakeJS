@@ -13,3 +13,12 @@
         }
     }
 </script>
+
+<style>
+    /*footbar-styling*/
+    .footbar{
+        font-size:0.9vw;
+        height: min-content;
+
+    }
+</style>

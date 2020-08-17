@@ -1,24 +1,27 @@
 <template>
   <div class="mainBoard" >
-    <mainMenu title="SnakeJS"/>
-    <div class="game">
-      <scorebar/>
-      <gameBoard/>
-    </div>
+    <game/>
   </div>
 </template>
 
 <script>
-  import mainMenu from './mainMenu'
-  import gameBoard from './gameBoard'
-  import scorebar from './scorebar'
+  import game from './game'
 
   export default {
+
     name: 'mainBoard',
     components: {
-      scorebar,
-      mainMenu,
-      gameBoard
+      game
     }
   }
 </script>
+
+<style>
+  /*mainboard-styling*/
+  .mainBoard{
+      text-align: center;
+      width: 80%;
+      margin: auto;
+      height: 100%;
+  }
+</style>

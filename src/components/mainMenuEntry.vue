@@ -14,3 +14,13 @@
   }
     
 </script>
+
+<style>
+
+  .mainMenuEntry:hover{
+      cursor: pointer;
+      background-color: var(--main-light-color );
+      transition: var(--default-transition);
+  }
+  
+</style>

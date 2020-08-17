@@ -6,8 +6,17 @@
 
 <script>
 
+  //import Snake from '../classes/snake'
+
   export default {
     name: 'gameBoard',
+
+    methods:{
+
+      run(){
+    
+      }
+    }
   }
 
 </script>
