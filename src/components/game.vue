@@ -1,7 +1,7 @@
 <template>
     <div class="game">
-        <mainMenu title="SnakeJS"/>
-        <div class="gameArea" >
+        <mainMenu v-show="!isVisible" title="SnakeJS"/>
+        <div v-show="isVisible" class="gameArea">
             <scorebar/>
             <gameBoard/>
         </div>
@@ -9,6 +9,9 @@
 </template>
 
 <script>
+
+    import Vue from 'vue'
+    import Vuex from 'vuex'
 
     //classes imports
     import Game from '../assets/js/game.js'
@@ -18,20 +21,57 @@
     import mainMenu from './mainMenu'
     import gameBoard from './gameBoard'
     
+    Vue.use(Vuex)
+
+    const store = new Vuex.Store({
+
+        state: {
+            isVisible: false
+        },
+
+        mutations: {
+            changeVisibility (state) {
+                state.isVisible = !state.isVisible 
+            }
+        }
+    })
+
     export default {
 
         name: 'game',
-
+    
         components: {
 
             scorebar,
             mainMenu,
             gameBoard
+
+        },
+
+        store,
+
+        computed: {
+
+            isVisible () {
+
+                return store.state.isVisible
+            }
+        },
+
+        watch: {
+
+            //if the gameArea is now visible, the game will be started
+            gameStarted: function () {
+                console.log("teest")
+                this.load()
+                
+            }
         },
 
         methods:{
 
             load(){
+                console.log("test")
                 Game.init()
                 Game.run()
             }
@@ -48,8 +88,8 @@
     }
 
     .gameArea{
-        height: 100%;
-        display: none;
+
+        height: '100%';
     }
 
     canvas {

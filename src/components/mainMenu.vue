@@ -2,15 +2,21 @@
     <div class="mainMenu">
         <div class="menuContent">
           <div class="title">{{title}}</div>
-          <mainMenuEntry @callback="changeToGame" text= "Play"/>
+          <mainMenuEntry @callback="startGame" text= "Play"/>
           <mainMenuEntry @callack="setUserName" text="Username" />
-          <mainMenuEntry @callback="changeSnakeColor" text="Choose your color"/>
+          <mainMenuEntry @callback="changeSnakeColor" text="Change color"/>
         </div>
     </div>
 </template>
 
 <script>
 
+  import Vue from 'vue'
+  import Vuex from 'vuex'
+
+  Vue.use(Vuex)
+  
+  //component imports
   import mainMenuEntry from './mainMenuEntry.vue'
 
   export default {
@@ -25,10 +31,8 @@
 
     methods: {
 
-      changeToGame: function(){
-
-        document.querySelector('.mainMenu').style.display = "none"
-        document.querySelector('.gameArea').style.display = "block"
+      startGame: function(){
+        this.$store.commit('changeVisibility')
         this.$WebController.rescaleCanvas()
         
       },
