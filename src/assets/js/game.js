@@ -19,7 +19,7 @@ class Game{
         this.height = 20
         this.width = 20
         
-        this.gameSpeed = 1000 //25
+        this.gameSpeed = 100 //25
     }
 
     init(){
@@ -30,6 +30,7 @@ class Game{
 
         setInterval(function(){
             this.clearCanvas()
+            this.snake.changeDirection()
             this.snake.move()
             this.drawCanvas()    
         }.bind(this), this.gameSpeed)

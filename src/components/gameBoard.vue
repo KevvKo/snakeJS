@@ -1,6 +1,6 @@
 <template>
   <div  class="gameBoard">
-      <canvas height="700"></canvas>
+      <canvas height="300"></canvas>
   </div>
 </template>
 
@@ -10,13 +10,6 @@
 
   export default {
     name: 'gameBoard',
-
-    methods:{
-
-      run(){
-    
-      }
-    }
   }
 
 </script>
