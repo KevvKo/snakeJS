@@ -5,29 +5,62 @@ class Game{
     constructor(){
 
         this.gameRuns = true
-        this.canvas = document.querySelector('canvas')
-        this.context =  this.canvas.getContext('2d')
         this.snake = new Snake()
-    
 
+        //canvas need time for rendering to be detected
+        document.addEventListener('DOMContentLoaded', function(){
+            this.canvas = document.querySelector('canvas')
+            this.ctx = this.canvas.getContext('2d')
+
+            this.gameAreaWidth = this.canvas.width
+            this.gameAreaHeight = this.canvas.height
+        }.bind(this))
+
+        this.height = 20
+        this.width = 20
+        
+        this.gameSpeed = 1000 //25
     }
 
     init(){
-     
+        this.run()
     }
 
     run(){
 
-        if(this.gameRuns){
-            this.draw()    
+        setInterval(function(){
+            this.clearCanvas()
+            this.snake.move()
+            this.drawCanvas()    
+        }.bind(this), this.gameSpeed)
+
+    }
+    
+    clearCanvas(){
+
+        let snakeParts = this.snake.parts
+
+        for( let i = 0, l = snakeParts.length; i < l ; i++){
+            
+            let part = snakeParts[i]
+            this.ctx.clearRect( part['x'], part['y'], this.width, this.height)
+
         }
     }
 
-    draw(){
+    drawCanvas(){
 
         let snakeParts = this.snake.parts
-        console.log(snakeParts)
+        this.ctx.fillStyle = 'red'
+
+        for( let i = 0, l = snakeParts.length; i < l ; i++){
+            
+            let part = snakeParts[i]
+            this.ctx.fillRect( part['x'], part['y'], this.width, this.height)
+
+        }
     }
 }
 
-export {Game as default}
+const game = new Game()
+export {game}

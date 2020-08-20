@@ -14,7 +14,7 @@
     import Vuex from 'vuex'
 
     //classes imports
-    import Game from '../assets/js/game.js'
+    import {game} from '../assets/js/game.js'
 
     //component imports
     import scorebar from './scorebar'
@@ -61,8 +61,7 @@
         watch: {
 
             //if the gameArea is now visible, the game will be started
-            gameStarted: function () {
-                console.log("teest")
+            isVisible: function () {
                 this.load()
                 
             }
@@ -71,9 +70,7 @@
         methods:{
 
             load(){
-                console.log("test")
-                Game.init()
-                Game.run()
+                game.init()
             }
         }
     }
