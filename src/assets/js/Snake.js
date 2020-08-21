@@ -1,17 +1,29 @@
 class Snake{
 
-    constructor(width, height){
+    constructor(){
         
         this._x = 1
         this._y = 0
-        this._color = "red"
-        this._height = 50
-        this._width = 50
-        this._direction = 'right'
-        this._parts = [{x: 150, y:150}]
+        this._headColor = 'red'
+        this._bodyColor = 'green'
+        this._partRadius = 10
+        this._direction = 'd'
+        this._head = {x: 170, y:150}
+        this._parts = [
+            {x: 150, y:150},
+            {x: 130, y:150},
+            {x: 110, y:150}]
 
-        this._areaHeight = height
-        this._areaWidth = width
+        this._areaHeight = 0
+        this._areaWidth = 0
+    }
+
+    get bodyColor(){
+        return this._bodyColor
+    }
+
+    get headColor(){
+        return this._headColor
     }
 
     get x(){
@@ -38,6 +50,10 @@ class Snake{
         return this._parts
     }
 
+    get partRadius(){
+        return this._partRadius
+    }
+
     set y(y){
         this._y = y
     }
@@ -46,34 +62,102 @@ class Snake{
         this._x = x
     }
 
-    changeDirection(){
+    set direction(key){
+        this._direction = key
+    }
 
-        switch(this.direction){
-            case 'left':
-                this.x = -1* this.x
+    //PARAM possibleDirections - array with characters
+    randomDirection(possibleDirections){
+
+        let randomIndex = Math.floor(Math.random() *possibleDirections.length)
+        return possibleDirections[randomIndex]
+    }
+
+    //PARAM newDirection - character
+    changeDirection(newDirection){
+
+        switch(newDirection){
+            case 'a':               //direction left
+                this.x = -1
                 this.y = 0
                 break
 
-            case 'right':
-                this.x = -this.x
+            case 'd':               //direction right
+                this.x = 1
                 this.y = 0
                 break
 
-            case 'up':
+            case 'w':               //direction up
                 this.x = 0
-                this.y = -1 * this.y
+                this.y = -1
                 break
 
-            case 'down':
+            case 's':               //direction down
                 this.x = 0
-                this.y = -1 * this.y
+                this.y = 1
                 break
+        }
+    }
+    
+    //PARAM event - keydown-event
+    keyBoardHandler(event){
+
+        let key = event.key
+            
+        if(key === 'w' || key === 'a' || key === 's' || key === 'd'){
+
+            this.direction = key
+            this.changeDirection(key)
         }
     }
 
     // object part: contains coordinates
-    checkBordersProximity(){
+    checkBordersProximity(bodyPart){
+        let direction = this.direction
+        let x = this.x
+        let y = this.y
+        let areaHeight = document.getElementById('gameArea').height
+        let areaWidth = document.getElementById('gameArea').width
 
+        switch(direction){
+
+            case 'd':               //direction right
+
+                if(bodyPart['x'] + x + this.partRadius >= areaWidth){
+                    let direction = this.randomDirection(['w', 's'])
+                    this.changeDirection(direction)
+                }
+
+                break
+
+            case 'a':               //direction left
+
+                if(bodyPart['x'] + x - this.partRadius <= 0){
+                    let direction = this.randomDirection(['w', 's'])
+                    this.changeDirection(direction)
+                }
+
+                break
+
+            case 'w':               //direction up
+ 
+                if(bodyPart['y'] + y  - this.partRadius <= 0){
+                    let direction = this.randomDirection(['a', 'd'])
+                    this.changeDirection(direction)
+                }
+
+                break
+
+            case 's':               //direction down
+
+                if(bodyPart['y'] + y  + this.partRadius >= areaHeight){
+                    let direction = this.randomDirection(['a', 'd'])
+                    this.changeDirection(direction)
+                }
+
+            break
+
+        }
     }
 
     move(){
@@ -83,6 +167,9 @@ class Snake{
         for( let i = 0, l = snakeParts.length; i < l ; i++){
             
             let part = snakeParts[i]
+            
+            this.checkBordersProximity(part)
+
             part['x'] += this.x
             part['y'] += this.y
 

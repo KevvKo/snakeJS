@@ -5,7 +5,6 @@ class WebController{
         let canvas = document.querySelector('canvas')
         let gameContent = document.querySelector('.game')
 
-
         canvas.width = gameContent.offsetWidth
         window.addEventListener('resize', this.rescaleCanvas)
     
