@@ -68,13 +68,7 @@ class Game{
 
     drawCanvas(){
 
-        let meatball = this.meatball
-
-        this.ctx.fillStyle = meatball.color
-        this.ctx.beginPath()
-        this.ctx.arc( meatball.x, meatball.y, meatball.radius , 0, 2 * Math.PI)
-        this.ctx.fill()
-
+        this.drawMeatBall()
         this.drawHead()
         this.drawBody()
     }
@@ -104,6 +98,12 @@ class Game{
 
     drawMeatBall(){
 
+        let meatball = this.meatball
+
+        this.ctx.fillStyle = meatball.color
+        this.ctx.beginPath()
+        this.ctx.arc( meatball.x, meatball.y, meatball.radius , 0, 2 * Math.PI)
+        this.ctx.fill()
     }
 }
 

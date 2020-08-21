@@ -1,6 +1,6 @@
 <template>
   <div  class="gameBoard">
-      <canvas id ="gameArea" height="300" width="742"></canvas>
+      <canvas id ="gameArea" height="700" width="1536"></canvas> 
   </div>
 </template>
 

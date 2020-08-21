@@ -46,6 +46,10 @@ class Snake{
         return this._direction
     }
 
+    get head(){
+        return this._head
+    }
+
     get parts(){
         return this._parts
     }
@@ -162,13 +166,20 @@ class Snake{
 
     move(){
 
+        let x = this.x
+        let y = this.y
+        let head = this.head
+
+        this.checkBordersProximity(head)
+        
+        head['x'] += x
+        head['y'] += y
+        
         let snakeParts = this.parts
 
         for( let i = 0, l = snakeParts.length; i < l ; i++){
             
             let part = snakeParts[i]
-            
-            this.checkBordersProximity(part)
 
             part['x'] += this.x
             part['y'] += this.y
