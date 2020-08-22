@@ -37,6 +37,7 @@ class Game{
             this.snake.keyBoardHandler(event)
         }.bind(this))
 
+        this.snake.createBody()
         this.run()
     }
 
@@ -55,6 +56,7 @@ class Game{
             }
 
             this.snake.move()
+            this.checkMeatBallCollision()
             this.drawCanvas()  
 
         }.bind(this), this.gameSpeed)
@@ -69,8 +71,8 @@ class Game{
     drawCanvas(){
 
         this.drawMeatBall()
-        this.drawHead()
         this.drawBody()
+        this.drawHead()
     }
 
     drawHead(){
@@ -86,7 +88,7 @@ class Game{
 
         let snakeParts = this.snake.parts
         this.ctx.fillStyle = this.snake.bodyColor
-        for( let i = 0, l = snakeParts.length; i < l ; i++){
+        for( let i = 1, l = snakeParts.length; i < l ; i++){
             
             let part = snakeParts[i]
             this.ctx.beginPath()
@@ -104,6 +106,21 @@ class Game{
         this.ctx.beginPath()
         this.ctx.arc( meatball.x, meatball.y, meatball.radius , 0, 2 * Math.PI)
         this.ctx.fill()
+    }
+
+    checkMeatBallCollision(){
+        let meatBall = this.meatball
+        let head = this.snake.head
+
+        let euclidDistance = this.euclidDistance(head, meatBall)
+        console.log(euclidDistance)
+    }
+
+    euclidDistance(point1, point2){
+        let a = point1['x'] - point2['x']
+        let b = point1['y'] - point2['y']
+
+        return Math.sqrt(a*a + b*b)
     }
 }
 

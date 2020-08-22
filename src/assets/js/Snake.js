@@ -9,19 +9,16 @@ class Snake{
         this._partRadius = 10
         this._direction = 'd'
         this._head = {x: 170, y:150}
-        this._parts = [
-            {x: 150, y:150},
-            {x: 130, y:150},
-            {x: 110, y:150}]
-
+        this._parts = []
         this._areaHeight = 0
         this._areaWidth = 0
+
     }
 
     get bodyColor(){
         return this._bodyColor
     }
-
+w
     get headColor(){
         return this._headColor
     }
@@ -46,12 +43,12 @@ class Snake{
         return this._direction
     }
 
-    get head(){
-        return this._head
-    }
-
     get parts(){
         return this._parts
+    }
+
+    get head(){
+        return this._head
     }
 
     get partRadius(){
@@ -115,6 +112,24 @@ class Snake{
         }
     }
 
+    createBody(){
+        let head = this.head
+        let part = {x: head['x'], y:head['y']}
+        this._parts.push(part)
+
+        for(let i = 0, l = 100; i < l ; i++){
+            let lastPart = this.parts.slice(-1)
+            let part = {x: lastPart['x'] - 1, y:lastPart['y']}
+            this._parts.push(part)
+    
+        }
+    }
+
+    addBodyPart(){
+        let lastPart = this.parts.slice(-1)
+        this._parts.push(lastPart)
+    }
+
     // object part: contains coordinates
     checkBordersProximity(bodyPart){
         let direction = this.direction
@@ -168,25 +183,23 @@ class Snake{
 
         let x = this.x
         let y = this.y
+
         let head = this.head
 
         this.checkBordersProximity(head)
-        
+    
         head['x'] += x
         head['y'] += y
         
-        let snakeParts = this.parts
+        let newHead = {x: head['x'], y: head['y']}
 
-        for( let i = 0, l = snakeParts.length; i < l ; i++){
-            
-            let part = snakeParts[i]
+        this.parts.unshift(newHead)
+        this.parts.pop()
 
-            part['x'] += this.x
-            part['y'] += this.y
+    }
 
-            snakeParts[i] = part
+    eatMeatBall(){
 
-        }
     }
 }
 
