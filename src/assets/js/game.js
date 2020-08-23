@@ -37,6 +37,7 @@ class Game{
         }.bind(this))
 
         this.snake.createBody()
+        this.meatball.newRandomPosition(this.gameAreaWidth, this.gameAreaHeight)
         this.run()
     }
 
@@ -120,8 +121,20 @@ class Game{
         
         if(meatIsEaten){
 
-            this.gameSpeed -= 0.1
+            let snakeParts = this.snake.parts
             meatBall.newRandomPosition(this.gameAreaWidth, this.gameAreaHeight)
+
+            for(let i = 0, l = snakeParts.length; i < l; i++){
+                console.log("Test")
+
+                let part = snakeParts[i]
+
+                if(part.x === this.meatball.x && part.y === this.meatball.y){
+                    i = 0
+                    meatBall.newRandomPosition(this.gameAreaWidth, this.gameAreaHeight)
+                }
+            }
+            
             this.snake.eatMeatBall()
 
         }

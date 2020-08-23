@@ -162,7 +162,6 @@ w
     isDirectionInverse(key){
 
         let directionChange = this.direction + key
-        console.log(directionChange)
         switch(directionChange){
 
             case 'da' : 
@@ -188,6 +187,30 @@ w
             
             case 'ArrowRightArrowLeft' : 
             return true
+
+            case 'sArrowUp' : 
+            return true
+
+            case 'ArrowUps' : 
+            return true
+            
+            case 'dArrowLeft' : 
+            return true
+            
+            case 'ArrowLeftd' : 
+            return true
+
+            case 'aArrowRight' : 
+            return true
+            
+            case 'ArrowRighta' : 
+            return true
+
+            case 'wArrowDown' : 
+            return true
+            
+            case 'ArrowDownw' : 
+            return true
         }
     }
 
@@ -205,8 +228,10 @@ w
     }
 
     addBodyPart(){
-        let lastPart = this.parts.slice(-1)
-        this._parts.push(lastPart)
+        for(let i = 0; i < 20; i++){
+            let lastPart = this.parts.slice(-1)
+            this._parts.push(lastPart)
+        }
     }
 
     // object part: contains coordinates
@@ -228,7 +253,7 @@ w
 
                 break
 
-            case 97:               //direction left
+            case 'a':               //direction left
 
                 if(bodyPart['x'] + x - this.partRadius <= 0){
                     let direction = this.randomDirection(['w', 's'])

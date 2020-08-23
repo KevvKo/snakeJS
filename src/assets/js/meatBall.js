@@ -2,8 +2,6 @@ class MeatBall{
 
     constructor(){
 
-        this._x = 20
-        this._y = 20
         this._radius = 4
         this._color = 'orange'
         this._wasEaten = false
