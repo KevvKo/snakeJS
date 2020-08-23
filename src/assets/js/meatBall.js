@@ -41,7 +41,7 @@ class MeatBall{
     newRandomPosition(areaWidth, areaHeight){
         this.x = Math.floor((Math.random() * areaWidth - this.radius -1) + this.radius + 1)
         this.y = Math.floor((Math.random() * areaHeight - this.radius -1) + this.radius + 1 )
-            
+        
     }
 
     set wasEaten(boolean){

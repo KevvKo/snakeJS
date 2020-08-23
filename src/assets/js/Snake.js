@@ -80,10 +80,12 @@ w
     keyBoardHandler(event){
 
         let key = event.key
-
+        let arrowKey = key === 'ArrowUp' || key === 'ArrowDown' || key === 'ArrowLeft' || key === 'ArrowRight'
+        let wasdKey = key === 'w' || key === 'a' || key === 's' || key === 'd'
+        
         if(key === this.direction) return
 
-        if(key === 'w' || key === 'a' || key === 's' || key === 'd'){
+        if(arrowKey || wasdKey){
 
             this.changeDirection(key)
         }
@@ -95,54 +97,64 @@ w
         let isDirectionInverse = this.isDirectionInverse(newDirection)
  
         if(!isDirectionInverse){
+
             switch(newDirection){
+
                 case 'a':               //direction left
 
                     this.x = -1
                     this.y = 0
-                    this.direction = 'a'
+                    this.direction = newDirection
                     break
 
                 case 'd':               //direction right
                 
                     this.x = 1
                     this.y = 0
-                    this.direction = 'd'
+                    this.direction = newDirection
                     break
 
                 case 'w':               //direction up
                     
                     this.x = 0
                     this.y = -1
-                    this.direction = 'w'
+                    this.direction = newDirection
                     break
 
                 case 's':               //direction down
                     
                     this.x = 0
                     this.y = 1
-                    this.direction = 's'
+                    this.direction = newDirection
                     break
 
-                // case 'a' & 'w':         //direction north-west
-                //     this.x = -1
-                //     this.y = -1
-                //     break
+                case 'ArrowLeft':               //direction left
 
-                // case 'a' & 's':         //direction south-west
-                //     this.x = -1
-                //     this.y = 1
-                //     break
+                    this.x = -1
+                    this.y = 0
+                    this.direction = newDirection
+                    break
+
+                case 'ArrowRight':               //direction right
                 
-                // case 'w' & 'd':         //direction north-east
-                //     this.x = 1
-                //     this.y = -1
-                //     break
-                
-                // case 's' & 'd':         //direction south-east
-                //     this.x = 1
-                //     this.y = 1
-                //     break
+                    this.x = 1
+                    this.y = 0
+                    this.direction = newDirection
+                    break
+
+                case 'ArrowUp':               //direction up
+                    
+                    this.x = 0
+                    this.y = -1
+                    this.direction = newDirection
+                    break
+
+                case 'ArrowDown':               //direction down
+                    
+                    this.x = 0
+                    this.y = 1
+                    this.direction = newDirection
+                    break
             }
         }
     }
@@ -150,7 +162,7 @@ w
     isDirectionInverse(key){
 
         let directionChange = this.direction + key
-
+        console.log(directionChange)
         switch(directionChange){
 
             case 'da' : 
@@ -164,12 +176,24 @@ w
             
             case 'sw' : 
             return true
+
+            case 'ArrowUpArrowDown' : 
+            return true
+
+            case 'ArrowDownArrowUp' : 
+            return true
+            
+            case 'ArrowLeftArrowRight' : 
+            return true
+            
+            case 'ArrowRightArrowLeft' : 
+            return true
         }
     }
 
     createBody(){
         let head = this.head
-        let part = {x: head['x'], y:head['y']}
+        let part = {x: head['x'] -1, y:head['y']}
         this._parts.push(part)
 
         for(let i = 0, l = 100; i < l ; i++){
@@ -204,7 +228,7 @@ w
 
                 break
 
-            case 'a':               //direction left
+            case 97:               //direction left
 
                 if(bodyPart['x'] + x - this.partRadius <= 0){
                     let direction = this.randomDirection(['w', 's'])
@@ -242,12 +266,12 @@ w
         let head = this.head
 
         this.checkBordersProximity(head)
-    
+
+        let newHead = {x: head['x'], y: head['y']}
+
         head['x'] += x
         head['y'] += y
         
-        let newHead = {x: head['x'], y: head['y']}
-
         this.parts.unshift(newHead)
         this.parts.pop()
 
@@ -255,6 +279,7 @@ w
 
     eatMeatBall(){
 
+        this.addBodyPart()
     }
 }
 

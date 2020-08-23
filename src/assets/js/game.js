@@ -5,7 +5,6 @@ class Game{
 
     constructor(){
 
-        this.gameRuns = true
         this.snake = new Snake()
         this.meatball = new Meatball()
 
@@ -43,8 +42,8 @@ class Game{
 
     run(){
 
-        setInterval(function(){
-
+        this.gameLoop = setInterval(function(){
+            
             this.clearCanvas()
             
             let meatball = this.meatball
@@ -56,8 +55,9 @@ class Game{
             }
 
             this.snake.move()
+            this.snakeBodyCollision()
             this.checkMeatBallCollision()
-            this.drawCanvas()  
+            this.drawCanvas()
 
         }.bind(this), this.gameSpeed)
 
@@ -88,7 +88,7 @@ class Game{
 
         let snakeParts = this.snake.parts
         this.ctx.fillStyle = this.snake.bodyColor
-        for( let i = 1, l = snakeParts.length; i < l ; i++){
+        for( let i = 0, l = snakeParts.length; i < l ; i++){
             
             let part = snakeParts[i]
             this.ctx.beginPath()
@@ -119,12 +119,29 @@ class Game{
         let meatIsEaten = this.containsCircle(this.snake.partRadius, meatBall.radius, euclidDistance)
         
         if(meatIsEaten){
+
+            this.gameSpeed -= 0.1
             meatBall.newRandomPosition(this.gameAreaWidth, this.gameAreaHeight)
-            this.snake.addBodyPart()
-            console.log(meatBall.x)
-            console.log(meatBall.y)
+            this.snake.eatMeatBall()
 
         }
+    }
+    
+    snakeBodyCollision(){
+        
+        let head = this.snake.head
+        let x = head.x
+        let y = head.y
+        let bodyParts = this.snake.parts
+
+        bodyParts.forEach(function(part){
+
+            if(x == part.x && y ==part.y){
+
+                clearInterval(this.gameLoop)
+            }
+            
+        }.bind(this))
     }
 
     euclidDistance(point1, point2){
@@ -135,9 +152,9 @@ class Game{
         return Math.sqrt(a*a + b*b)
     }
 
-    containsCircle(headRadius, meatBallRadius, c){
+    containsCircle(radiusOne, radiusTwo, c){
         
-        return headRadius >= meatBallRadius + c
+        return radiusOne >= radiusTwo + c
     }
 }
 
