@@ -74,41 +74,96 @@ w
         return possibleDirections[randomIndex]
     }
 
-    //PARAM newDirection - character
-    changeDirection(newDirection){
-
-        switch(newDirection){
-            case 'a':               //direction left
-                this.x = -1
-                this.y = 0
-                break
-
-            case 'd':               //direction right
-                this.x = 1
-                this.y = 0
-                break
-
-            case 'w':               //direction up
-                this.x = 0
-                this.y = -1
-                break
-
-            case 's':               //direction down
-                this.x = 0
-                this.y = 1
-                break
-        }
-    }
+    //TODO: add diagonal direction-moving
     
     //PARAM event - keydown-event
     keyBoardHandler(event){
 
         let key = event.key
-            
+
+        if(key === this.direction) return
+
         if(key === 'w' || key === 'a' || key === 's' || key === 'd'){
 
-            this.direction = key
             this.changeDirection(key)
+        }
+    }
+
+    //PARAM newDirection - character
+    changeDirection(newDirection){
+
+        let isDirectionInverse = this.isDirectionInverse(newDirection)
+ 
+        if(!isDirectionInverse){
+            switch(newDirection){
+                case 'a':               //direction left
+
+                    this.x = -1
+                    this.y = 0
+                    this.direction = 'a'
+                    break
+
+                case 'd':               //direction right
+                
+                    this.x = 1
+                    this.y = 0
+                    this.direction = 'd'
+                    break
+
+                case 'w':               //direction up
+                    
+                    this.x = 0
+                    this.y = -1
+                    this.direction = 'w'
+                    break
+
+                case 's':               //direction down
+                    
+                    this.x = 0
+                    this.y = 1
+                    this.direction = 's'
+                    break
+
+                // case 'a' & 'w':         //direction north-west
+                //     this.x = -1
+                //     this.y = -1
+                //     break
+
+                // case 'a' & 's':         //direction south-west
+                //     this.x = -1
+                //     this.y = 1
+                //     break
+                
+                // case 'w' & 'd':         //direction north-east
+                //     this.x = 1
+                //     this.y = -1
+                //     break
+                
+                // case 's' & 'd':         //direction south-east
+                //     this.x = 1
+                //     this.y = 1
+                //     break
+            }
+        }
+    }
+
+    isDirectionInverse(key){
+
+        let directionChange = this.direction + key
+
+        switch(directionChange){
+
+            case 'da' : 
+            return true
+
+            case 'ad' : 
+            return true
+            
+            case 'ws' : 
+            return true
+            
+            case 'sw' : 
+            return true
         }
     }
 

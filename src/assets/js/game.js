@@ -33,7 +33,7 @@ class Game{
     init(){
 
         document.addEventListener('keydown', function(event){
-
+            
             this.snake.keyBoardHandler(event)
         }.bind(this))
 
@@ -109,18 +109,35 @@ class Game{
     }
 
     checkMeatBallCollision(){
+
         let meatBall = this.meatball
         let head = this.snake.head
 
         let euclidDistance = this.euclidDistance(head, meatBall)
-        console.log(euclidDistance)
+        
+        
+        let meatIsEaten = this.containsCircle(this.snake.partRadius, meatBall.radius, euclidDistance)
+        
+        if(meatIsEaten){
+            meatBall.newRandomPosition(this.gameAreaWidth, this.gameAreaHeight)
+            this.snake.addBodyPart()
+            console.log(meatBall.x)
+            console.log(meatBall.y)
+
+        }
     }
 
     euclidDistance(point1, point2){
+
         let a = point1['x'] - point2['x']
         let b = point1['y'] - point2['y']
 
         return Math.sqrt(a*a + b*b)
+    }
+
+    containsCircle(headRadius, meatBallRadius, c){
+        
+        return headRadius >= meatBallRadius + c
     }
 }
 
