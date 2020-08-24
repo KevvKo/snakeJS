@@ -15,7 +15,8 @@
 
     //classes imports
     import {game} from '../assets/js/game.js'
-
+    import score from '../assets/js/score'
+    
     //component imports
     import scorebar from './scorebar'
     import mainMenu from './mainMenu'
@@ -26,7 +27,8 @@
     const store = new Vuex.Store({
 
         state: {
-            isVisible: false
+            isVisible: false,
+            scoreHandler: new score()
         },
 
         mutations: {
@@ -36,6 +38,8 @@
         }
     })
 
+    export {store} 
+    
     export default {
 
         name: 'game',

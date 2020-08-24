@@ -1,7 +1,13 @@
 <template>
   <div class="scorebar">
-    <span>Your Highscore: </span>
-    <span>Your Score: </span>
+    <div>
+      <span>Your Highscore:</span>
+      <span id='highscore'>{{highscore}}</span>
+    </div>
+    <div>
+      <span>Your Score:</span>
+      <span id="score">{{score}}</span>
+    </div>
   </div>
 </template>
 
@@ -9,6 +15,15 @@
 
   export default {
     name: 'scorebar',
+
+    data: function(){
+
+      return {
+
+        score: this.$store.state.scoreHandler.score,
+        highscore: this.$store.state.scoreHandler.highscore
+      }
+    }
   }
 
 </script>
@@ -23,12 +38,19 @@
       padding: 0 10px;
   } 
 
-  .scorebar span:nth-child(1){
+  .scorebar div{
+    display: inline-block;
+  }
+
+  .scorebar div:nth-child(1){
       float: left;
   }
 
-  .scorebar span:nth-child(2){
+  .scorebar div:nth-child(2){
       float: right;
   }
 
+  #highscore, #score{
+    margin-left: 10px;
+  }
 </style>

@@ -1,5 +1,6 @@
 import Snake from './Snake'
 import Meatball from './meatBall'
+import Score from './score'
 
 class Game{
 
@@ -7,7 +8,7 @@ class Game{
 
         this.snake = new Snake()
         this.meatball = new Meatball()
-
+        this.score = new Score()
 
         //canvas need time for rendering to be detected
         document.addEventListener('DOMContentLoaded', function(){
@@ -16,8 +17,8 @@ class Game{
 
             this._gameAreaWidth = this.canvas.width
             this._gameAreaHeight = this.canvas.height
+
         }.bind(this))
-        
         this.gameSpeed = 30 //25
     }
 
@@ -134,9 +135,7 @@ class Game{
                     meatBall.newRandomPosition(this.gameAreaWidth, this.gameAreaHeight)
                 }
             }
-            
             this.snake.eatMeatBall()
-
         }
     }
     
