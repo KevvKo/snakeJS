@@ -16,15 +16,18 @@
   export default {
     name: 'scorebar',
 
-    data: function(){
+    computed: {
 
-      return {
+        score(){
+          return this.$store.state.scoreHandler.score
+        },
 
-        score: this.$store.state.scoreHandler.score,
-        highscore: this.$store.state.scoreHandler.highscore
-      }
+        highscore(){
+          return this.$store.state.scoreHandler.highscore
+        }
     }
   }
+  
 
 </script>
 

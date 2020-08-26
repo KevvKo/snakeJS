@@ -12,7 +12,8 @@ class Snake{
         this._parts = []
         this._areaHeight = 0
         this._areaWidth = 0
-
+        this._toleranceArea = 5
+        this._gameSpeed = 1
     }
 
     get bodyColor(){
@@ -67,10 +68,18 @@ w
         this._direction = key
     }
 
+    get gameSpeed(){
+        return this._gameSpeed
+    }
+
+    get toleranceArea(){
+        return this._toleranceArea
+    }
+
     //PARAM possibleDirections - array with characters
     randomDirection(possibleDirections){
 
-        let randomIndex = Math.floor(Math.random() *possibleDirections.length)
+        let randomIndex = Math.floor(Math.random() * possibleDirections.length)
         return possibleDirections[randomIndex]
     }
 
@@ -87,6 +96,7 @@ w
 
         if(arrowKey || wasdKey){
 
+            //let head = this.head
             this.changeDirection(key)
         }
     }
@@ -97,19 +107,19 @@ w
         let isDirectionInverse = this.isDirectionInverse(newDirection)
  
         if(!isDirectionInverse){
-
+            
             switch(newDirection){
-
+ 
                 case 'a':               //direction left
 
-                    this.x = -1
+                    this.x = -this.gameSpeed
                     this.y = 0
                     this.direction = newDirection
                     break
 
                 case 'd':               //direction right
                 
-                    this.x = 1
+                    this.x = this.gameSpeed
                     this.y = 0
                     this.direction = newDirection
                     break
@@ -117,27 +127,27 @@ w
                 case 'w':               //direction up
                     
                     this.x = 0
-                    this.y = -1
+                    this.y = -this.gameSpeed
                     this.direction = newDirection
                     break
 
                 case 's':               //direction down
                     
                     this.x = 0
-                    this.y = 1
+                    this.y = this.gameSpeed
                     this.direction = newDirection
                     break
 
                 case 'ArrowLeft':               //direction left
 
-                    this.x = -1
+                    this.x = -this.gameSpeed
                     this.y = 0
                     this.direction = newDirection
                     break
 
                 case 'ArrowRight':               //direction right
                 
-                    this.x = 1
+                    this.x = this.gameSpeed
                     this.y = 0
                     this.direction = newDirection
                     break
@@ -145,14 +155,14 @@ w
                 case 'ArrowUp':               //direction up
                     
                     this.x = 0
-                    this.y = -1
+                    this.y = -this.gameSpeed
                     this.direction = newDirection
                     break
 
                 case 'ArrowDown':               //direction down
                     
                     this.x = 0
-                    this.y = 1
+                    this.y = this.gameSpeed
                     this.direction = newDirection
                     break
             }
@@ -215,6 +225,7 @@ w
     }
 
     createBody(){
+
         let head = this.head
         let part = {x: head['x'] -1, y:head['y']}
         this._parts.push(part)
@@ -228,6 +239,7 @@ w
     }
 
     addBodyPart(){
+
         for(let i = 0; i < 20; i++){
             let lastPart = this.parts.slice(-1)
             this._parts.push(lastPart)
@@ -235,7 +247,8 @@ w
     }
 
     // object part: contains coordinates
-    checkBordersProximity(bodyPart){
+    borderDetection(bodyPart){
+
         let direction = this.direction
         let x = this.x
         let y = this.y
@@ -246,40 +259,40 @@ w
 
             case 'd':               //direction right
 
-                if(bodyPart['x'] + x + this.partRadius >= areaWidth){
-                    let direction = this.randomDirection(['w', 's'])
-                    this.changeDirection(direction)
-                }
-
-                break
+                return bodyPart['x'] + x + this.partRadius >= areaWidth - this.toleranceArea
+          
 
             case 'a':               //direction left
 
-                if(bodyPart['x'] + x - this.partRadius <= 0){
-                    let direction = this.randomDirection(['w', 's'])
-                    this.changeDirection(direction)
-                }
-
-                break
+                return bodyPart['x'] + x - this.partRadius <= this.toleranceArea
 
             case 'w':               //direction up
  
-                if(bodyPart['y'] + y  - this.partRadius <= 0){
-                    let direction = this.randomDirection(['a', 'd'])
-                    this.changeDirection(direction)
-                }
-
-                break
-
+                return bodyPart['y'] + y  - this.partRadius <= this.toleranceArea
+                
             case 's':               //direction down
 
-                if(bodyPart['y'] + y  + this.partRadius >= areaHeight){
-                    let direction = this.randomDirection(['a', 'd'])
-                    this.changeDirection(direction)
-                }
+                return bodyPart['y'] + y  + this.partRadius >= areaHeight - this.toleranceArea 
+        }
+    }
 
-            break
+    checkBorderProximity(head){
 
+        if(this.borderDetection(head)){
+
+            let direction = this.direction
+            let newDirection = ''
+
+            let vertical = ['w', 's']
+            let horizontal = ['a', 'd']
+
+            //while(this.isDirectionInverse(this.direction)){
+
+                if(direction === 'a' || direction === 'd') newDirection = this.randomDirection(vertical)
+                else   newDirection = this.randomDirection(horizontal)
+
+                this.changeDirection(newDirection)
+            //}
         }
     }
 
@@ -290,7 +303,7 @@ w
 
         let head = this.head
 
-        this.checkBordersProximity(head)
+        this.checkBorderProximity(head)
 
         let newHead = {x: head['x'], y: head['y']}
 

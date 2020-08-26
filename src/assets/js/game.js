@@ -1,14 +1,13 @@
 import Snake from './Snake'
 import Meatball from './meatBall'
-import Score from './score'
-
+import {store} from '../../components/game.vue'
 class Game{
 
     constructor(){
 
         this.snake = new Snake()
         this.meatball = new Meatball()
-        this.score = new Score()
+
 
         //canvas need time for rendering to be detected
         document.addEventListener('DOMContentLoaded', function(){
@@ -17,8 +16,8 @@ class Game{
 
             this._gameAreaWidth = this.canvas.width
             this._gameAreaHeight = this.canvas.height
-
         }.bind(this))
+        
         this.gameSpeed = 30 //25
     }
 
@@ -45,7 +44,7 @@ class Game{
     run(){
 
         this.gameLoop = setInterval(function(){
-            
+
             this.clearCanvas()
             
             let meatball = this.meatball
@@ -126,7 +125,6 @@ class Game{
             meatBall.newRandomPosition(this.gameAreaWidth, this.gameAreaHeight)
 
             for(let i = 0, l = snakeParts.length; i < l; i++){
-                console.log("Test")
 
                 let part = snakeParts[i]
 
@@ -135,7 +133,9 @@ class Game{
                     meatBall.newRandomPosition(this.gameAreaWidth, this.gameAreaHeight)
                 }
             }
+            
             this.snake.eatMeatBall()
+            store.state.scoreHandler.increaseScore()
         }
     }
     

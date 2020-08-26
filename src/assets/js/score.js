@@ -14,10 +14,17 @@ class Score{
         return this._score
     }
 
+    set highscore(score){
+        this._highscore = score
+    }
 
     increaseScore(){
-        this._score +=1
+        this._score +=10
+
+        if(this._score > this._highscore) this._highscore= this._score
     }
+
+
 }
 
 export{Score as default}
