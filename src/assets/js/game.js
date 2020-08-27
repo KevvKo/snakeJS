@@ -137,7 +137,11 @@ class Game{
         let head = this.snake.head
         let bodyParts = this.snake.parts
 
-        for(let i = 10, l = bodyParts.length; i < l ; i++){
+        // starting add the 28. part, cause 
+        //      1, all parts in range 0-19 intersect with the head => 1px distance
+        //      2. by changing the direction, the 27. part of the body touches the head 
+
+        for(let i = 28, l = bodyParts.length; i < l ; i++){
             
             let part = bodyParts[i]
             let radiusSum = this.snake.partRadius*2
@@ -145,10 +149,9 @@ class Game{
             let headTouchesBody = this.touchedCircle(radiusSum, c)
             
             if(headTouchesBody){
-
-                // clearInterval(this.gameLoop)
+        
+                clearInterval(this.gameLoop)
             }
-            
         }
     }
 
@@ -167,7 +170,7 @@ class Game{
 
     touchedCircle(radiusSum, c){
 
-        return radiusSum == c
+        return radiusSum >= c
     }
 }
 

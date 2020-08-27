@@ -222,7 +222,7 @@ w
         let part = {x: head['x'] -1, y:head['y']}
         this._parts.push(part)
 
-        for(let i = 0, l = 50; i < l ; i++){
+        for(let i = 0, l = 100; i < l ; i++){
 
             let lastPart = this.parts.slice(-1)
             let part = {x: lastPart['x'] - 1, y:lastPart['y']}
@@ -232,7 +232,7 @@ w
 
     addBodyPart(){
 
-        for(let i = 0; i < 40; i++){
+        for(let i = 0; i < 50; i++){
             let lastPart = this.parts.slice(-1)
             this._parts.push(lastPart)
         }
