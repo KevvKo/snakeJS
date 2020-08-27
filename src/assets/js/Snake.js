@@ -249,20 +249,35 @@ w
 
         switch(direction){
 
-            case 'd' || 'ArrowRight':               //direction right
+            case 'd':               //direction right
 
                 return bodyPart['x'] + x  === areaWidth
           
-
-            case 'a' || 'ArrowLeft':               //direction left
+            case 'a':               //direction left
 
                 return bodyPart['x'] + x === 0
 
-            case 'w' || 'ArrowUp':               //direction up
+            case 'w':               //direction up
 
                 return bodyPart['y'] + y === 0
                 
-            case 's' || 'ArrowDown':               //direction down
+            case 's':               //direction down
+
+                return bodyPart['y'] + y === areaHeight
+
+            case 'ArrowRight':               //direction right
+
+                return bodyPart['x'] + x  === areaWidth
+          
+            case 'ArrowLeft':               //direction left
+
+                return bodyPart['x'] + x === 0
+
+            case 'ArrowUp':               //direction up
+
+                return bodyPart['y'] + y === 0
+                
+            case 'ArrowDown':               //direction down
 
                 return bodyPart['y'] + y === areaHeight
         }
@@ -274,22 +289,42 @@ w
 
             switch(this.direction){
 
-                case 'd' || 'ArrowRight':               //direction right
+                case 'd':               //direction right
     
                     head['x'] = this.partRadius
                     break
 
-                case 'a' || 'ArrowLeft':               //direction left
+                case 'a':               //direction left
 
                     head['x'] = store.state.gameWidth   
                     break
 
-                case 'w' || 'ArrowUp':               //direction up
+                case 'w':               //direction up
 
                     head['y'] = store.state.gameHeight
                     break
 
-                case 's' || 'ArrowDown':               //direction down
+                case 's':               //direction down
+                    
+                    head['y'] = 0
+                    break
+
+                    case 'ArrowRight':               //direction right
+    
+                    head['x'] = this.partRadius
+                    break
+
+                case 'ArrowLeft':               //direction left
+
+                    head['x'] = store.state.gameWidth   
+                    break
+
+                case 'ArrowUp':               //direction up
+
+                    head['y'] = store.state.gameHeight
+                    break
+
+                case 'ArrowDown':               //direction down
                     
                     head['y'] = 0
                     break

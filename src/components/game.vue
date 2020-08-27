@@ -30,8 +30,8 @@
             isVisible: false,
             game: new Game(),
             scoreHandler: new Score(),
-            gameWidth: 1500,
-            gameHeight: 600
+            gameWidth: 800,
+            gameHeight: 290
         },
 
         mutations: {
