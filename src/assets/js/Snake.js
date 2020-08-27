@@ -1,8 +1,11 @@
+import {store} from '../../components/game'
+
 class Snake{
 
     constructor(){
-        
-        this._x = 1
+
+        this._gameSpeed = 5
+        this._x = this._gameSpeed
         this._y = 0
         this._headColor = 'red'
         this._bodyColor = 'green'
@@ -10,10 +13,8 @@ class Snake{
         this._direction = 'd'
         this._head = {x: 170, y:150}
         this._parts = []
-        this._areaHeight = 0
-        this._areaWidth = 0
         this._toleranceArea = 5
-        this._gameSpeed = 1
+
     }
 
     get bodyColor(){
@@ -30,14 +31,6 @@ w
 
     get y(){
         return this._y
-    }
-
-    get areaWidth(){
-        return this._areaWidth
-    }
-
-    get areaHeight(){
-        return this._areaHeight
     }
 
     get direction(){
@@ -96,8 +89,8 @@ w
 
         if(arrowKey || wasdKey){
 
-            //let head = this.head
-            this.changeDirection(key)
+            let head = this.head
+            if(!this.borderDetection(head)) this.changeDirection(key)
         }
     }
 
@@ -230,7 +223,7 @@ w
         let part = {x: head['x'] -1, y:head['y']}
         this._parts.push(part)
 
-        for(let i = 0, l = 100; i < l ; i++){
+        for(let i = 0, l = 20; i < l ; i++){
             let lastPart = this.parts.slice(-1)
             let part = {x: lastPart['x'] - 1, y:lastPart['y']}
             this._parts.push(part)
@@ -252,27 +245,26 @@ w
         let direction = this.direction
         let x = this.x
         let y = this.y
-        let areaHeight = document.getElementById('gameArea').height
-        let areaWidth = document.getElementById('gameArea').width
+        let areaHeight =  store.state.gameHeight
+        let areaWidth = store.state.gameWidth
 
         switch(direction){
 
             case 'd':               //direction right
 
-                return bodyPart['x'] + x + this.partRadius >= areaWidth - this.toleranceArea
+                return bodyPart['x'] + x + this.partRadius == areaWidth - this.toleranceArea
           
 
             case 'a':               //direction left
 
-                return bodyPart['x'] + x - this.partRadius <= this.toleranceArea
+                return bodyPart['x'] + x - this.partRadius == this.toleranceArea
 
             case 'w':               //direction up
- 
-                return bodyPart['y'] + y  - this.partRadius <= this.toleranceArea
+                return bodyPart['y'] + y  - this.partRadius == this.toleranceArea
                 
             case 's':               //direction down
 
-                return bodyPart['y'] + y  + this.partRadius >= areaHeight - this.toleranceArea 
+                return bodyPart['y'] + y  + this.partRadius == areaHeight - this.toleranceArea 
         }
     }
 

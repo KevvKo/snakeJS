@@ -20,7 +20,7 @@
   import mainMenuEntry from './mainMenuEntry.vue'
 
   export default {
-    
+
     name: 'mainMenu',
 
     props: {
@@ -35,7 +35,6 @@
 
       startGame: function(){
         this.$store.commit('changeVisibility')
-        this.$WebController.rescaleCanvas()
         
       },
 
