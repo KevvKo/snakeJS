@@ -8,7 +8,7 @@ class Game{
 
         this.snake = new Snake()
         this.meatball = new Meatball() 
-        this.gameSpeed = 30 //25
+        this.gameSpeed = 25
     }
 
     get gameAreaWidth(){
@@ -135,18 +135,21 @@ class Game{
     snakeBodyCollision(){
         
         let head = this.snake.head
-        let x = head.x
-        let y = head.y
         let bodyParts = this.snake.parts
 
-        bodyParts.forEach(function(part){
+        for(let i = 10, l = bodyParts.length; i < l ; i++){
+            
+            let part = bodyParts[i]
+            let radiusSum = this.snake.partRadius*2
+            let c = this.euclidDistance(head, part)
+            let headTouchesBody = this.touchedCircle(radiusSum, c)
 
-            if(x == part.x && y ==part.y){
+            if(headTouchesBody){
 
                 clearInterval(this.gameLoop)
             }
             
-        }.bind(this))
+        }
     }
 
     euclidDistance(point1, point2){
@@ -160,6 +163,11 @@ class Game{
     containsCircle(radiusOne, radiusTwo, c){
         
         return radiusOne >= radiusTwo + c
+    }
+
+    touchedCircle(radiusSum, c){
+
+        return radiusSum <= c
     }
 }
 

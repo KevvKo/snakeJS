@@ -4,8 +4,8 @@ class Snake{
 
     constructor(){
 
-        this._gameSpeed = 5
-        this._x = this._gameSpeed
+        this._snakeSpeed = 3
+        this._x = this._snakeSpeed
         this._y = 0
         this._headColor = 'red'
         this._bodyColor = 'green'
@@ -61,8 +61,8 @@ w
         this._direction = key
     }
 
-    get gameSpeed(){
-        return this._gameSpeed
+    get snakeSpeed(){
+        return this._snakeSpeed
     }
 
     get toleranceArea(){
@@ -104,14 +104,14 @@ w
  
                 case 'a':               //direction left
 
-                    this.x = -this.gameSpeed
+                    this.x = -this.snakeSpeed
                     this.y = 0
                     this.direction = newDirection
                     break
 
                 case 'd':               //direction right
                 
-                    this.x = this.gameSpeed
+                    this.x = this.snakeSpeed
                     this.y = 0
                     this.direction = newDirection
                     break
@@ -119,27 +119,27 @@ w
                 case 'w':               //direction up
                     
                     this.x = 0
-                    this.y = -this.gameSpeed
+                    this.y = -this.snakeSpeed
                     this.direction = newDirection
                     break
 
                 case 's':               //direction down
                     
                     this.x = 0
-                    this.y = this.gameSpeed
+                    this.y = this.snakeSpeed
                     this.direction = newDirection
                     break
 
                 case 'ArrowLeft':               //direction left
 
-                    this.x = -this.gameSpeed
+                    this.x = -this.snakeSpeed
                     this.y = 0
                     this.direction = newDirection
                     break
 
                 case 'ArrowRight':               //direction right
                 
-                    this.x = this.gameSpeed
+                    this.x = this.snakeSpeed
                     this.y = 0
                     this.direction = newDirection
                     break
@@ -147,14 +147,14 @@ w
                 case 'ArrowUp':               //direction up
                     
                     this.x = 0
-                    this.y = -this.gameSpeed
+                    this.y = -this.snakeSpeed
                     this.direction = newDirection
                     break
 
                 case 'ArrowDown':               //direction down
                     
                     this.x = 0
-                    this.y = this.gameSpeed
+                    this.y = this.snakeSpeed
                     this.direction = newDirection
                     break
             }
@@ -222,17 +222,17 @@ w
         let part = {x: head['x'] -1, y:head['y']}
         this._parts.push(part)
 
-        for(let i = 0, l = 20; i < l ; i++){
+        for(let i = 0, l = 25; i < l ; i++){
+
             let lastPart = this.parts.slice(-1)
             let part = {x: lastPart['x'] - 1, y:lastPart['y']}
             this._parts.push(part)
-    
         }
     }
 
     addBodyPart(){
 
-        for(let i = 0; i < 20; i++){
+        for(let i = 0; i < 33; i++){
             let lastPart = this.parts.slice(-1)
             this._parts.push(lastPart)
         }
@@ -270,7 +270,6 @@ w
 
     checkBorderProximity(head){
 
-        
         if(this.borderDetection(head)){
 
             switch(this.direction){
@@ -282,7 +281,7 @@ w
 
                 case 'a' || 'ArrowLeft':               //direction left
     
-                    head['x'] = store.state.gameWidth - this.toleranceArea
+                    head['x'] = store.state.gameWidth   
                     break
 
                 case 'w' || 'ArrowUp':               //direction up
@@ -313,7 +312,6 @@ w
         
         this.parts.unshift(newHead)
         this.parts.pop()
-
     }
 
     eatMeatBall(){
