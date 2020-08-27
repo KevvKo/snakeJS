@@ -8,7 +8,7 @@ class Game{
 
         this.snake = new Snake()
         this.meatball = new Meatball() 
-        this.gameSpeed = 25
+        this.gameSpeed = 10
     }
 
     get gameAreaWidth(){
@@ -143,10 +143,10 @@ class Game{
             let radiusSum = this.snake.partRadius*2
             let c = this.euclidDistance(head, part)
             let headTouchesBody = this.touchedCircle(radiusSum, c)
-
+            
             if(headTouchesBody){
 
-                clearInterval(this.gameLoop)
+                // clearInterval(this.gameLoop)
             }
             
         }
@@ -167,7 +167,7 @@ class Game{
 
     touchedCircle(radiusSum, c){
 
-        return radiusSum <= c
+        return radiusSum == c
     }
 }
 

@@ -4,7 +4,7 @@ class Snake{
 
     constructor(){
 
-        this._snakeSpeed = 3
+        this._snakeSpeed = 1
         this._x = this._snakeSpeed
         this._y = 0
         this._headColor = 'red'
@@ -222,7 +222,7 @@ w
         let part = {x: head['x'] -1, y:head['y']}
         this._parts.push(part)
 
-        for(let i = 0, l = 25; i < l ; i++){
+        for(let i = 0, l = 50; i < l ; i++){
 
             let lastPart = this.parts.slice(-1)
             let part = {x: lastPart['x'] - 1, y:lastPart['y']}
@@ -232,7 +232,7 @@ w
 
     addBodyPart(){
 
-        for(let i = 0; i < 33; i++){
+        for(let i = 0; i < 40; i++){
             let lastPart = this.parts.slice(-1)
             this._parts.push(lastPart)
         }
@@ -280,12 +280,12 @@ w
                     break
 
                 case 'a' || 'ArrowLeft':               //direction left
-    
+
                     head['x'] = store.state.gameWidth   
                     break
 
                 case 'w' || 'ArrowUp':               //direction up
-    
+
                     head['y'] = store.state.gameHeight
                     break
 
