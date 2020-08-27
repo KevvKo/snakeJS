@@ -89,8 +89,7 @@ w
 
         if(arrowKey || wasdKey){
 
-            let head = this.head
-            if(!this.borderDetection(head)) this.changeDirection(key)
+            this.changeDirection(key)
         }
     }
 
@@ -250,41 +249,52 @@ w
 
         switch(direction){
 
-            case 'd':               //direction right
+            case 'd' || 'ArrowRight':               //direction right
 
-                return bodyPart['x'] + x + this.partRadius == areaWidth - this.toleranceArea
+                return bodyPart['x'] + x  === areaWidth
           
 
-            case 'a':               //direction left
+            case 'a' || 'ArrowLeft':               //direction left
 
-                return bodyPart['x'] + x - this.partRadius == this.toleranceArea
+                return bodyPart['x'] + x === 0
 
-            case 'w':               //direction up
-                return bodyPart['y'] + y  - this.partRadius == this.toleranceArea
+            case 'w' || 'ArrowUp':               //direction up
+
+                return bodyPart['y'] + y === 0
                 
-            case 's':               //direction down
+            case 's' || 'ArrowDown':               //direction down
 
-                return bodyPart['y'] + y  + this.partRadius == areaHeight - this.toleranceArea 
+                return bodyPart['y'] + y === areaHeight
         }
     }
 
     checkBorderProximity(head){
 
+        
         if(this.borderDetection(head)){
 
-            let direction = this.direction
-            let newDirection = ''
+            switch(this.direction){
 
-            let vertical = ['w', 's']
-            let horizontal = ['a', 'd']
+                case 'd' || 'ArrowRight':               //direction right
+    
+                    head['x'] = this.partRadius
+                    break
 
-            //while(this.isDirectionInverse(this.direction)){
+                case 'a' || 'ArrowLeft':               //direction left
+    
+                    head['x'] = store.state.gameWidth - this.toleranceArea
+                    break
 
-                if(direction === 'a' || direction === 'd') newDirection = this.randomDirection(vertical)
-                else   newDirection = this.randomDirection(horizontal)
+                case 'w' || 'ArrowUp':               //direction up
+    
+                    head['y'] = store.state.gameHeight
+                    break
 
-                this.changeDirection(newDirection)
-            //}
+                case 's' || 'ArrowDown':               //direction down
+                    
+                    head['y'] = 0
+                    break
+            }
         }
     }
 
@@ -294,7 +304,6 @@ w
         let y = this.y
 
         let head = this.head
-
         this.checkBorderProximity(head)
 
         let newHead = {x: head['x'], y: head['y']}
