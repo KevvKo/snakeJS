@@ -14,8 +14,8 @@
     import Vuex from 'vuex'
 
     //classes imports
-    import {game} from '../assets/js/game.js'
-    import score from '../assets/js/score'
+    import Game from '../assets/js/game.js'
+    import Score from '../assets/js/score'
     
     //component imports
     import scorebar from './scorebar'
@@ -28,7 +28,10 @@
 
         state: {
             isVisible: false,
-            scoreHandler: new score()
+            game: new Game(),
+            scoreHandler: new Score(),
+            gameWidth: 1400,
+            gameHeight: 700
         },
 
         mutations: {
@@ -74,7 +77,7 @@
         methods:{
 
             load(){
-                game.init()
+                store.state.game.init()
             }
         }
     }

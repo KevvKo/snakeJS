@@ -1,23 +1,13 @@
 import Snake from './Snake'
 import Meatball from './meatBall'
 import {store} from '../../components/game.vue'
+
 class Game{
 
     constructor(){
 
         this.snake = new Snake()
-        this.meatball = new Meatball()
-
-
-        //canvas need time for rendering to be detected
-        document.addEventListener('DOMContentLoaded', function(){
-            this.canvas = document.querySelector('canvas')
-            this.ctx = this.canvas.getContext('2d')
-
-            this._gameAreaWidth = this.canvas.width
-            this._gameAreaHeight = this.canvas.height
-        }.bind(this))
-        
+        this.meatball = new Meatball() 
         this.gameSpeed = 30 //25
     }
 
@@ -37,11 +27,14 @@ class Game{
         }.bind(this))
 
         this.snake.createBody()
-        this.meatball.newRandomPosition(this.gameAreaWidth, this.gameAreaHeight)
+        this.meatball.newRandomPosition(store.state.gameWidth, store.state.gameHeight)
         this.run()
     }
 
     run(){
+
+        this.canvas = document.querySelector('canvas')
+        this.ctx = this.canvas.getContext('2d')
 
         this.gameLoop = setInterval(function(){
 
@@ -52,7 +45,7 @@ class Game{
             if(meatball.wasEaten){
 
                 meatball.wasEaten = false
-                this.meatball.newRandomPosition(this.gameAreaWidth, this.gameAreaHeight)
+                this.meatball.newRandomPosition(store.state.gameWidth, this.store.state.gameHeight)
             }
 
             this.snake.move()
@@ -66,7 +59,7 @@ class Game{
     
     clearCanvas(){
                     
-        this.ctx.clearRect(0,0, this.gameAreaWidth, this.gameAreaHeight)
+        this.ctx.clearRect(0,0, store.state.gameWidth, store.state.gameHeight)
     }
 
     drawCanvas(){
@@ -122,7 +115,7 @@ class Game{
         if(meatIsEaten){
 
             let snakeParts = this.snake.parts
-            meatBall.newRandomPosition(this.gameAreaWidth, this.gameAreaHeight)
+            meatBall.newRandomPosition(store.state.gameWidth, store.state.gameHeight)
 
             for(let i = 0, l = snakeParts.length; i < l; i++){
 
@@ -130,7 +123,7 @@ class Game{
 
                 if(part.x === this.meatball.x && part.y === this.meatball.y){
                     i = 0
-                    meatBall.newRandomPosition(this.gameAreaWidth, this.gameAreaHeight)
+                    meatBall.newRandomPosition(store.state.gameWidth, store.state.gameHeight)
                 }
             }
             
@@ -170,5 +163,4 @@ class Game{
     }
 }
 
-const game = new Game()
-export {game}
+export {Game as default}

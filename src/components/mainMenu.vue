@@ -20,7 +20,9 @@
   import mainMenuEntry from './mainMenuEntry.vue'
 
   export default {
+    
     name: 'mainMenu',
+
     props: {
       title: String
     },
