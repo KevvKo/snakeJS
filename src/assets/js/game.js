@@ -33,6 +33,7 @@ class Game{
 
     run(){
 
+        store.commit('checkHighScore')
         this.canvas = document.querySelector('canvas')
         this.ctx = this.canvas.getContext('2d')
 
@@ -150,8 +151,8 @@ class Game{
             
             if(headTouchesBody){
 
-                store.commit('finisheGame')
                 clearInterval(this.gameLoop)
+                store.commit('finisheGame')
             }
         }
     }
@@ -174,7 +175,20 @@ class Game{
         return radiusSum >= c
     }
 
-    
+    saveHighScore(){
+
+        let highscore = store.state.scoreHandler.highscore
+        let oldHighscore = store.state.db.getHighScore()
+
+        if(oldHighscore === undefined){
+            store.state.db.setHighScore(highscore)
+            return
+        }
+
+        if(highscore > oldHighscore){
+            store.state.db.setHighScore(highscore)
+        }
+    }
 }
 
 export {Game as default}

@@ -17,7 +17,8 @@
     //classes imports
     import Game from '../assets/js/game.js'
     import Score from '../assets/js/score'
-    
+    import DbHandler from '../assets/js/dbHandler'
+
     //component imports
     import scorebar from './scorebar'
     import mainMenu from './mainMenu'
@@ -29,28 +30,41 @@
     const store = new Vuex.Store({
 
         state: {
+            
             showMenu: true,
             showGame: false,
             showGameOver: false,
+
+            gameWidth: 800,
+            gameHeight: 290,
+
             game: new Game(),
             scoreHandler: new Score(),
-            gameWidth: 800,
-            gameHeight: 290
+            db: new DbHandler()
 
         },
 
         mutations: {
+
             changeVisibility (state) {
 
                 state.showMenu = false
                 state.showGame = true
             },
 
+            checkHighScore(state){
+                    console.log (state.db.getHighScore())
+
+                if(state.db.getHighScore()){
+                    state.scoreHandler.highscore = state.db.getHighScore()
+                }
+            },
 
             finisheGame (state){
 
                 state.showGameOver = true
                 state.showGame = false
+                state.game.saveHighScore()
                 state.game.clearCanvas()
             }
         }        

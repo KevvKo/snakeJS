@@ -1,21 +1,31 @@
 class dbHandler{
 
     constructor(){
-
-        this._score = 0
-        this._highScore = 0
+        this._storage = window.localStorage
     }
 
-    get score(){
-        return this._score
+    getUserName(){
+        return this._storage.getItem('username')
     }
 
-    get highScore(){
-        return this._highScore
+    setUserName(name){
+        this._storage.setItem('username', name)
     }
 
-    increaseScore(){
-        this._score +=1
+    getSnakeColor(){
+        return this._storage.getItem('snakecolor')
+    }
+
+    setSnakeColor(snakeColor){
+        this._storage.setItem('snakecolor', snakeColor)
+    }
+
+    getHighScore(){
+        return this._storage.getItem('highscore')
+    }
+
+    setHighScore(highscore){
+        this._storage.setItem('highscore', highscore)
     }
 }
 

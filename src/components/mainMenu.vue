@@ -39,11 +39,11 @@
       },
 
       setUserName: function () {
-        return
+        this.$store.state.db.setUserName(name)
       },
 
       changeSnakeColor: function() {
-        return
+        this.$store.state.db.setSnakeColor()
       }
     }
 
