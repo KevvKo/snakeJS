@@ -1,10 +1,11 @@
 <template>
     <div class="game">
-        <mainMenu v-show="!isVisible" title="SnakeJS"/>
-        <div v-show="isVisible" class="gameArea">
+        <mainMenu v-show="showMenu" title="SnakeJS"/>
+        <div v-show="showGame" class="gameArea">
             <scorebar/>
-            <gameBoard/>
+            <gameBoard/>  
         </div>
+        <gameOver v-show="showGameOver"/>  
     </div>
 </template>
 
@@ -21,24 +22,38 @@
     import scorebar from './scorebar'
     import mainMenu from './mainMenu'
     import gameBoard from './gameBoard'
+    import gameOver from './gameOver'
     
     Vue.use(Vuex)
 
     const store = new Vuex.Store({
 
         state: {
-            isVisible: false,
+            showMenu: true,
+            showGame: false,
+            showGameOver: false,
             game: new Game(),
             scoreHandler: new Score(),
             gameWidth: 800,
             gameHeight: 290
+
         },
 
         mutations: {
             changeVisibility (state) {
-                state.isVisible = !state.isVisible 
+
+                state.showMenu = false
+                state.showGame = true
+            },
+
+
+            finisheGame (state){
+
+                state.showGameOver = true
+                state.showGame = false
+                state.game.clearCanvas()
             }
-        }
+        }        
     })
 
     export {store} 
@@ -51,7 +66,8 @@
 
             scorebar,
             mainMenu,
-            gameBoard
+            gameBoard,
+            gameOver
 
         },
 
@@ -59,16 +75,27 @@
 
         computed: {
 
-            isVisible () {
+            showMenu () {
 
-                return store.state.isVisible
+                return store.state.showMenu
+            },
+
+
+            showGame () {
+
+                return store.state.showGame
+            },
+            
+            showGameOver () {
+
+                return store.state.showGameOver
             }
         },
 
         watch: {
 
             //if the gameArea is now visible, the game will be started
-            isVisible: function () {
+            showGame: function () {
                 this.load()
                 
             }

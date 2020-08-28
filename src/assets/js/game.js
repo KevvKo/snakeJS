@@ -149,7 +149,8 @@ class Game{
             let headTouchesBody = this.touchedCircle(radiusSum, c)
             
             if(headTouchesBody){
-        
+
+                store.commit('finisheGame')
                 clearInterval(this.gameLoop)
             }
         }
@@ -172,6 +173,8 @@ class Game{
 
         return radiusSum >= c
     }
+
+    
 }
 
 export {Game as default}

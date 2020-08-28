@@ -1,10 +1,10 @@
 <template>
     <div class="mainMenu">
-        <div class="menuContent">
+        <div class="content">
           <div class="title">{{title}}</div>
-          <mainMenuEntry @callback="startGame" text= "Play"/>
-          <mainMenuEntry @callack="setUserName" text="Username" />
-          <mainMenuEntry @callback="changeSnakeColor" text="Change color"/>
+          <menuEntry @callback="startGame" text= "Play"/>
+          <menuEntry @callack="setUserName" text="Username" />
+          <menuEntry @callback="changeSnakeColor" text="Change color"/>
         </div>
     </div>
 </template>
@@ -17,7 +17,7 @@
   Vue.use(Vuex)
   
   //component imports
-  import mainMenuEntry from './mainMenuEntry.vue'
+  import menuEntry from './menuEntry'
 
   export default {
 
@@ -28,7 +28,7 @@
     },
     
     components: {
-        mainMenuEntry
+        menuEntry
     },
 
     methods: {
@@ -54,6 +54,7 @@
   /*mainMenu-styling*/
 
   .mainMenu{
+    
       width: 100%;
       height: 100%;
       background-color: var(--main-primary-color);
@@ -63,12 +64,13 @@
   }
 
   .title{
+
       margin-bottom: 10px;
       font-size: 4.0vw;
-
   }
 
-  .menuContent{
+  .content{
+
       height: 80%;
       top: -50%;
       -ms-transform: translateY(25%);

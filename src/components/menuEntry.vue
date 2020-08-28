@@ -1,12 +1,12 @@
 <template>
-    <div class="mainMenuEntry">
+    <div class="menuEntry">
       <div v-on:click="$emit('callback')">{{text}}</div>
     </div>
 </template>
 
 <script>
   export default {
-    name: 'mainMenuEntry',
+    name: 'menuEntry',
     props: {
         text: String,
         callback: Function
@@ -17,7 +17,7 @@
 
 <style>
 
-  .mainMenuEntry:hover{
+  .menuEntry:hover{
       cursor: pointer;
       background-color: var(--main-light-color );
       transition: var(--default-transition);
