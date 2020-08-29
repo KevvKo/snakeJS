@@ -3,7 +3,7 @@ import {store} from '../../components/game'
 class Snake{
 
     constructor(){
-
+        
         this._snakeSpeed = 1
         this._x = this._snakeSpeed
         this._y = 0

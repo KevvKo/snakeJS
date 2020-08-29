@@ -72,11 +72,8 @@ class Game{
 
     drawHead(){
 
-        let snake = this.snake
-        this.ctx.fillStyle = this.snake.headColor
-        this.ctx.beginPath()
-        this.ctx.arc(snake.head['x'], snake.head['y'], snake.partRadius, 0, 2 * Math.PI)
-        this.ctx.fill()
+        let image = document.getElementById('snake')
+        this.ctx.drawImage(image, this.snake.head.x -16, this.snake.head.y - 16)
     }
 
     drawBody(){

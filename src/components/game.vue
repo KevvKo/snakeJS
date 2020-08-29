@@ -3,6 +3,7 @@
         <mainMenu v-show="showMenu" title="SnakeJS"/>
         <div v-show="showGame" class="gameArea">
             <scorebar/>
+            <img src='../assets/img/bluehead.png' id="snake">
             <gameBoard/>  
         </div>
         <gameOver v-show="showGameOver"/>  
@@ -35,13 +36,12 @@
             showGame: false,
             showGameOver: false,
 
-            gameWidth: 800,
-            gameHeight: 290,
+            gameWidth: 1500,
+            gameHeight: 700,
 
             game: new Game(),
             scoreHandler: new Score(),
-            db: new DbHandler()
-
+            db: new DbHandler(),
         },
 
         mutations: {
@@ -53,7 +53,6 @@
             },
 
             checkHighScore(state){
-                    console.log (state.db.getHighScore())
 
                 if(state.db.getHighScore()){
                     state.scoreHandler.highscore = state.db.getHighScore()
@@ -132,6 +131,9 @@
         height: 100%;
     }
 
+    #snake{
+        display: none;
+    }
     .gameArea{
 
         height: '100%';
