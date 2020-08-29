@@ -35,7 +35,7 @@
   /*scorebar-styling*/
   .scorebar{
       background-color: var(--main-primary-color);
-      color: var(--main-txt-color);
+      color: var(--main-primary-txt);
       width: 100%;
       height: 30px;
       padding: 0 10px;

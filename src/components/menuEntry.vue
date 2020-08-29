@@ -20,7 +20,10 @@
   .menuEntry:hover{
       cursor: pointer;
       background-color: var(--main-light-color );
+      color: var(--main-light-txt);
+      opacity: var(--main-light-opacity);
       transition: var(--default-transition);
+      text-shadow: none;
   }
   
 </style>

@@ -10,11 +10,23 @@
 
   /*variables for uniform design*/
   :root{
-      --main-primary-color: #880e4f;
-      --main-txt-color: white;
-      --main-dark-color: #560027;
-      --main-light-color: #bb467a;
+
+      /*primary color */
+      --main-primary-color: #447a6d;
+      --main-primary-txt: white;
+      --main-primary-opacity: 93%;
       --default-transition: 0.2s;
+
+      /*light color */
+      --main-light-color: #72a99b;
+      --main-light-txt: black;
+      --main-light-opacity: 85%;
+      --main-light-shadow: 3px 3px white;
+
+      /*dark color */
+      --main-dark-color: #154e42;
+      --main-dark-txt: white;
+      --main-dark-opacity: 60%;
   }
 
   /*general styling*/

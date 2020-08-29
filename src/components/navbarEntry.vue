@@ -17,10 +17,13 @@
 
 <style>
 
-    .navbarEntry:hover{
+    .navbarEntry a:hover{
         cursor: pointer;
-        background-color: var(--main-light-color);
+        color: var(--main-light-txt);
+        background-color: var(--main-light-color ); 
+        opacity: var(--main-light-opacity);
         transition: var(--default-transition);
+        text-shadow: none;
     }
 
 </style>
