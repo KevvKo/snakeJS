@@ -3,8 +3,10 @@
         <div class="content">
           <div class="title">{{title}}</div>
           <menuEntry @callback="startGame" text= "Play"/>
-          <menuEntry @callack="setUserName" text="Username" />
+          <menuEntry @callback="changeUserName" text="Username" />
+          <username/>
           <menuEntry @callback="changeSnakeColor" text="Change color"/>
+          
         </div>
     </div>
 </template>
@@ -18,6 +20,7 @@
   
   //component imports
   import menuEntry from './menuEntry'
+  import username from './username'
 
   export default {
 
@@ -28,7 +31,8 @@
     },
     
     components: {
-        menuEntry
+        menuEntry,
+        username
     },
 
     methods: {
@@ -38,11 +42,13 @@
         
       },
 
-      setUserName: function () {
+      changeUserName: function() {
+        this.$store.state.usernameVisible = true
         this.$store.state.db.setUserName(name)
       },
 
       changeSnakeColor: function() {
+  
         this.$store.state.db.setSnakeColor()
       }
     }

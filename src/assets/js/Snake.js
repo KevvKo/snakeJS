@@ -1,4 +1,4 @@
-import {store} from '../../components/game'
+import {store} from '../../App.vue'
 
 class Snake{
 

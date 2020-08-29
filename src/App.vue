@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="container">
+      <grayout/>
       <navigation/>
       <mainBoard/>
       <footbar text="SnakeJS - an open source project"/>
@@ -55,14 +56,74 @@
 </style>
 
 <script>
-  
+
+  import Vue from 'vue'
+  import Vuex from 'vuex'
+
+  //classes imports
+  import Game from './assets/js/game.js'
+  import Score from './assets/js/score'
+  import DbHandler from './assets/js/dbHandler'
+
+  import grayout from './components/grayout'
   import navigation from './components/navigation.vue'
   import mainBoard from './components/mainBoard.vue'
   import footbar from './components/footbar.vue'
 
+  Vue.use(Vuex)
+
+  const store = new Vuex.Store({
+
+    state: {
+        grayoutVisible: false,
+        usernameVisible: false,
+
+        showMenu: true,
+        showGame: false,
+        showGameOver: false,
+
+        gameWidth: 800,
+        gameHeight: 290,
+
+        game: new Game(),
+        scoreHandler: new Score(),
+        db: new DbHandler()
+
+    },
+
+    mutations: {
+
+        changeVisibility (state) {
+
+            state.showMenu = false
+            state.showGame = true
+        },
+
+        checkHighScore(state){
+
+            if(state.db.getHighScore()){
+                state.scoreHandler.highscore = state.db.getHighScore()
+            }
+        },
+
+        finisheGame (state){
+
+            state.showGameOver = true
+            state.showGame = false
+            state.game.saveHighScore()
+            state.game.clearCanvas()
+        }
+    }        
+  })
+
+  export {store} 
   export default {
     name: 'App',
+
+    store,
+
     components: {
+      grayout,
       navigation,
       mainBoard,
       footbar

@@ -1,6 +1,6 @@
 import Snake from './Snake'
 import Meatball from './meatBall'
-import {store} from '../../components/game.vue'
+import {store} from '../../App.vue'
 
 class Game{
 

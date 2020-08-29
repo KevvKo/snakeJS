@@ -1,9 +1,9 @@
 <template>
     <div class="game">
+        <img src="../assets/img/bluehead.png" id='snake'>
         <mainMenu v-show="showMenu" title="SnakeJS"/>
         <div v-show="showGame" class="gameArea">
             <scorebar/>
-            <img src='../assets/img/bluehead.png' id="snake">
             <gameBoard/>  
         </div>
         <gameOver v-show="showGameOver"/>  
@@ -15,11 +15,6 @@
     import Vue from 'vue'
     import Vuex from 'vuex'
 
-    //classes imports
-    import Game from '../assets/js/game.js'
-    import Score from '../assets/js/score'
-    import DbHandler from '../assets/js/dbHandler'
-
     //component imports
     import scorebar from './scorebar'
     import mainMenu from './mainMenu'
@@ -27,49 +22,6 @@
     import gameOver from './gameOver'
     
     Vue.use(Vuex)
-
-    const store = new Vuex.Store({
-
-        state: {
-            
-            showMenu: true,
-            showGame: false,
-            showGameOver: false,
-
-            gameWidth: 1500,
-            gameHeight: 700,
-
-            game: new Game(),
-            scoreHandler: new Score(),
-            db: new DbHandler(),
-        },
-
-        mutations: {
-
-            changeVisibility (state) {
-
-                state.showMenu = false
-                state.showGame = true
-            },
-
-            checkHighScore(state){
-
-                if(state.db.getHighScore()){
-                    state.scoreHandler.highscore = state.db.getHighScore()
-                }
-            },
-
-            finisheGame (state){
-
-                state.showGameOver = true
-                state.showGame = false
-                state.game.saveHighScore()
-                state.game.clearCanvas()
-            }
-        }        
-    })
-
-    export {store} 
     
     export default {
 
@@ -84,24 +36,22 @@
 
         },
 
-        store,
-
         computed: {
 
             showMenu () {
 
-                return store.state.showMenu
+                return this.$store.state.showMenu
             },
 
 
             showGame () {
 
-                return store.state.showGame
+                return this.$store.state.showGame
             },
             
             showGameOver () {
 
-                return store.state.showGameOver
+                return this.$store.state.showGameOver
             }
         },
 
@@ -117,7 +67,7 @@
         methods:{
 
             load(){
-                store.state.game.init()
+                this.$store.state.game.init()
             }
         }
     }
@@ -131,12 +81,13 @@
         height: 100%;
     }
 
-    #snake{
-        display: none;
-    }
     .gameArea{
 
         height: '100%';
+    }
+
+    #snake{
+        display: none;
     }
 
     canvas {
