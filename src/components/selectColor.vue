@@ -2,9 +2,9 @@
     <div class='selectColor' v-show="colorVisible" v-bind:style="colorStyle">
         <div class="holder">
             <div>Choose a snake color:</div>
-            <input type="radio" v-bind:checked="selected" value="green" v-model="colors"><label>green</label><br>
-            <input type="radio" value="blue" v-model="colors"><label>blue</label><br>
-            <input type="radio" value="red" v-model="colors"><label>red</label><br>
+            <input type="radio"  value="green" v-model="selected"><label>green</label><br>
+            <input type="radio" value="blue" v-model="selected"><label>blue</label><br>
+            <input type="radio" value="red" v-model="selected"><label>red</label><br>
             <buttonbar @callback1="closeColorMenu" @callback2="saveColor"/>
         </div>
     </div>
@@ -26,11 +26,8 @@
         data: function(){
             
             return {
-                
-                color: 'green',
 
-                selected: true,
-                colors: ['green', 'blue', 'red']
+                selected: 'green'
             }
         },
 
