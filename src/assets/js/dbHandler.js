@@ -4,11 +4,11 @@ class dbHandler{
         this._storage = window.localStorage
     }
 
-    getUserName(){
+    getUsername(){
         return this._storage.getItem('username')
     }
 
-    setUserName(name){
+    setUsername(name){
         this._storage.setItem('username', name)
     }
 

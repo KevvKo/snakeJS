@@ -43,8 +43,15 @@
       },
 
       changeUserName: function() {
-        this.$store.state.usernameVisible = true
-        this.$store.state.db.setUserName(name)
+
+        this.$store.state.usernameVisible = !this.$store.state.usernameVisible 
+
+        if( this.$store.state.usernameVisible){
+          this.$store.state.usernameHeight = '70px'
+        }else{
+          this.$store.state.usernameHeight = '0'
+        }
+
       },
 
       changeSnakeColor: function() {

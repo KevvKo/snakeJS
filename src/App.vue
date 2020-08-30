@@ -77,7 +77,8 @@
     state: {
         grayoutVisible: false,
         usernameVisible: false,
-
+        usernameHeight: '0',
+        
         showMenu: true,
         showGame: false,
         showGameOver: false,
