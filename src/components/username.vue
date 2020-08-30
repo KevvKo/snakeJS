@@ -1,22 +1,24 @@
 <template>
     <div class='username' v-show="usernameVisible" v-bind:style="usernameStyle">
-        <closebar @callback="closeUsernameMenu"/>
         <div class="holder">
-            <input v-model="username" placeholder="username"><button v-on:click="saveUsername">submit</button>
+            <div>Choose your name:</div>
+            <input v-model="username" placeholder="username">
+            <buttonbar @callback1="closeUsernameMenu"  @callback2="saveUsername"/>
         </div>
     </div>
 </template>
 
 <script>
 
-    import closebar from './closebar'
+    import buttonbar from './buttonbar'
 
     export default{
 
         name: 'username',
 
         components: {
-            closebar
+            
+            buttonbar
         },
 
         data: function(){
@@ -73,10 +75,10 @@
         left: 50%;
         transform: translate(-50%, -50%);
         border-radius: 3px;
-        transition: var(--default-transition);
     }
     
     .holder{
+        border-radius: 3px;
         padding: 10px;
     }
 
@@ -92,21 +94,6 @@
         background-color: white;
         border: none;
         border-radius: 3px;
-    }
-
-    .holder button{
-        
-        background-color: var(--main-dark-color);
-        color: var(--main-dark-txt);
-        border: none;
-        border-radius: 3px;
-    }
-
-    .holder button:hover{
-        opacity: var(--main-primary-opacity);
-        background-color: var(--main-primary-color);
-        cursor: pointer;
-        color: var(--main-dark-txt);
     }
 
 </style>
