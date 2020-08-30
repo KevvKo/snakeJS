@@ -1,16 +1,23 @@
 <template>
-    <div class='username' v-bind:style="usernameStyle">
+    <div class='username' v-show="usernameVisible" v-bind:style="usernameStyle">
+        <closebar @callback="closeUsernameMenu"/>
         <div class="holder">
-            <input v-model="username" placeholder="username"><button v-on:click="storeUsername">submit</button>
+            <input v-model="username" placeholder="username"><button v-on:click="saveUsername">submit</button>
         </div>
     </div>
 </template>
 
 <script>
 
+    import closebar from './closebar'
+
     export default{
 
         name: 'username',
+
+        components: {
+            closebar
+        },
 
         data: function(){
             
@@ -37,9 +44,16 @@
 
         methods: {
 
-            storeUsername: function(){
+            saveUsername: function(){
+                this.closeUsernameMenu()
                 this.$store.state.db.setUsername(this.username)
+     
+            },
+
+            closeUsernameMenu: function(){
+
                 this.$store.state.grayoutVisible = false
+                this.$store.state.usernameVisible = false
                 this.$store.state.usernameOpacity = '0'
             }
         }
@@ -54,12 +68,12 @@
         transition: 0.3s;
         background-color: var(--main-light-color);
         margin: auto;
-
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         border-radius: 3px;
+        transition: var(--default-transition);
     }
     
     .holder{
@@ -81,6 +95,7 @@
     }
 
     .holder button{
+        
         background-color: var(--main-dark-color);
         color: var(--main-dark-txt);
         border: none;
@@ -88,13 +103,10 @@
     }
 
     .holder button:hover{
-        transition: var(--default-transition);
         opacity: var(--main-primary-opacity);
         background-color: var(--main-primary-color);
         cursor: pointer;
         color: var(--main-dark-txt);
-        border: none;
-        border-radius: 3px;
     }
 
 </style>
