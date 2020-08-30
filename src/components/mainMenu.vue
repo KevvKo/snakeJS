@@ -4,10 +4,8 @@
           <div class="title">{{title}}</div>
           <menuEntry @callback="startGame" text= "Play"/>
           <menuEntry @callback="changeUserName" text="Username" />
-          <username/>
           <menuEntry @callback="changeSnakeColor" text="Change color"/>
-          
-        </div>
+        </div>  
     </div>
 </template>
 
@@ -20,7 +18,6 @@
   
   //component imports
   import menuEntry from './menuEntry'
-  import username from './username'
 
   export default {
 
@@ -31,8 +28,7 @@
     },
     
     components: {
-        menuEntry,
-        username
+        menuEntry
     },
 
     methods: {
@@ -45,18 +41,25 @@
       changeUserName: function() {
 
         this.$store.state.usernameVisible = !this.$store.state.usernameVisible 
+        this.$store.state.grayoutVisible = !this.$store.state.grayoutVisible
 
-        if( this.$store.state.usernameVisible){
-          this.$store.state.usernameHeight = '70px'
+        if(this.$store.state.grayoutVisible){
+          this.$store.state.usernameOpacity = '100%'
         }else{
-          this.$store.state.usernameHeight = '0'
+          this.$store.state.usernameOpacity = '0%'
         }
-
       },
 
       changeSnakeColor: function() {
   
-        this.$store.state.db.setSnakeColor()
+        this.$store.state.grayoutVisible = !this.$store.state.grayoutVisible
+
+        if(this.$store.state.grayoutVisible){
+          this.$store.state.colorOpacity = '100%'
+        }else{
+          this.$store.state.colorOpacity = '0'
+        }
+
       }
     }
 

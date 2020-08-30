@@ -31,6 +31,6 @@
         left: 0;
         background-color: black;
         opacity: 50%;
-        z-index: 2;
+        z-index: 1;
     }
 </style>

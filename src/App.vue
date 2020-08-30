@@ -1,6 +1,8 @@
 <template>
   <div id="app" class="container">
       <grayout/>
+      <username/>
+      <selectColor/>
       <navigation/>
       <mainBoard/>
       <footbar text="SnakeJS - an open source project"/>
@@ -66,6 +68,8 @@
   import DbHandler from './assets/js/dbHandler'
 
   import grayout from './components/grayout'
+  import username from './components/username'
+  import selectColor from './components/selectColor'
   import navigation from './components/navigation.vue'
   import mainBoard from './components/mainBoard.vue'
   import footbar from './components/footbar.vue'
@@ -76,9 +80,13 @@
 
     state: {
         grayoutVisible: false,
+
         usernameVisible: false,
-        usernameHeight: '0',
+        usernameOpacity: '0%',
         
+        colorVisible: false,
+        colorOpacity: '0',
+
         showMenu: true,
         showGame: false,
         showGameOver: false,
@@ -125,6 +133,8 @@
 
     components: {
       grayout,
+      username,
+      selectColor,
       navigation,
       mainBoard,
       footbar

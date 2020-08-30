@@ -1,6 +1,8 @@
 <template>
     <div class='username' v-bind:style="usernameStyle">
-        <input v-model="username" placeholder="username"><button v-on:click="storeUsername">submit</button>
+        <div class="holder">
+            <input v-model="username" placeholder="username"><button v-on:click="storeUsername">submit</button>
+        </div>
     </div>
 </template>
 
@@ -22,8 +24,8 @@
             
             usernameStyle (){
                 return {
-                    height: this.$store.state.usernameHeight,
-                    overflow: 'hidden'
+                    overflow: 'hidden',
+                    opacity: this.$store.state.usernameOpacity
                 }
             },
 
@@ -37,8 +39,8 @@
 
             storeUsername: function(){
                 this.$store.state.db.setUsername(this.username)
-                this.$store.state.usernameVisible = false
-                this.$store.state.usernameHeight = '0'
+                this.$store.state.grayoutVisible = false
+                this.$store.state.usernameOpacity = '0'
             }
         }
     }
@@ -48,15 +50,51 @@
 <style>
 
     .username{
+        z-index: 5;
         transition: 0.3s;
-        background-color: var(--main-dark-color);
+        background-color: var(--main-light-color);
         margin: auto;
-        width: 35%;
-        border-radius: 5px;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 3px;
+    }
+    
+    .holder{
+        padding: 10px;
     }
 
-    .username input{
+    .holder input{
         margin-right: 12px;
+        background-color: white;
+        border: none;
+        border-radius: 3px;
+    }
+
+    .holder input{
+        margin-right: 12px;
+        background-color: white;
+        border: none;
+        border-radius: 3px;
+    }
+
+    .holder button{
+        background-color: var(--main-dark-color);
+        color: var(--main-dark-txt);
+        border: none;
+        border-radius: 3px;
+    }
+
+    .holder button:hover{
+        transition: var(--default-transition);
+        opacity: var(--main-primary-opacity);
+        background-color: var(--main-primary-color);
+        cursor: pointer;
+        color: var(--main-dark-txt);
+        border: none;
+        border-radius: 3px;
     }
 
 </style>
