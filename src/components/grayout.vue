@@ -1,6 +1,7 @@
 <template>
-    <div class="grayout" v-show="grayoutVisible">
-    </div>
+    <transition name="fade">
+        <div class="grayout" v-show="grayoutVisible"></div>
+    </transition>
 </template>
 <script>
 
@@ -19,11 +20,20 @@
             }
         }
     }
+
 </script>
 
 <style>
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity var(--default-main);
+    }
+
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
 
     .grayout{
+
         width: 100%;
         height: 100%;
         position: absolute;

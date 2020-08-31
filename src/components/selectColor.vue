@@ -1,13 +1,16 @@
 <template>
-    <div class='selectColor' v-show="colorVisible" v-bind:style="colorStyle">
-        <div class="holder">
-            <div>Choose a snake color:</div>
-            <input type="radio"  value="green" v-model="selected"><label>green</label><br>
-            <input type="radio" value="blue" v-model="selected"><label>blue</label><br>
-            <input type="radio" value="red" v-model="selected"><label>red</label><br>
-            <buttonbar @callback1="closeColorMenu" @callback2="saveColor"/>
-        </div>
+        <transition name="fade">
+    <div class='selectColor' v-if="colorVisible" v-bind:style="colorStyle">
+
+            <div class="holder">
+                <div>Choose a snake color:</div>
+                <input type="radio"  value="green" v-model="selected"><label>green</label><br>
+                <input type="radio" value="blue" v-model="selected"><label>blue</label><br>
+                <input type="radio" value="red" v-model="selected"><label>red</label><br>
+                <buttonbar @callback1="closeColorMenu" @callback2="saveColor"/>
+            </div>
     </div>
+            </transition>
 </template>
 
 <script>
@@ -34,8 +37,8 @@
         computed: {
             
             colorStyle (){
+
                 return {
-                    opacity: this.$store.state.colorOpacity,
                     overflow: 'hidden'
                 }
             },
@@ -49,14 +52,13 @@
         methods: {
 
             saveColor: function(){
-
+                console.log(this.selected)
                 this.closeColorMenu()
-                this.$store.state.db.setUsername(this.color)
+                this.$store.state.db.setSnakeColor(this.selected)
             },
 
             closeColorMenu(){
 
-                this.$store.state.colorHeight = '0'
                 this.$store.state.colorVisible = false
                 this.$store.state.grayoutVisible = false
             }
@@ -67,10 +69,18 @@
 
 <style>
 
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity var (--default-transition);
+    }
+
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
+
     .selectColor{
 
         z-index: 6;
-        transition: 0.3s;
+        transition: var(--default-transition);
         background-color: var(--main-light-color);
         margin: auto;
         width: 15%;

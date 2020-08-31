@@ -1,11 +1,13 @@
 <template>
-    <div class='username' v-show="usernameVisible" v-bind:style="usernameStyle">
-        <div class="holder">
-            <div>Choose your name:</div>
-            <input v-model="username" placeholder="username">
-            <buttonbar @callback1="closeUsernameMenu"  @callback2="saveUsername"/>
+    <transition name="fade">
+        <div class='username' v-show="usernameVisible" v-bind:style="usernameStyle">
+            <div class="holder">
+                <div>Choose your name:</div>
+                <input v-model="username" placeholder="username">
+                <buttonbar @callback1="closeUsernameMenu"  @callback2="saveUsername"/>
+            </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -49,14 +51,13 @@
             saveUsername: function(){
                 this.closeUsernameMenu()
                 this.$store.state.db.setUsername(this.username)
-     
+                console.log("jo")
             },
 
             closeUsernameMenu: function(){
 
                 this.$store.state.grayoutVisible = false
                 this.$store.state.usernameVisible = false
-                this.$store.state.usernameOpacity = '0'
             }
         }
     }
@@ -65,9 +66,17 @@
 
 <style>
 
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity var(--default-transition);
+    }
+
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
+
     .username{
         z-index: 5;
-        transition: 0.3s;
+        transition: var(--default-transition);
         background-color: var(--main-light-color);
         margin: auto;
         position: absolute;
@@ -89,11 +98,5 @@
         border-radius: 3px;
     }
 
-    .holder input{
-        margin-right: 12px;
-        background-color: white;
-        border: none;
-        border-radius: 3px;
-    }
 
 </style>

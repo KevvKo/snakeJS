@@ -79,13 +79,10 @@
   const store = new Vuex.Store({
 
     state: {
-        grayoutVisible: false,
 
+        grayoutVisible: false,
         usernameVisible: false,
-        usernameOpacity: '0%',
-        
         colorVisible: false,
-        colorOpacity: '0',
 
         showMenu: true,
         showGame: false,

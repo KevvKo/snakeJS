@@ -46,11 +46,9 @@
         if(this.$store.state.grayoutVisible){
 
           this.$store.state.usernameVisible = true
-          this.$store.state.usernameOpacity = '100%'
-
+    
         }else{
 
-          this.$store.state.usernameOpacity = '0%'
           this.$store.state.usernameVisible = false
         }
       },
@@ -60,13 +58,12 @@
         this.$store.state.grayoutVisible = !this.$store.state.grayoutVisible
 
         if(this.$store.state.grayoutVisible){
-          
+
           this.$store.state.colorVisible = true
-          this.$store.state.colorOpacity = '100%'
+
         
         }else{
           
-          this.$store.state.colorOpacity = '0'
           this.$store.state.colorVisible = false
         }
       }
