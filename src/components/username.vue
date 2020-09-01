@@ -4,6 +4,9 @@
             <div class="holder">
                 <div>Choose your name:</div>
                 <input v-model="username" placeholder="username">
+                <transition name="fade">
+                    <div class="error" v-if="emptyField">{{rule}}</div>
+                </transition>
                 <buttonbar @callback1="closeUsernameMenu"  @callback2="saveUsername"/>
             </div>
         </div>
@@ -27,12 +30,15 @@
             
             return {
                 
-                username: null
+                username: null,
+                rule: 'Please enter a new username.',
+                emptyField: null
+
             }
         },
 
-        computed: {
-            
+        computed: {       
+
             usernameStyle (){
                 return {
                     overflow: 'hidden',
@@ -46,24 +52,24 @@
             }
         },
 
-         directives: {
-            focus: {
-                inserted(el) {
-                    el.focus()
-                }
-            }
-        },
-
         methods: {
 
             saveUsername: function(){
-                this.closeUsernameMenu()
-                this.$store.state.db.setUsername(this.username)
-                console.log("jo")
+                
+                if(this.username != null){
+     
+                    this.closeUsernameMenu()
+                    this.$store.state.db.setUsername(this.username)
+                    this.emptyField = false
+                } else {
+
+                    this.emptyField = true
+                }
             },
 
             closeUsernameMenu: function(){
 
+                this.emptyField = null
                 this.$store.state.grayoutVisible = false
                 this.$store.state.usernameVisible = false
             }
@@ -108,5 +114,8 @@
         padding: 5px;
     }
 
+    .error{
+        color: red
+    }
 
 </style>
