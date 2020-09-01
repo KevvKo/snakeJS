@@ -14,6 +14,7 @@
 <style>
 
     .buttonbar{
+
         display: flex;
         justify-content: right;
         margin-top: 10px;
@@ -26,6 +27,7 @@
         background-color: var(--main-dark-color);
         color: var(--main-dark-txt);
         border-radius: 3px;
+        padding: 6px;
     }
 
     .buttonbar button:hover{

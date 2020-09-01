@@ -1,6 +1,6 @@
 <template>
     <transition name="fade">
-        <div class='username' v-show="usernameVisible" v-bind:style="usernameStyle">
+        <div class='username' v-on:keydown.esc="closeUsernameMenu" v-on:keydown.enter="saveUsername" v-show="usernameVisible" v-bind:style="usernameStyle">
             <div class="holder">
                 <div>Choose your name:</div>
                 <input v-model="username" placeholder="username">
@@ -46,6 +46,14 @@
             }
         },
 
+         directives: {
+            focus: {
+                inserted(el) {
+                    el.focus()
+                }
+            }
+        },
+
         methods: {
 
             saveUsername: function(){
@@ -84,6 +92,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         border-radius: 3px;
+        font-size: 1.4vw;
     }
     
     .holder{
@@ -96,6 +105,7 @@
         background-color: white;
         border: none;
         border-radius: 3px;
+        padding: 5px;
     }
 
 

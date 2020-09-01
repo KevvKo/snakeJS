@@ -1,15 +1,15 @@
 <template>
         <transition name="fade">
-    <div class='selectColor' v-if="colorVisible" v-bind:style="colorStyle">
+            <div v-on:keydown.esc="closeColorMenu" v-on:keydown.enter="saveColor" class='selectColor' v-if="colorVisible" v-bind:style="colorStyle">
 
-            <div class="holder">
-                <div>Choose a snake color:</div>
-                <input type="radio"  value="green" v-model="selected"><label>green</label><br>
-                <input type="radio" value="blue" v-model="selected"><label>blue</label><br>
-                <input type="radio" value="red" v-model="selected"><label>red</label><br>
-                <buttonbar @callback1="closeColorMenu" @callback2="saveColor"/>
+                    <div class="holder">
+                        <div>Choose a snake color:</div>
+                        <input type="radio"  value="green" v-model="selected"><label>green</label><br>
+                        <input type="radio" value="blue" v-model="selected"><label>blue</label><br>
+                        <input type="radio" value="red" v-model="selected"><label>red</label><br>
+                        <buttonbar @callback1="closeColorMenu" @callback2="saveColor"/>
+                    </div>
             </div>
-    </div>
             </transition>
 </template>
 
@@ -90,7 +90,7 @@
         transform: translate(-50%, -50%);
         border-radius: 3px;
         overflow: auto;
-
+        font-size: 1.2vw;
     }
 
     .holder{
@@ -104,6 +104,7 @@
     
     .selectColor input{
         margin-right: 12px;
+        padding: 5px;
     }
 
 </style>
