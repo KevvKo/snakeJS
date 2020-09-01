@@ -2,6 +2,7 @@
   <div id="app" class="container">
       <grayout/>
       <username/>
+      <highscoreBoard/>
       <selectColor/>
       <navigation/>
       <mainBoard/>
@@ -71,6 +72,7 @@
   import username from './components/username'
   import selectColor from './components/selectColor'
   import navigation from './components/navigation.vue'
+  import highscoreBoard from './components/highscoreBoard'
   import mainBoard from './components/mainBoard.vue'
   import footbar from './components/footbar.vue'
 
@@ -83,6 +85,7 @@
         grayoutVisible: false,
         usernameVisible: false,
         colorVisible: false,
+        highscoreBoardVisible: false,
 
         showMenu: true,
         showGame: false,
@@ -133,6 +136,7 @@
       username,
       selectColor,
       navigation,
+      highscoreBoard,
       mainBoard,
       footbar
     },

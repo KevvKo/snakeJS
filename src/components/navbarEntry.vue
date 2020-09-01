@@ -1,6 +1,6 @@
 <template>
     <div class="navbarEntry">
-        <a v-bind:href="url"> {{ text }}</a>
+        <a v-bind:href="url" v-on:click="$emit('callback')"> {{ text }}</a>
     </div>
 </template>
 
@@ -9,7 +9,8 @@
         name: 'navbarEntry',
         props: {
             url: String,
-            text: String
+            text: String,
+            callback: Function
         }
 
     }

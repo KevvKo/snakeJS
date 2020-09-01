@@ -1,7 +1,7 @@
 <template>
   <div class="navigation">
     <navbarEntry url="http://localhost:8080/" text="Home" />
-    <navbarEntry text="HighScores" />
+    <navbarEntry @callback="showHighscores" text="HighScores" />
     <navbarEntry url="https://github.com/KevvKo/snakeJS" text="GitHub" />
     <navbarEntry url="https://github.com/KevvKo/snakeJS/issues" text="Report Bugs" />
   </div>
@@ -15,6 +15,15 @@
     name: 'navigation',
     components: {
       navbarEntry
+    },
+
+    methods: {
+
+      showHighscores(){
+
+        this.$store.state.highscoreBoardVisible = true
+        this.$store.state.grayoutVisible = true
+      }
     }
   }
 </script>

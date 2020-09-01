@@ -70,7 +70,7 @@
 <style>
 
     .fade-enter-active, .fade-leave-active {
-        transition: opacity var (--default-transition);
+        transition: opacity var(--default-transition);
     }
 
     .fade-enter, .fade-leave-to {
