@@ -175,16 +175,10 @@ class Game{
     saveHighScore(){
 
         let highscore = store.state.scoreHandler.highscore
-        let oldHighscore = store.state.db.getHighScore()
+        
 
-        if(oldHighscore === undefined){
-            store.state.db.setHighScore(highscore)
-            return
-        }
+        store.state.db.setHighScore(highscore)
 
-        if(highscore > oldHighscore){
-            store.state.db.setHighScore(highscore)
-        }
     }
 }
 

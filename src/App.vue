@@ -19,7 +19,7 @@
       --main-primary-color: #447a6d;
       --main-primary-txt: white;
       --main-primary-opacity: 93%;
-      --default-transition: 0.2s;
+      --default-transition: 0.3s;
 
       /*light color */
       --main-light-color: #72a99b;
