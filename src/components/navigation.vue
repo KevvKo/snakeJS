@@ -1,6 +1,6 @@
 <template>
   <div class="navigation">
-    <navbarEntry url="http://localhost:8080/" text="Home" />
+    <navbarEntry url="domain" text="Home" />
     <navbarEntry @callback="showHighscores" text="HighScores" />
     <navbarEntry url="https://github.com/KevvKo/snakeJS" text="GitHub" />
     <navbarEntry url="https://github.com/KevvKo/snakeJS/issues" text="Report Bugs" />
@@ -13,8 +13,16 @@
 
   export default {
     name: 'navigation',
+
     components: {
       navbarEntry
+    },
+
+    data: function(){
+
+      return{
+        domain: this.$store.state.domain
+      }
     },
 
     methods: {
@@ -41,7 +49,6 @@
 
   .navigation a, .navbarEntry{
       display: inline-block;
-
 
   }
 

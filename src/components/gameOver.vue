@@ -1,27 +1,25 @@
 <template>
   <div class="gameOver" >
-    <div class="content">
+    <div class="gameoverContent">
       <div class="title">{{title}}</div>
       <div class="score">
         <div>Your score: {{score}}</div>
+        <username/>
       </div>  
-      <div class='restartButton'>
-        <menuEntry @callback="restartGame" text="restart"/>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import Game from '../assets/js/game'
-  import Score from '../assets/js/score'
-  import menuEntry from './menuEntry'
+
+  import username from './username'
+
   export default {
 
     name: 'gameOver',
 
     components: {
-      menuEntry
+      username
     },
 
     data: function(){
@@ -36,25 +34,16 @@
 
           return this.$store.state.scoreHandler.score
       }
-    },
-
-    methods: {
-
-      restartGame(){
-
-        this.$store.state.showGameOver = false
-        this.$store.state.showGame = true
-        this.$store.state.game = new Game()
-        this.$store.state.scoreHandler = new Score()
-      }
     }
   }
+  
 </script>
 
 <style>
   /*styling for gameOver-layer */
 
   .gameOver{
+    
       background-color: var(--main-primary-color);
       color: var(--main-primary-txt);
       width: 100%;
@@ -62,6 +51,15 @@
       font-size: 2.0vw;
       text-shadow: 3px 3px black;
       overflow: auto;
+  }
+
+  .gameoverContent{
+    
+    background-color: var(--main-primary-color);
+    color: var(--main-primary-txt);
+    width: 30%;
+    margin: auto;
+    margin-top: 10%;
   }
 
   .score{

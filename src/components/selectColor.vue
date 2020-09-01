@@ -7,7 +7,7 @@
                         <input type="radio"  value="green" v-model="selected"><label>green</label><br>
                         <input type="radio" value="blue" v-model="selected"><label>blue</label><br>
                         <input type="radio" value="red" v-model="selected"><label>red</label><br>
-                        <buttonbar @callback1="closeColorMenu" @callback2="saveColor"/>
+                        <buttonbar text1='Cancel' text2='Ok' @callback1="closeColorMenu" @callback2="saveColor"/>
                     </div>
             </div>
             </transition>

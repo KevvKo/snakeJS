@@ -1,7 +1,6 @@
 <template>
   <div id="app" class="container">
       <grayout/>
-      <username/>
       <highscoreBoard/>
       <selectColor/>
       <navigation/>
@@ -47,7 +46,7 @@
 
   body {
       font-family: 'Sriracha';
-      background-color: #E2E2E2;
+      background-color: #E1E2E1;
 
   }
 
@@ -69,7 +68,6 @@
   import DbHandler from './assets/js/dbHandler'
 
   import grayout from './components/grayout'
-  import username from './components/username'
   import selectColor from './components/selectColor'
   import navigation from './components/navigation.vue'
   import highscoreBoard from './components/highscoreBoard'
@@ -83,7 +81,7 @@
     state: {
 
         grayoutVisible: false,
-        usernameVisible: false,
+
         colorVisible: false,
         highscoreBoardVisible: false,
 
@@ -96,7 +94,9 @@
 
         game: new Game(),
         scoreHandler: new Score(),
-        db: new DbHandler()
+        db: new DbHandler(),
+
+        domain: window.location.href
 
     },
 
@@ -119,21 +119,22 @@
 
             state.showGameOver = true
             state.showGame = false
-            state.game.saveHighScore()
             state.game.clearCanvas()
         }
     }        
   })
 
   export {store} 
+
   export default {
+    
     name: 'App',
 
     store,
 
     components: {
+      
       grayout,
-      username,
       selectColor,
       navigation,
       highscoreBoard,

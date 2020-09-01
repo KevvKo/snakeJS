@@ -1,13 +1,14 @@
 <template>
     <transition name="fade">
-        <div class='username' v-on:keydown.esc="closeUsernameMenu" v-on:keydown.enter="saveUsername" v-show="usernameVisible" v-bind:style="usernameStyle">
+        <div class='username' v-bind:style="usernameStyle">
             <div class="holder">
-                <div>Choose your name:</div>
-                <input v-model="username" placeholder="username">
-                <transition name="fade">
-                    <div class="error" v-if="emptyField">{{rule}}</div>
-                </transition>
-                <buttonbar @callback1="closeUsernameMenu"  @callback2="saveUsername"/>
+                <label>Username: </label><input v-model="username" placeholder="name" maxlength="5">
+                <div class="error" v-if="emptyField">{{rule}}</div>
+                <div>
+                    <button v-on:click="goToHome">Home</button>
+                    <button v-on:click="restartGame" >Restart</button>
+                </div>
+
             </div>
         </div>
     </transition>
@@ -15,22 +16,18 @@
 
 <script>
 
-    import buttonbar from './buttonbar'
+    import Game from '../assets/js/game'
+    import Score from '../assets/js/score'
 
     export default{
 
         name: 'username',
 
-        components: {
-            
-            buttonbar
-        },
-
         data: function(){
             
             return {
                 
-                username: null,
+                username: 'AAAAA',
                 rule: 'Please enter a new username.',
                 emptyField: null
 
@@ -53,25 +50,21 @@
         },
 
         methods: {
-
-            saveUsername: function(){
-                
-                if(this.username != null){
-     
-                    this.closeUsernameMenu()
-                    this.$store.state.db.setUsername(this.username)
-                    this.emptyField = false
-                } else {
-
-                    this.emptyField = true
-                }
+            
+            saveHighScore(){
+                this.$store.state.db.setHighScore()
             },
 
-            closeUsernameMenu: function(){
+            goToHome(){
+                window.open(this.$store.state.domain , '_self')
+            },
 
-                this.emptyField = null
-                this.$store.state.grayoutVisible = false
-                this.$store.state.usernameVisible = false
+            restartGame(){
+
+                this.$store.state.showGameOver = false
+                this.$store.state.showGame = true
+                this.$store.state.game = new Game()
+                this.$store.state.scoreHandler = new Score()
             }
         }
     }
@@ -91,14 +84,11 @@
     .username{
         z-index: 5;
         transition: var(--default-transition);
-        background-color: var(--main-light-color);
         margin: auto;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         border-radius: 3px;
         font-size: 1.4vw;
+        text-shadow: none;
+    
     }
     
     .holder{
@@ -118,4 +108,25 @@
         color: red
     }
 
+    .gameOver button{
+        
+        background-color: var(--main-dark-color);
+        color: var(--main-dark-txt);
+        border: none;
+        margin: 30px;
+        padding: 7px;
+        border-radius: 3px;
+        font-size: 20px;
+    }
+
+    .gameOver button:hover{
+        
+        cursor: pointer;
+        background-color: var(--main-light-color);
+        color: var(--main-light-txt);
+        opacity: var(--main-light-opacity);
+        border-radius: 3px;
+        transition: var(--default-transition);
+
+    }
 </style>

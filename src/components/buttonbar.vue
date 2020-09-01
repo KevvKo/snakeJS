@@ -1,14 +1,19 @@
 <template>
     <div class="buttonbar">
-        <button v-on:click="$emit('callback1')">Cancel</button>
-        <button v-on:click="$emit('callback2')">Ok</button>
+        <button v-on:click="$emit('callback1')">{{text1}}</button>
+        <button v-on:click="$emit('callback2')">{{text2}}</button>
     </div>
 </template>
 
 <script>
 
     export default{
-        name: 'buttonbar'
+        name: 'buttonbar',
+
+        props: {
+            text1: String,
+            text2: String
+        }
     }
 </script>
 <style>

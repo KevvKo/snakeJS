@@ -3,7 +3,6 @@
         <div class="content">
           <div class="title">{{title}}</div>
           <menuEntry @callback="startGame" text= "Play"/>
-          <menuEntry @callback="changeUserName" text="Username" />
           <menuEntry @callback="changeSnakeColor" text="Change color"/>
         </div>  
     </div>
@@ -36,21 +35,6 @@
       startGame: function(){
         this.$store.commit('changeVisibility')
         
-      },
-
-      changeUserName: function() {
-
-        this.$store.state.usernameVisible = !this.$store.state.usernameVisible 
-        this.$store.state.grayoutVisible = !this.$store.state.grayoutVisible
-
-        if(this.$store.state.grayoutVisible){
-
-          this.$store.state.usernameVisible = true
-    
-        }else{
-
-          this.$store.state.usernameVisible = false
-        }
       },
 
       changeSnakeColor: function() {
