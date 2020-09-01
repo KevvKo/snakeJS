@@ -4,7 +4,7 @@
             <div class="holder">
                 <label>Username: </label><input v-model="username" placeholder="name" maxlength="5">
                 <div class="error" v-if="emptyField">{{rule}}</div>
-                <div>
+                <div id="buttons">
                     <button v-on:click="goToHome">Home</button>
                     <button v-on:click="restartGame" >Restart</button>
                 </div>
@@ -52,15 +52,19 @@
         methods: {
             
             saveHighScore(){
-                this.$store.state.db.setHighScore()
+                let score = this.$store.state.scoreHandler.score
+                let name = this.username
+                this.$store.state.db.setHighScore(name, score)
             },
 
             goToHome(){
+                this.saveHighScore()
                 window.open(this.$store.state.domain , '_self')
             },
 
             restartGame(){
 
+                this.saveHighScore()
                 this.$store.state.showGameOver = false
                 this.$store.state.showGame = true
                 this.$store.state.game = new Game()
@@ -113,10 +117,17 @@
         background-color: var(--main-dark-color);
         color: var(--main-dark-txt);
         border: none;
-        margin: 30px;
+
         padding: 7px;
         border-radius: 3px;
-        font-size: 20px;
+        font-size: 1.2vw;
+        width: 40%;
+        margin: 10px;
+    }
+
+    #buttons{
+
+        margin: 20px;
     }
 
     .gameOver button:hover{

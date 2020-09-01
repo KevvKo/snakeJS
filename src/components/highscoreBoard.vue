@@ -1,7 +1,13 @@
 <template>
     <transition name="fade">
         <div v-on:keydown.esc="closeHighscoreMenu" v-show="highscoreBoardVisible" id="highscoreBoard">
-            <div id="highscoreTitle">Highscores:</div>
+            <div id="upperbar">
+                <div id="highscoreTitle">Highscore</div>
+            </div>
+            <div id="highscoreContent">
+                <h2>Highscore</h2>
+                <p>{{username}}: {{highscore}}</p>
+            </div>
             <button v-on:click="closeHighscoreMenu" >Close</button>
         </div>
     </transition>
@@ -10,13 +16,22 @@
 <script>
 
     export default{
-        
+
         name: 'highscoreBoard',
 
         computed: {
 
             highscoreBoardVisible(){
                 return this.$store.state.highscoreBoardVisible
+            }
+        },
+
+        data: function(){
+
+            return {
+
+                username: this.$store.state.db.getUsername(),
+                highscore: this.$store.state.db.getHighScore()
             }
         },
 
@@ -44,9 +59,10 @@
 
         z-index: 6;
         transition: var(--default-transition);
-        background-color: var(--main-light-color);
+        background-color:#E6E6E6;
+        color: var(--main-dark-txt);
         margin: auto;
-        width: 500px;
+        width: 50%;
         height: 80%;
         position: absolute;
         top: 50%;
@@ -55,11 +71,36 @@
         border-radius: 3px;
         overflow: auto;
         font-size: 15px;
-        padding: 30px;
+
+    }
+
+    #upperbar{
+        background-color: var(--main-dark-color);
+        border-radius: 3px 3px 0px 0px;
+        
     }
 
     #highscoreTitle{
         font-size: 25px;
+        border-radius: 3px 3px 0 0 ;
+        width: 90%;
+        margin: auto;
+    }
+
+    #highscoreContent{
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2.3vw;
+        border-radius: 3px;
+        color: var(--main-light-txt)
+    }
+
+    #highscoreContent p{
+        width: 70%;
+        margin: auto;
     }
 
     #highscoreBoard button{
@@ -75,7 +116,7 @@
         right: 5%;
     }
 
-        #highscoreBoard button:hover{
+    #highscoreBoard button:hover{
         
         transition: var(--default-transition);
         opacity: var(--main-primary-opacity);

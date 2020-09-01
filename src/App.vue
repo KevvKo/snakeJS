@@ -14,11 +14,13 @@
   /*variables for uniform design*/
   :root{
 
+      /*general styling */
+      --default-transition: 0.3s; 
+      --default-body-color: #E1E2E1;
       /*primary color */
       --main-primary-color: #447a6d;
       --main-primary-txt: white;
       --main-primary-opacity: 93%;
-      --default-transition: 0.3s;
 
       /*light color */
       --main-light-color: #72a99b;
@@ -46,7 +48,7 @@
 
   body {
       font-family: 'Sriracha';
-      background-color: #E1E2E1;
+      background-color: var(--default-body-color)
 
   }
 

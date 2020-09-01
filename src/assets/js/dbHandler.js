@@ -5,7 +5,7 @@ class dbHandler{
     }
 
     getUsername(){
-        return this._storage.getItem('username')
+        return JSON.parse(this._storage.getItem('highscore'))['name']
     }
 
     setUsername(name){
@@ -21,7 +21,7 @@ class dbHandler{
     }
 
     getHighScore(){
-        return JSON.parse(this._storage.getItem('highscore'))
+        return JSON.parse(this._storage.getItem('highscore'))['highscore']
     }
 
     setHighScore(username, highscore){
@@ -30,7 +30,7 @@ class dbHandler{
             name: username,
             highscore: highscore
         }
-
+     
         // highscores.sort(function(a, b){return b-a})
         this._storage.setItem('highscore', JSON.stringify(score))
     }

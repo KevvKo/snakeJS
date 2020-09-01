@@ -59,14 +59,14 @@
     color: var(--main-primary-txt);
     width: 30%;
     margin: auto;
-    margin-top: 10%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .score{
     font-size: 2.7vw;
   }
 
-  .restartButton{
-    margin: 20px 0
-  }
 </style>
