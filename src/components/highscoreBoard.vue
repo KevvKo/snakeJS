@@ -1,12 +1,27 @@
 <template>
     <transition name="fade">
-        <div v-on:keydown.esc="closeHighscoreMenu" v-show="highscoreBoardVisible" id="highscoreBoard">
+
+        <div tabindex="0" @keydown.esc="closeHighscoreMenu" v-show="highscoreBoardVisible" id="highscoreBoard">
             <div id="upperbar">
                 <div id="highscoreTitle">Highscore</div>
             </div>
             <div id="highscoreContent">
-                <h2>Highscore</h2>
-                <p>{{username}}: {{highscore}}</p>
+                <div class="flexbox">
+                    <table id="highscoreTable">
+                        <thead>
+                            <tr>
+                                <th>Player</th>
+                                <th>Highscore</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{username}}</td>
+                                <td>{{highscore}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <button v-on:click="closeHighscoreMenu" >Close</button>
         </div>
@@ -55,6 +70,7 @@
         opacity: 0;
     }
 
+    /* general styling */
     #highscoreBoard{
 
         z-index: 6;
@@ -72,6 +88,7 @@
         overflow: auto;
         font-size: 15px;
 
+
     }
 
     #upperbar{
@@ -80,28 +97,45 @@
         
     }
 
-    #highscoreTitle{
-        font-size: 25px;
-        border-radius: 3px 3px 0 0 ;
-        width: 90%;
-        margin: auto;
-    }
-
     #highscoreContent{
 
+        margin-top: 15px;
+        width: 100%;
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         font-size: 2.3vw;
         border-radius: 3px;
-        color: var(--main-light-txt)
+        color: var(--main-light-txt);
+        display: flex;
+        justify-content: center;
+    }
+
+    .flexbox{
+        width: 80%;
     }
 
     #highscoreContent p{
         width: 70%;
         margin: auto;
     }
+
+    #highscoreTitle{
+        padding: 10px;
+        font-size: 2.4vw;
+    }
+
+    /*tabl-styling*/
+
+    #highscoreTable{
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+    }
+
+    #highscoreTable thead{
+
+        background-color: var(--main-light-color);
+        color: var(--main-light-txt);
+    }   
 
     #highscoreBoard button{
         
