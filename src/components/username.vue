@@ -123,6 +123,7 @@
         font-size: 1.2vw;
         width: 40%;
         margin: 10px;
+        font-family: var(--default-font);
     }
 
     #buttons{

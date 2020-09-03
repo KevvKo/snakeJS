@@ -1,6 +1,6 @@
 <template>
         <transition name="fade">
-            <div v-on:keydown.esc="closeColorMenu" v-on:keydown.enter="saveColor" class='selectColor' v-if="colorVisible" v-bind:style="colorStyle">
+            <div tabindex="0" @keydown.esc="closeColorMenu" v-on:keydown.enter="saveColor" class='selectColor' v-if="colorVisible" v-bind:style="colorStyle">
 
                     <div class="holder">
                         <div>Choose a snake color:</div>

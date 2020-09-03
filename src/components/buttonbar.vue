@@ -26,13 +26,14 @@
     }
 
     .buttonbar button{
+        
         border: none;
         margin-right: 5px;
-
         background-color: var(--main-dark-color);
         color: var(--main-dark-txt);
         border-radius: 3px;
         padding: 6px;
+        font-family: var(--default-font);
     }
 
     .buttonbar button:hover{

@@ -139,6 +139,7 @@
 
     #highscoreBoard button{
         
+        font-family: var(--default-font);
         border: none;
         margin-right: 5px;
         background-color: var(--main-dark-color);

@@ -2,8 +2,8 @@
     <div class="mainMenu">
         <div class="content">
           <div class="title">{{title}}</div>
-          <menuEntry @callback="startGame" text= "Play"/>
-          <menuEntry @callback="changeSnakeColor" text="Change color"/>
+          <menuEntry @callback="startGame" text="Play" id="playButton"/>
+          <menuEntry @callback="changeSnakeColor" text="Change color" id="colorButton"/>
         </div>  
     </div>
 </template>
@@ -82,6 +82,15 @@
       top: -50%;
       -ms-transform: translateY(25%);
       transform: translateY(25%);
+  }
+
+  #playButton{
+    font-size: 2.5vw;
+    width: 150px;
+  }
+
+  #colorButton{
+    font-size: 1.2vw;
   }
 
 </style>

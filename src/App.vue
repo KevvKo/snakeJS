@@ -17,6 +17,8 @@
       /*general styling */
       --default-transition: 0.3s; 
       --default-body-color: #E1E2E1;
+      --default-font: 'Sriracha';
+
       /*primary color */
       --main-primary-color: #447a6d;
       --main-primary-txt: white;
@@ -47,7 +49,7 @@
   }
 
   body {
-      font-family: 'Sriracha';
+      font-family: var(--default-font);
       background-color: var(--default-body-color)
 
   }
@@ -56,6 +58,10 @@
       height: 100%;
       display: flex;
       flex-direction: column;
+  }
+
+  button{
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)
   }
 </style>
 
