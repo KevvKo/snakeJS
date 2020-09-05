@@ -27,7 +27,7 @@ class Game{
         }.bind(this))
 
         this.snake.createBody()
-        this.meatball.newRandomPosition(store.state.gameWidth, store.state.gameHeight)
+        this.meatball.newRandomPosition(store.state.width, store.state.height)
         this.run()
     }
 
@@ -46,7 +46,7 @@ class Game{
             if(meatball.wasEaten){
 
                 meatball.wasEaten = false
-                this.meatball.newRandomPosition(store.state.gameWidth, this.store.state.gameHeight)
+                this.meatball.newRandomPosition(store.state.width, this.store.state.height)
             }
 
             this.snake.move()
@@ -60,7 +60,7 @@ class Game{
     
     clearCanvas(){
                     
-        this.ctx.clearRect(0,0, store.state.gameWidth, store.state.gameHeight)
+        this.ctx.clearRect(0,0, store.state.width, store.state.height)
     }
 
     drawCanvas(){
@@ -113,7 +113,7 @@ class Game{
         if(meatIsEaten){
 
             let snakeParts = this.snake.parts
-            meatBall.newRandomPosition(store.state.gameWidth, store.state.gameHeight)
+            meatBall.newRandomPosition(store.state.width, store.state.height)
 
             for(let i = 0, l = snakeParts.length; i < l; i++){
 
@@ -121,7 +121,7 @@ class Game{
 
                 if(part.x === this.meatball.x && part.y === this.meatball.y){
                     i = 0
-                    meatBall.newRandomPosition(store.state.gameWidth, store.state.gameHeight)
+                    meatBall.newRandomPosition(store.state.width, store.state.height)
                 }
             }
             

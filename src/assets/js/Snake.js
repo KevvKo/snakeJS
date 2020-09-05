@@ -244,8 +244,8 @@ w
         let direction = this.direction
         let x = this.x
         let y = this.y
-        let areaHeight =  store.state.gameHeight
-        let areaWidth = store.state.gameWidth
+        let areaHeight =  store.state.height
+        let areaWidth = store.state.width
 
         switch(direction){
 
@@ -296,12 +296,12 @@ w
 
                 case 'a':               //direction left
 
-                    head['x'] = store.state.gameWidth   
+                    head['x'] = store.state.width
                     break
 
                 case 'w':               //direction up
 
-                    head['y'] = store.state.gameHeight
+                    head['y'] = store.state.height
                     break
 
                 case 's':               //direction down
@@ -316,12 +316,12 @@ w
 
                 case 'ArrowLeft':               //direction left
 
-                    head['x'] = store.state.gameWidth   
+                    head['x'] = store.state.width
                     break
 
                 case 'ArrowUp':               //direction up
 
-                    head['y'] = store.state.gameHeight
+                    head['y'] = store.state.height
                     break
 
                 case 'ArrowDown':               //direction down

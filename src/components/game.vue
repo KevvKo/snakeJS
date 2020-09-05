@@ -69,6 +69,15 @@
             load(){
                 this.$store.state.game.init()
             }
+        },
+          
+        //if the game is visible, set the computed height for canvas
+        updated: function(){
+
+            let gameHeight = this.$el.clientHeight
+            let scorebarHeight = this.$children[1].$el.clientHeight
+            let canvasHeight = gameHeight - scorebarHeight
+            this.$store.state.height = canvasHeight
         }
     }
     

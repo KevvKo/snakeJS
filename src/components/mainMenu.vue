@@ -30,6 +30,12 @@
         menuEntry
     },
 
+    mounted: function(){
+
+        this.$store.state.width = this.$el.offsetWidth
+
+    },
+
     methods: {
 
       startGame: function(){

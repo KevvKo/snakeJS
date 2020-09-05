@@ -5,7 +5,6 @@
       <selectColor/>
       <navigation/>
       <mainBoard/>
-      <footbar text="SnakeJS - an open source project"/>
   </div>
 </template>
 
@@ -80,7 +79,6 @@
   import navigation from './components/navigation.vue'
   import highscoreBoard from './components/highscoreBoard'
   import mainBoard from './components/mainBoard.vue'
-  import footbar from './components/footbar.vue'
 
   Vue.use(Vuex)
 
@@ -97,8 +95,8 @@
         showGame: false,
         showGameOver: false,
 
-        gameWidth: 800,
-        gameHeight: 290,
+        width: null,
+        height: null,
 
         game: new Game(),
         scoreHandler: new Score(),
@@ -146,8 +144,7 @@
       selectColor,
       navigation,
       highscoreBoard,
-      mainBoard,
-      footbar
+      mainBoard
     },
 
 

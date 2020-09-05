@@ -11,19 +11,24 @@
   export default {
     name: 'gameBoard',
 
-    data: function(){
-      return {
-        height: this.$store.state.gameHeight,
-        width: this.$store.state.gameWidth
+    computed: {
 
-      }
-    }
+        height(){
+          return this.$store.state.height
+        },
+
+        width(){
+          return this.$store.state.width   
+        }
+    },
   }
 
 </script>
 
 <style>
-  .gameBoard{
-    height: 100%;
+
+  canvas{
+    display: block;
   }
+
 </style>
