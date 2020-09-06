@@ -52,12 +52,18 @@
         methods: {
             
             saveHighScore(){
-                let score = this.$store.state.scoreHandler.score
-                let name = this.username
-                this.$store.state.db.setHighScore(name, score)
+
+                let playerStats = {
+
+                    username: this.username,
+                    highscore:  this.$store.state.scoreHandler.score
+                }
+                
+                this.$store.state.db.setPlayerStats(playerStats)
             },
 
             goToHome(){
+
                 this.saveHighScore()
                 window.open(this.$store.state.domain , '_self')
             },

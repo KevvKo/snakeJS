@@ -45,8 +45,8 @@
 
             return {
 
-                username: this.$store.state.db.getUsername(),
-                highscore: this.$store.state.db.getHighScore()
+                username:0,
+                highscore: 0
             }
         },
 

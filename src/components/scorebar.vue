@@ -1,5 +1,5 @@
 <template>
-  <div class="scorebar">
+  <div class="scorebar" v-bind:style='{width: width}'>
     <div>
       <span>Your Highscore:</span>
       <span id='highscore'>{{highscore}}</span>
@@ -24,6 +24,12 @@
 
         highscore(){
           return this.$store.state.scoreHandler.highscore
+        },
+
+                    
+        width (){
+            
+            return this.$store.state.width +'px'
         }
     }
   }
@@ -36,7 +42,6 @@
   .scorebar{
       background-color: var(--main-primary-color);
       color: var(--main-primary-txt);
-      width: 100%;
       height: 30px;
       padding: 0 10px;
   } 

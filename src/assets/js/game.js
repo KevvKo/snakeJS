@@ -113,7 +113,7 @@ class Game{
         if(meatIsEaten){
 
             let snakeParts = this.snake.parts
-            meatBall.newRandomPosition(store.state.width, store.state.height)
+            meatBall.newRandomPosition(store.state.gameWidth, store.state.height)
 
             for(let i = 0, l = snakeParts.length; i < l; i++){
 
@@ -121,7 +121,7 @@ class Game{
 
                 if(part.x === this.meatball.x && part.y === this.meatball.y){
                     i = 0
-                    meatBall.newRandomPosition(store.state.width, store.state.height)
+                    meatBall.newRandomPosition(store.state.gameWidth, store.state.height)
                 }
             }
             
@@ -170,15 +170,6 @@ class Game{
     touchedCircle(radiusSum, c){
 
         return radiusSum >= c
-    }
-
-    saveHighScore(){
-
-        let highscore = store.state.scoreHandler.highscore
-        
-
-        store.state.db.setHighScore(highscore)
-
     }
 }
 

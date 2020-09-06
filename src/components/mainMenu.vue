@@ -1,5 +1,5 @@
 <template>
-    <div class="mainMenu">
+    <div class="mainMenu"  v-bind:style='{width: width}'>
         <div class="content">
           <div class="title">{{title}}</div>
           <menuEntry @callback="startGame" text="Play" id="playButton"/>
@@ -36,6 +36,14 @@
 
     },
 
+    computed: {
+            
+      width (){
+          
+          return this.$store.state.width +'px'
+      }
+    },
+
     methods: {
 
       startGame: function(){
@@ -66,8 +74,7 @@
   /*mainMenu-styling*/
 
   .mainMenu{
-    
-      width: 100%;
+
       height: 100%;
       background-color: var(--main-primary-color);
       color: var(--main-primary-txt);

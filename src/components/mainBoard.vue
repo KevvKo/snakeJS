@@ -1,5 +1,5 @@
 <template>
-  <div class="mainBoard" >
+  <div class="mainBoard" v-bind:style='{width: width}'>
     <game/>
   </div>
 </template>
@@ -12,15 +12,25 @@
     name: 'mainBoard',
     components: {
       game
+    },
+
+    computed: {
+
+      width (){
+        
+        return this.$store.state.width +'px'
+      }
     }
   }
+
+
 </script>
 
 <style>
   /*mainboard-styling*/
   .mainBoard{
       text-align: center;
-      width: 80%;
+
       margin: auto;
       height: 100%;
   }

@@ -95,7 +95,7 @@
         showGame: false,
         showGameOver: false,
 
-        width: null,
+        width: window.innerWidth * 0.8,
         height: null,
 
         game: new Game(),
@@ -116,7 +116,7 @@
 
         checkHighScore(state){
 
-            if(state.db.getHighScore()){
+            if(state.db.getPlayerStats()){
                 state.scoreHandler.highscore = state.db.getHighScore()
             }
         },
@@ -128,6 +128,11 @@
             state.game.clearCanvas()
         }
     }        
+  })
+
+  window.addEventListener('resize', function(){
+      let newWidth = window.innerWidth * 0.8
+      store.state.width = newWidth
   })
 
   export {store} 

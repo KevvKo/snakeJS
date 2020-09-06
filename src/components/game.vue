@@ -1,5 +1,5 @@
 <template>
-    <div class="game">
+    <div class="game"  v-bind:style='{width: width}'>
         <img src="../assets/img/bluehead.png" id='snake'>
         <mainMenu v-show="showMenu" title="SnakeJS"/>
         <div v-show="showGame" class="gameArea">
@@ -37,6 +37,11 @@
         },
 
         computed: {
+            
+            width (){
+                
+                return this.$store.state.width +'px'
+            },
 
             showMenu () {
 
@@ -59,8 +64,12 @@
 
             //if the gameArea is now visible, the game will be started
             showGame: function () {
+   
+                let gameHeight = this.$el.clientHeight
+                let canvasHeight = gameHeight - 30 // height from the scorebar
+
+                this.$store.state.height = canvasHeight
                 this.load()
-                
             }
         },
 
@@ -69,15 +78,6 @@
             load(){
                 this.$store.state.game.init()
             }
-        },
-          
-        //if the game is visible, set the computed height for canvas
-        updated: function(){
-
-            let gameHeight = this.$el.clientHeight
-            let scorebarHeight = this.$children[1].$el.clientHeight
-            let canvasHeight = gameHeight - scorebarHeight
-            this.$store.state.height = canvasHeight
         }
     }
     
@@ -92,16 +92,11 @@
 
     .gameArea{
 
-        height: '100%';
+        height: 100%;
     }
 
     #snake{
         display: none;
     }
 
-    canvas {
-
-        background-color: #A4A4A4;
-    
-    }
 </style>
