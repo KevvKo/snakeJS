@@ -15,9 +15,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>{{username}}</td>
-                                <td>{{highscore}}</td>
+                            <tr v-for="highscore of highscores" :key="highscore.username">
+                                <td>{{highscore.username}}</td>
+                                <td>{{highscore.score}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -45,8 +45,7 @@
 
             return {
 
-                username:0,
-                highscore: 0
+                highscores: this.$store.state.db.getHighScores()
             }
         },
 

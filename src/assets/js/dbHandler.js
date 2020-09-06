@@ -19,17 +19,18 @@ class dbHandler{
         this._storage.setItem('snakecolor', snakeColor)
     }
 
-    getHighScore(){
-        if(this.getPlayerStats()){
-            return JSON.parse(this._storage.getItem('playerStats'))['highscore']
-    }   }
-
     getHighScores(){
 
-        return JSON.parse(this._storage.getItem('highscore'))
+        return JSON.parse(this._storage.getItem('highscores'))
     }
 
-    setHighScore(username, highscore){
+    getHighScore(){
+        if(this.getPlayerStats()){
+            return JSON.parse(this._storage.getItem('playerStats'))['score']
+        }   
+    }
+
+    setHighScore(){
 
         let scores = this.getHighScores()
 
@@ -41,22 +42,25 @@ class dbHandler{
             return
         }
 
-        let score = {
-            name: username,
-            highscore: highscore
-        }
+        let score = this.getPlayerStats()
         
         scores.push(score)
+
         // highscores.sort(function(a, b){return b-a})
-        this._storage.setItem('highscore', JSON.stringify(scores))
+        this._storage.setItem('highscores', JSON.stringify(scores))
     }
 
     getPlayerStats(){
         return JSON.parse(this._storage.getItem('playerStats'))
     }
 
-    setPlayerStats(playerStats){
-        return this._storage.setItem('playerStats', JSON.stringify(playerStats))
+    setPlayerStats(username, score){
+        let player = {
+            username: username,
+            score: score
+        }
+
+        return this._storage.setItem('playerStats', JSON.stringify(player))
     }
 }
 
