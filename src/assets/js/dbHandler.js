@@ -33,20 +33,42 @@ class dbHandler{
     setHighScore(){
 
         let scores = this.getHighScores()
+        let playerStats = this.getPlayerStats()
 
         if(scores === null){
             scores = []
         }
 
-        if(scores.length === 10){
+        if(scores.length < 10){
+            
+            scores.push(playerStats)
+
+            scores.sort(function(a, b) {
+                return b.score - a.score
+            });
+
+            this._storage.setItem('highscores', JSON.stringify(scores))
+
             return
         }
 
-        let score = this.getPlayerStats()
-        
-        scores.push(score)
+        for(let i = 9; i >= 0; i--){
 
-        // highscores.sort(function(a, b){return b-a})
+            let tempScore = playerStats['score']
+            let currentHighscore = scores[i]['score']
+            console.log(scores[i])
+
+            if(tempScore > currentHighscore){
+          
+                scores[i] = playerStats
+                break
+            }
+        }
+
+        scores.sort(function(a, b) {
+            return b.score - a.score
+        });
+
         this._storage.setItem('highscores', JSON.stringify(scores))
     }
 

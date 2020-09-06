@@ -14,12 +14,12 @@
                                 <th>Highscore</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody v-if="highscores != null">
                             <tr v-for="highscore of highscores" :key="highscore.username">
                                 <td>{{highscore.username}}</td>
                                 <td>{{highscore.score}}</td>
                             </tr>
-                        </tbody>
+                        </tbody> 
                     </table>
                 </div>
             </div>
