@@ -94,10 +94,8 @@ class Game{
 
         let meatball = this.meatball
 
-        this.ctx.fillStyle = meatball.color
-        this.ctx.beginPath()
-        this.ctx.arc( meatball.x, meatball.y, meatball.radius , 0, 2 * Math.PI)
-        this.ctx.fill()
+        let image = document.getElementById('meatball')
+        this.ctx.drawImage(image, meatball.x - meatball.radius, meatball.y - meatball.radius)
     }
 
     checkMeatBallCollision(){
@@ -139,7 +137,7 @@ class Game{
         //      1, all parts in range 0-19 intersect with the head => 1px distance
         //      2. by changing the direction, the 27. part of the body touches the head 
 
-        for(let i = 28, l = bodyParts.length; i < l ; i++){
+        for(let i = 50, l = bodyParts.length; i < l ; i++){
             
             let part = bodyParts[i]
             let radiusSum = this.snake.partRadius*2

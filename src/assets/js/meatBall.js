@@ -2,8 +2,7 @@ class MeatBall{
 
     constructor(){
 
-        this._radius = 5
-        this._color = 'red'
+        this._radius = 15
         this._wasEaten = false
         this._toleranceArea = 5
         

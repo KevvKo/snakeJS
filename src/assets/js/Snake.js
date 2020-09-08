@@ -7,9 +7,8 @@ class Snake{
         this._snakeSpeed = 1
         this._x = this._snakeSpeed
         this._y = 0
-        this._headColor = 'red'
         this._bodyColor = 'green'
-        this._partRadius = 10
+        this._partRadius = 16
         this._direction = 'd'
         this._head = {x: 170, y:150}
         this._parts = []

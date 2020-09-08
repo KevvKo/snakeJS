@@ -1,6 +1,7 @@
 <template>
     <div class="game"  v-bind:style='{width: width}'>
-        <img src="../assets/img/bluehead.png" id='snake'>
+        <img src="../assets/img/snakehead-green.png" id='snake'>
+        <img src="../assets/img/meatball.png" id='meatball'>
         <mainMenu v-show="showMenu" title="SnakeJS"/>
         <div v-show="showGame" class="gameArea">
             <scorebar/>
@@ -95,7 +96,7 @@
         height: 100%;
     }
 
-    #snake{
+    img{
         display: none;
     }
 
