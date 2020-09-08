@@ -3,7 +3,7 @@
 
         <div tabindex="0" @keydown.esc="closeHighscoreMenu" v-show="highscoreBoardVisible" id="highscoreBoard">
             <div id="upperbar">
-                <div id="highscoreTitle">Highscore</div>
+                <div id="highscoreTitle">Highscorelist</div>
             </div>
             <div id="highscoreContent">
                 <div class="flexbox">
@@ -15,7 +15,7 @@
                             </tr>
                         </thead>
                         <tbody v-if="highscores != null">
-                            <tr v-for="highscore of highscores" :key="highscore.username">
+                            <tr v-for="highscore of highscores" v-bind:key="highscore.username">
                                 <td>{{highscore.username}}</td>
                                 <td>{{highscore.score}}</td>
                             </tr>
@@ -38,14 +38,10 @@
 
             highscoreBoardVisible(){
                 return this.$store.state.highscoreBoardVisible
-            }
-        },
+            },
 
-        data: function(){
-
-            return {
-
-                highscores: this.$store.state.db.getHighScores()
+            highscores(){
+                return this.$store.state.db.getHighScores()
             }
         },
 
@@ -84,7 +80,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         border-radius: 3px;
-        overflow: auto;
+        overflow: hidden;
         font-size: 15px;
 
 
@@ -100,12 +96,14 @@
 
         margin-top: 15px;
         width: 100%;
+        height: 80%;
         position: absolute;
         font-size: 2.3vw;
         border-radius: 3px;
         color: var(--main-light-txt);
         display: flex;
         justify-content: center;
+        overflow-y: auto;
     }
 
     .flexbox{
@@ -122,7 +120,7 @@
         font-size: 2.4vw;
     }
 
-    /*tabl-styling*/
+    /*table-styling*/
 
     #highscoreTable{
         width: 100%;
@@ -146,8 +144,9 @@
         border-radius: 3px;
         padding: 6px;
         position: absolute;
-        bottom: 5%;
-        right: 5%;
+        bottom: 15px;
+        right: 15px;
+        width: 72px;
     }
 
     #highscoreBoard button:hover{
