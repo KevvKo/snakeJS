@@ -8,7 +8,7 @@ class Game{
 
         this.snake = new Snake()
         this.meatball = new Meatball() 
-        this.gameSpeed = 10
+        this.gameSpeed = 8
     }
 
     get gameAreaWidth(){
@@ -86,16 +86,18 @@ class Game{
     drawBody(){
 
         let snakeParts = this.snake.parts
-        let radius = this.snake.partRadius
+
         for( let i = 0, l = snakeParts.length; i < l ; i++){
             
+            if(i%2) this.ctx.fillStyle = this.snake.firstColor;
+            else this.ctx.fillStyle = this.snake.secondColor;
+
             let part = snakeParts[i]   
 
             this.ctx.beginPath();
-            this.ctx.fillStyle = this.snake.bodyColor;
-            this.ctx.arc(part.x, part.y , radius, 0, 2 * Math.PI, false);
+            this.ctx.arc(part.x, part.y , this.snake.partRadius, 0, 2 * Math.PI, false);
             this.ctx.fill();
-            radius -= 0.5
+       
         }
     }
 
@@ -105,7 +107,12 @@ class Game{
 
         this.ctx.beginPath();
         this.ctx.arc(meatball.x, meatball.y , meatball.radius, 0, 2 * Math.PI, false);
-        this.ctx.fillStyle = meatball.color;
+        this.ctx.fillStyle = meatball.outerColor;
+        this.ctx.fill();
+
+        this.ctx.beginPath();
+        this.ctx.arc(meatball.x, meatball.y , meatball.radius/2, 0, 2 * Math.PI, false);
+        this.ctx.fillStyle = meatball.innerColor;
         this.ctx.fill();
     }
 
@@ -148,7 +155,7 @@ class Game{
         //      1, all parts in range 0-19 intersect with the head => 1px distance
         //      2. by changing the direction, the 27. part of the body touches the head 
 
-        for(let i = 50, l = bodyParts.length; i < l ; i++){
+        for(let i = 2, l = bodyParts.length; i < l ; i++){
             
             let part = bodyParts[i]
             let radiusSum = this.snake.partRadius*2

@@ -5,7 +5,8 @@ class MeatBall{
         this._radius = 12
         this._wasEaten = false
         this._toleranceArea = 5
-        this._color = 'red'
+        this._outerColor = '#E46565'
+        this._innerColor = '#ad343b'
         
     }
 
@@ -17,8 +18,12 @@ class MeatBall{
         return this._y
     }   
 
-    get color(){
-        return this._color
+    get outerColor(){
+        return this._outerColor
+    }
+
+    get innerColor(){
+        return this._innerColor
     }
 
     get radius(){

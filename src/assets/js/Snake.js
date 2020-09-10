@@ -12,17 +12,21 @@ class Snake{
         this._head = {x: 170, y:200}
         this._parts = []
         this._toleranceArea = 5
-        this._bodyColor = 'green'
-        this._headColor = 'blue'
-
+        this._headColor = '#007819'
+        this._firstColor = '#08a949'
+        this._secondColor = '#57dc77'
     }
 
-    get bodyColor(){
-        return this._bodyColor
-    }
-w
     get headColor(){
         return this._headColor
+    }
+
+    get firstColor(){
+        return this._firstColor
+    }
+
+    get secondColor(){
+        return this._secondColor
     }
 
     get x(){
@@ -219,14 +223,14 @@ w
     createBody(){
         
         let startX = this.head.x
-        let startY = this.head.y -16
+        let startY = this.head.y - this.partRadius
 
         for(let i = 0; i < 10; i++){
             
             let part = {x: startX, y: startY}
             this._parts.push(part)
 
-            startY -= 16
+            startY -= this.partRadius
         }
     }
 
