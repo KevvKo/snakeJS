@@ -4,7 +4,7 @@ class Snake{
 
     constructor(){
         
-        this._snakeSpeed = 1
+        this._snakeSpeed = 3
         this._x = 0
         this._y = this._snakeSpeed
         this._partRadius = 16
@@ -255,35 +255,35 @@ class Snake{
 
             case 'd':               //direction right
 
-                return bodyPart['x'] + x  === areaWidth
+                return bodyPart['x'] + x  >= areaWidth
           
             case 'a':               //direction left
 
-                return bodyPart['x'] + x === 0
+                return bodyPart['x'] + x <= 0
 
             case 'w':               //direction up
 
-                return bodyPart['y'] + y === 0
+                return bodyPart['y'] + y <= 0
                 
             case 's':               //direction down
 
-                return bodyPart['y'] + y === areaHeight
+                return bodyPart['y'] + y >= areaHeight
 
             case 'ArrowRight':               //direction right
 
-                return bodyPart['x'] + x  === areaWidth
+                return bodyPart['x'] + x >= areaWidth
           
             case 'ArrowLeft':               //direction left
 
-                return bodyPart['x'] + x === 0
+                return bodyPart['x'] + x <= 0
 
             case 'ArrowUp':               //direction up
 
-                return bodyPart['y'] + y === 0
+                return bodyPart['y'] + y <= 0
                 
             case 'ArrowDown':               //direction down
 
-                return bodyPart['y'] + y === areaHeight
+                return bodyPart['y'] + y >= areaHeight
         }
     }
 

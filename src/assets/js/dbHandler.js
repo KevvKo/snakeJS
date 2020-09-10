@@ -39,8 +39,9 @@ class dbHandler{
             scores = []
         }
 
+
         if(scores.length < 10){
-            
+            playerStats.id = scores.length + 1
             scores.push(playerStats)
 
             scores.sort(function(a, b) {
@@ -59,7 +60,8 @@ class dbHandler{
             console.log(scores[i])
 
             if(tempScore > currentHighscore){
-          
+                
+                playerStats.id = scores[i].id
                 scores[i] = playerStats
                 break
             }

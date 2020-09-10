@@ -15,7 +15,7 @@
                             </tr>
                         </thead>
                         <tbody v-if="highscores != null">
-                            <tr v-for="highscore of highscores" v-bind:key="highscore.username">
+                            <tr v-for="highscore of highscores" v-bind:key="highscore.id">
                                 <td>{{highscore.username}}</td>
                                 <td>{{highscore.score}}</td>
                             </tr>

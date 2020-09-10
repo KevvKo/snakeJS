@@ -8,7 +8,7 @@ class Game{
 
         this.snake = new Snake()
         this.meatball = new Meatball() 
-        this.gameSpeed = 8
+        this.gameSpeed = 10
     }
 
     get gameAreaWidth(){
