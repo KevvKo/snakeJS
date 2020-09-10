@@ -5,13 +5,16 @@ class Snake{
     constructor(){
         
         this._snakeSpeed = 1
-        this._x = this._snakeSpeed
-        this._y = 0
-        this._bodyColor = 'green'
+        this._x = 0
+        this._y = this._snakeSpeed
         this._partRadius = 16
-        this._direction = 'd'
+        this._direction = 's'
         this._head = {x: 170, y:150}
-        this._parts = []
+        this._parts = [
+            {x: 170, y: 134},
+            {x: 170, y: 118},
+            {x: 170, y: 102}
+        ]
         this._toleranceArea = 5
 
     }
@@ -216,17 +219,7 @@ w
     }
 
     createBody(){
-
-        let head = this.head
-        let part = {x: head['x'] -1, y:head['y']}
-        this._parts.push(part)
-
-        for(let i = 0, l = 100; i < l ; i++){
-
-            let lastPart = this.parts.slice(-1)
-            let part = {x: lastPart['x'] - 1, y:lastPart['y']}
-            this._parts.push(part)
-        }
+        
     }
 
     addBodyPart(){

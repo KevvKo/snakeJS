@@ -79,14 +79,12 @@ class Game{
     drawBody(){
 
         let snakeParts = this.snake.parts
-        this.ctx.fillStyle = this.snake.bodyColor
+        let image = document.getElementById('snakebody')
+
         for( let i = 0, l = snakeParts.length; i < l ; i++){
             
-            let part = snakeParts[i]
-            this.ctx.beginPath()
-            this.ctx.arc(part['x'], part['y'], this.snake.partRadius, 0, 2 * Math.PI)
-            this.ctx.fill()
-
+            let part = snakeParts[i]   
+            this.ctx.drawImage(image, part['x'] -16 , part['y'] -16)
         }
     }
 
