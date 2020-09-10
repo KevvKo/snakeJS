@@ -28,6 +28,7 @@ class Game{
 
         this.snake.createBody()
         this.meatball.newRandomPosition(store.state.width, store.state.height)
+        
         this.run()
     }
 
@@ -36,7 +37,8 @@ class Game{
         store.commit('checkHighScore')
         this.canvas = document.querySelector('canvas')
         this.ctx = this.canvas.getContext('2d')
-
+        this.drawCanvas()
+        
         this.gameLoop = setInterval(function(){
 
             this.clearCanvas()
@@ -72,19 +74,28 @@ class Game{
 
     drawHead(){
 
-        let image = document.getElementById('snake')
-        this.ctx.drawImage(image, this.snake.head.x -16, this.snake.head.y - 16)
+        let snake = this.snake
+
+        this.ctx.fillStyle = snake.headColor;
+        this.ctx.beginPath();
+        this.ctx.arc(snake.head.x, snake.head.y , this.snake.partRadius, 0, 2 * Math.PI, false);
+
+        this.ctx.fill();
     }
 
     drawBody(){
 
         let snakeParts = this.snake.parts
-        let image = document.getElementById('snakebody')
-
+        let radius = this.snake.partRadius
         for( let i = 0, l = snakeParts.length; i < l ; i++){
             
             let part = snakeParts[i]   
-            this.ctx.drawImage(image, part['x'] -16 , part['y'] -16)
+
+            this.ctx.beginPath();
+            this.ctx.fillStyle = this.snake.bodyColor;
+            this.ctx.arc(part.x, part.y , radius, 0, 2 * Math.PI, false);
+            this.ctx.fill();
+            radius -= 0.5
         }
     }
 
@@ -92,8 +103,10 @@ class Game{
 
         let meatball = this.meatball
 
-        let image = document.getElementById('meatball')
-        this.ctx.drawImage(image, meatball.x - meatball.radius, meatball.y - meatball.radius)
+        this.ctx.beginPath();
+        this.ctx.arc(meatball.x, meatball.y , meatball.radius, 0, 2 * Math.PI, false);
+        this.ctx.fillStyle = meatball.color;
+        this.ctx.fill();
     }
 
     checkMeatBallCollision(){

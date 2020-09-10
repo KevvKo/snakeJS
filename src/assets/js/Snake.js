@@ -9,13 +9,11 @@ class Snake{
         this._y = this._snakeSpeed
         this._partRadius = 16
         this._direction = 's'
-        this._head = {x: 170, y:150}
-        this._parts = [
-            {x: 170, y: 134},
-            {x: 170, y: 118},
-            {x: 170, y: 102}
-        ]
+        this._head = {x: 170, y:200}
+        this._parts = []
         this._toleranceArea = 5
+        this._bodyColor = 'green'
+        this._headColor = 'blue'
 
     }
 
@@ -220,14 +218,24 @@ w
 
     createBody(){
         
+        let startX = this.head.x
+        let startY = this.head.y -16
+
+        for(let i = 0; i < 10; i++){
+            
+            let part = {x: startX, y: startY}
+            this._parts.push(part)
+
+            startY -= 16
+        }
     }
 
     addBodyPart(){
-
-        for(let i = 0; i < 50; i++){
-            let lastPart = this.parts.slice(-1)
-            this._parts.push(lastPart)
-        }
+        
+        //let head = this.head
+        let lastPart = this._parts.slice(-1)[0]
+        let newPart = {x: lastPart.x, y: lastPart.y}
+        this._parts.push(newPart)
     }
 
     // object part: contains coordinates
@@ -325,20 +333,44 @@ w
     }
 
     move(){
-
+ 
         let x = this.x
         let y = this.y
 
         let head = this.head
-        this.checkBorderProximity(head)
-
-        let newHead = {x: head['x'], y: head['y']}
-
         head['x'] += x
         head['y'] += y
-        
-        this.parts.unshift(newHead)
-        this.parts.pop()
+
+        this.checkBorderProximity(head)
+
+        let parts = this.parts
+        let last = undefined
+
+        for(let i = 0; i < parts.length; i++){
+           
+            if(i == 0){
+                last = {x: head.x , y: head.y}
+            }else{
+                last = parts[i-1]
+            }
+
+            let current = parts[i]
+       
+            // get difference in x and y of each position
+            let dy = current.y - last.y
+            let dx = current.x - last.x
+            
+            // calculate the angle between the two parts of the snake
+            let angle = Math.atan2(dy, dx);
+
+            // get the new x and new y using polar coordinates
+            let nx =  this.partRadius * Math.cos(angle);
+            let ny = this.partRadius * Math.sin(angle);
+
+            current.x = nx + last.x;
+            current.y = ny + last.y;
+
+        }
     }
 
     eatMeatBall(){
