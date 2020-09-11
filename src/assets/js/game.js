@@ -33,7 +33,7 @@ class Game{
     }
 
     run(){
-        
+
         store.commit('checkHighScore')
         this.clearCanvas()
         this.drawCanvas()
@@ -46,12 +46,19 @@ class Game{
             this.meatball.newRandomPosition(store.state.width, this.store.state.height)
         }
 
+        window.requestAnimationFrame(() => this.update())
+    }
+    
+    update(){
+
         this.snake.move()
         this.snakeBodyCollision()
         this.checkMeatBallCollision()
+        this.clearCanvas()
         this.drawCanvas()
+        window.requestAnimationFrame(() => this.update())
     }
-    
+
     clearCanvas(){
                     
         store.state.ctx.clearRect(0,0, store.state.width, store.state.height)
@@ -81,14 +88,14 @@ class Game{
         for( let i = 0, l = snakeParts.length; i < l ; i++){
             
             if(i%2) store.state.ctx.fillStyle = this.snake.firstColor;
-            else store.state.fillStyle = this.snake.secondColor;
-
+            else store.state.ctx.fillStyle = this.snake.secondColor;
+       
             let part = snakeParts[i]   
 
             store.state.ctx.beginPath();
             store.state.ctx.arc(part.x, part.y , this.snake.partRadius, 0, 2 * Math.PI, false);
             store.state.ctx.fill();
-       
+            store.state.ctx.closePath()
         }
     }
 

@@ -65,7 +65,9 @@
             showGame: function () {
    
                 this.load()
-            }
+            },
+
+            
         },
 
         methods:{
@@ -73,6 +75,7 @@
             load(){
                 this.$store.state.game.init()
             }
+
         }
     }
     
