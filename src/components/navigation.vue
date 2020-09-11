@@ -32,6 +32,12 @@
         this.$store.state.highscoreBoardVisible = true
         this.$store.state.grayoutVisible = true
       }
+    },
+
+    mounted: function(){
+      let navHeight = this.$el.clientHeight
+
+      this.$store.state.height = window.innerHeight - navHeight - 30  // 30px for the scorebar
     }
   }
 </script>

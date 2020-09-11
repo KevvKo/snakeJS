@@ -21,6 +21,12 @@
           return this.$store.state.width   
         }
     },
+
+    mounted: function(){
+
+        this.$store.state.canvas = document.querySelector('canvas')
+        this.$store.state.ctx = this.$store.state.canvas.getContext('2d')
+    }
   }
 
 </script>
@@ -31,6 +37,7 @@
 
     display: block;
     background-color: rgba(0,0,0,0.2);
+
   }
 
 </style>

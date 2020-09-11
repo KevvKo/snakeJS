@@ -57,7 +57,6 @@ class dbHandler{
 
             let tempScore = playerStats['score']
             let currentHighscore = scores[i]['score']
-            console.log(scores[i])
 
             if(tempScore > currentHighscore){
                 

@@ -64,10 +64,6 @@
             //if the gameArea is now visible, the game will be started
             showGame: function () {
    
-                let gameHeight = this.$el.clientHeight
-                let canvasHeight = gameHeight - 30 // height from the scorebar
-
-                this.$store.state.height = canvasHeight
                 this.load()
             }
         },

@@ -33,36 +33,28 @@ class Game{
     }
 
     run(){
-
-        store.commit('checkHighScore')
-        this.canvas = document.querySelector('canvas')
-        this.ctx = this.canvas.getContext('2d')
-        this.drawCanvas()
         
-        this.gameLoop = setInterval(function(){
+        store.commit('checkHighScore')
+        this.clearCanvas()
+        this.drawCanvas()
 
-            this.clearCanvas()
-            
-            let meatball = this.meatball
+        let meatball = this.meatball
 
-            if(meatball.wasEaten){
+        if(meatball.wasEaten){
 
-                meatball.wasEaten = false
-                this.meatball.newRandomPosition(store.state.width, this.store.state.height)
-            }
+            meatball.wasEaten = false
+            this.meatball.newRandomPosition(store.state.width, this.store.state.height)
+        }
 
-            this.snake.move()
-            this.snakeBodyCollision()
-            this.checkMeatBallCollision()
-            this.drawCanvas()
-
-        }.bind(this), this.gameSpeed)
-
+        this.snake.move()
+        this.snakeBodyCollision()
+        this.checkMeatBallCollision()
+        this.drawCanvas()
     }
     
     clearCanvas(){
                     
-        this.ctx.clearRect(0,0, store.state.width, store.state.height)
+        store.state.ctx.clearRect(0,0, store.state.width, store.state.height)
     }
 
     drawCanvas(){
@@ -76,11 +68,10 @@ class Game{
 
         let snake = this.snake
 
-        this.ctx.fillStyle = snake.headColor;
-        this.ctx.beginPath();
-        this.ctx.arc(snake.head.x, snake.head.y , this.snake.partRadius, 0, 2 * Math.PI, false);
-
-        this.ctx.fill();
+        store.state.ctx.fillStyle = snake.headColor;
+        store.state.ctx.beginPath();
+        store.state.ctx.arc(snake.head.x, snake.head.y , this.snake.partRadius, 0, 2 * Math.PI, false);
+        store.state.ctx.fill();
     }
 
     drawBody(){
@@ -89,14 +80,14 @@ class Game{
 
         for( let i = 0, l = snakeParts.length; i < l ; i++){
             
-            if(i%2) this.ctx.fillStyle = this.snake.firstColor;
-            else this.ctx.fillStyle = this.snake.secondColor;
+            if(i%2) store.state.ctx.fillStyle = this.snake.firstColor;
+            else store.state.fillStyle = this.snake.secondColor;
 
             let part = snakeParts[i]   
 
-            this.ctx.beginPath();
-            this.ctx.arc(part.x, part.y , this.snake.partRadius, 0, 2 * Math.PI, false);
-            this.ctx.fill();
+            store.state.ctx.beginPath();
+            store.state.ctx.arc(part.x, part.y , this.snake.partRadius, 0, 2 * Math.PI, false);
+            store.state.ctx.fill();
        
         }
     }
@@ -105,15 +96,15 @@ class Game{
 
         let meatball = this.meatball
 
-        this.ctx.beginPath();
-        this.ctx.arc(meatball.x, meatball.y , meatball.radius, 0, 2 * Math.PI, false);
-        this.ctx.fillStyle = meatball.outerColor;
-        this.ctx.fill();
+        store.state.ctx.beginPath();
+        store.state.ctx.arc(meatball.x, meatball.y , meatball.radius, 0, 2 * Math.PI, false);
+        store.state.ctx.fillStyle = meatball.outerColor;
+        store.state.ctx.fill();
 
-        this.ctx.beginPath();
-        this.ctx.arc(meatball.x, meatball.y , meatball.radius/2, 0, 2 * Math.PI, false);
-        this.ctx.fillStyle = meatball.innerColor;
-        this.ctx.fill();
+        store.state.ctx.beginPath();
+        store.state.ctx.arc(meatball.x, meatball.y , meatball.radius/2, 0, 2 * Math.PI, false);
+        store.state.ctx.fillStyle = meatball.innerColor;
+        store.state.ctx.fill();
     }
 
     checkMeatBallCollision(){

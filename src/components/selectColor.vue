@@ -52,7 +52,7 @@
         methods: {
 
             saveColor: function(){
-                console.log(this.selected)
+                
                 this.closeColorMenu()
                 this.$store.state.db.setSnakeColor(this.selected)
             },

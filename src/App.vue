@@ -127,7 +127,7 @@
             state.showGame = false
             state.game.clearCanvas()
         }
-    }        
+    },
   })
 
   window.addEventListener('resize', function(){
@@ -150,9 +150,7 @@
       navigation,
       highscoreBoard,
       mainBoard
-    },
-
-
+    }
   }
 
 </script>
