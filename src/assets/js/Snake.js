@@ -4,15 +4,12 @@ class Snake{
 
     constructor(){
         
-        this._snakeSpeed = 1
-        this._snakeDistance = 16
-        this._x = 0
-        this._y = this._snakeSpeed
-        this._partRadius = 16
+        this._dx = 0
+        this._dy = 16
+        this._partRadius = 8
         this._direction = 's'
-        this._head = {x: 170, y:200}
+        this._head = {x: 168, y: 168}
         this._parts = []
-        this._toleranceArea = 5
         this._headColor = '#007819'
         this._firstColor = '#08a949'
         this._secondColor = '#57dc77'
@@ -30,12 +27,12 @@ class Snake{
         return this._secondColor
     }
 
-    get x(){
-        return this._x
+    get dx(){
+        return this._dx
     }
 
-    get y(){
-        return this._y
+    get dy(){
+        return this._dy
     }
 
     get direction(){
@@ -54,24 +51,16 @@ class Snake{
         return this._partRadius
     }
 
-    set y(y){
-        this._y = y
+    set dy(dy){
+        this._dy = dy
     }
 
-    set x(x){
-        this._x = x
+    set dx(dx){
+        this._dx = dx
     }
 
     set direction(key){
         this._direction = key
-    }
-
-    get snakeSpeed(){
-        return this._snakeSpeed
-    }
-
-    get toleranceArea(){
-        return this._toleranceArea
     }
 
     //PARAM possibleDirections - array with characters
@@ -109,57 +98,57 @@ class Snake{
  
                 case 'a':               //direction left
 
-                    this.x = -this.snakeSpeed
-                    this.y = 0
+                    this.dx = -16
+                    this.dy = 0
                     this.direction = newDirection
                     break
 
                 case 'd':               //direction right
                 
-                    this.x = this.snakeSpeed
-                    this.y = 0
+                    this.dx = 16
+                    this.dy = 0
                     this.direction = newDirection
                     break
 
                 case 'w':               //direction up
                     
-                    this.x = 0
-                    this.y = -this.snakeSpeed
+                    this.dx = 0
+                    this.dy = -16
                     this.direction = newDirection
                     break
 
                 case 's':               //direction down
                     
-                    this.x = 0
-                    this.y = this.snakeSpeed
+                    this.dx = 0
+                    this.dy = 16
                     this.direction = newDirection
                     break
 
                 case 'ArrowLeft':               //direction left
 
-                    this.x = -this.snakeSpeed
-                    this.y = 0
+                    this.dx = -16
+                    this.dy = 0
                     this.direction = newDirection
                     break
 
                 case 'ArrowRight':               //direction right
                 
-                    this.x = this.snakeSpeed
-                    this.y = 0
+                    this.dx = 16
+                    this.dy = 0
                     this.direction = newDirection
                     break
 
                 case 'ArrowUp':               //direction up
                     
-                    this.x = 0
-                    this.y = -this.snakeSpeed
+                    this.dx = 0
+                    this.dy = -16
                     this.direction = newDirection
                     break
 
                 case 'ArrowDown':               //direction down
                     
-                    this.x = 0
-                    this.y = this.snakeSpeed
+                    this.dx = 0
+                    this.dy = 16
                     this.direction = newDirection
                     break
             }
@@ -224,14 +213,14 @@ class Snake{
     createBody(){
         
         let startX = this.head.x
-        let startY = this.head.y - this.partRadius
+        let startY = this.head.y - 16
 
-        for(let i = 0; i < 20; i++){
+        for(let i = 0; i < 10; i++){
             
             let part = {x: startX, y: startY}
             this._parts.push(part)
 
-            startY -= this.partRadius
+            startY -= 16
         }
     }
 
@@ -247,8 +236,8 @@ class Snake{
     borderDetection(bodyPart){
 
         let direction = this.direction
-        let x = this.x
-        let y = this.y
+        let x = this.dx
+        let y = this.dy
         let areaHeight =  store.state.height
         let areaWidth = store.state.width
 
@@ -256,35 +245,35 @@ class Snake{
 
             case 'd':               //direction right
 
-                return bodyPart['x'] + x  >= areaWidth
+                return bodyPart['x'] + x - this.partRadius > areaWidth
           
             case 'a':               //direction left
 
-                return bodyPart['x'] + x <= 0
+                return bodyPart['x'] < 0
 
             case 'w':               //direction up
 
-                return bodyPart['y'] + y <= 0
+                return bodyPart['y'] < 0
                 
             case 's':               //direction down
 
-                return bodyPart['y'] + y >= areaHeight
+                return bodyPart['y'] + y - this.partRadius> areaHeight
 
             case 'ArrowRight':               //direction right
 
-                return bodyPart['x'] + x >= areaWidth
+                return bodyPart['x'] + x - this.partRadius> areaWidth
           
             case 'ArrowLeft':               //direction left
 
-                return bodyPart['x'] + x <= 0
+                return bodyPart['x'] < 0
 
             case 'ArrowUp':               //direction up
 
-                return bodyPart['y'] + y <= 0
+                return bodyPart['y'] < 0
                 
             case 'ArrowDown':               //direction down
 
-                return bodyPart['y'] + y >= areaHeight
+                return bodyPart['y'] + y - this.partRadius > areaHeight
         }
     }
 
@@ -301,37 +290,37 @@ class Snake{
 
                 case 'a':               //direction left
 
-                    head['x'] = store.state.width
+                    head['x'] = store.state.width - this.partRadius
                     break
 
                 case 'w':               //direction up
 
-                    head['y'] = store.state.height
+                    head['y'] = store.state.height - this.partRadius
                     break
 
                 case 's':               //direction down
                     
-                    head['y'] = 0
+                    head['y'] = this.partRadius
                     break
 
-                    case 'ArrowRight':               //direction right
+                case 'ArrowRight':               //direction right
     
                     head['x'] = this.partRadius
                     break
 
                 case 'ArrowLeft':               //direction left
 
-                    head['x'] = store.state.width
+                    head['x'] = store.state.width - this.partRadius
                     break
 
                 case 'ArrowUp':               //direction up
 
-                    head['y'] = store.state.height
+                    head['y'] = store.state.height - this.partRadius
                     break
 
                 case 'ArrowDown':               //direction down
                     
-                    head['y'] = 0
+                    head['y'] = this.partRadius
                     break
             }
         }
@@ -342,8 +331,8 @@ class Snake{
         let head = this.head
         let newPart = {x: head.x, y: head.y}
 
-        head.x += this.x
-        head.y += this.y
+        head.x += this.dx
+        head.y += this.dy
 
         this.checkBorderProximity(head)
 

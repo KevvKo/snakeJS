@@ -45,12 +45,19 @@ class Game{
             this.meatball.newRandomPosition(store.state.width, this.store.state.height)
         }
 
-        window.requestAnimationFrame(() => this.update())
+        let count = 0
+        window.requestAnimationFrame(() => this.update(count))
 
     }
     
-    update(){
+    update(count){
 
+        if(count < 5){
+            window.requestAnimationFrame(() => this.update(count += 1))
+            return
+        }
+
+        count = 0
         if(!store.state.showGameOver){
      
             this.snake.move()
@@ -58,7 +65,7 @@ class Game{
             this.checkMeatBallCollision()
             this.clearCanvas()
             this.drawCanvas()
-            window.requestAnimationFrame(() => this.update())
+            window.requestAnimationFrame(() => this.update(count += 1))
         }
     }
 
@@ -125,7 +132,7 @@ class Game{
         let euclidDistance = this.euclidDistance(head, meatBall)
         
         
-        let meatIsEaten = this.containsCircle(this.snake.partRadius, meatBall.radius, euclidDistance)
+        let meatIsEaten = this.containsCircle(meatBall.radius, this.snake.partRadius, euclidDistance)
         
         if(meatIsEaten){
 
@@ -157,7 +164,7 @@ class Game{
         //      1, all parts in range 0-19 intersect with the head => 1px distance
         //      2. by changing the direction, the 27. part of the body touches the head 
 
-        for(let i = 10, l = bodyParts.length; i < l ; i++){
+        for(let i = 0, l = bodyParts.length; i < l ; i++){
             
             let part = bodyParts[i]
             let radiusSum = this.snake.partRadius*2
@@ -186,7 +193,7 @@ class Game{
 
     touchedCircle(radiusSum, c){
 
-        return radiusSum >= c
+        return radiusSum > c
     }
 }
 
