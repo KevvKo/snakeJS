@@ -8,7 +8,6 @@ class Game{
 
         this.snake = new Snake()
         this.meatball = new Meatball() 
-        this.gameSpeed = 100
     }
 
     get gameAreaWidth(){
@@ -47,16 +46,20 @@ class Game{
         }
 
         window.requestAnimationFrame(() => this.update())
+
     }
     
     update(){
 
-        this.snake.move()
-        this.snakeBodyCollision()
-        this.checkMeatBallCollision()
-        this.clearCanvas()
-        this.drawCanvas()
-        window.requestAnimationFrame(() => this.update())
+        if(!store.state.showGameOver){
+     
+            this.snake.move()
+            this.snakeBodyCollision()
+            this.checkMeatBallCollision()
+            this.clearCanvas()
+            this.drawCanvas()
+            window.requestAnimationFrame(() => this.update())
+        }
     }
 
     clearCanvas(){
@@ -141,6 +144,7 @@ class Game{
             
             this.snake.eatMeatBall()
             store.state.scoreHandler.increaseScore()
+
         }
     }
     
@@ -162,7 +166,6 @@ class Game{
             
             if(headTouchesBody){
 
-                clearInterval(this.gameLoop)
                 store.commit('finisheGame')
             }
         }

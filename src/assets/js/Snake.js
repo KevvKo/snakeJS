@@ -4,7 +4,8 @@ class Snake{
 
     constructor(){
         
-        this._snakeSpeed = 16
+        this._snakeSpeed = 1
+        this._snakeDistance = 16
         this._x = 0
         this._y = this._snakeSpeed
         this._partRadius = 16
@@ -225,7 +226,7 @@ class Snake{
         let startX = this.head.x
         let startY = this.head.y - this.partRadius
 
-        for(let i = 0; i < 10; i++){
+        for(let i = 0; i < 20; i++){
             
             let part = {x: startX, y: startY}
             this._parts.push(part)
