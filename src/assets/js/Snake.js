@@ -4,7 +4,7 @@ class Snake{
 
     constructor(){
         
-        this._snakeSpeed = 3
+        this._snakeSpeed = 16
         this._x = 0
         this._y = this._snakeSpeed
         this._partRadius = 16
@@ -88,7 +88,7 @@ class Snake{
         let key = event.key
         let arrowKey = key === 'ArrowUp' || key === 'ArrowDown' || key === 'ArrowLeft' || key === 'ArrowRight'
         let wasdKey = key === 'w' || key === 'a' || key === 's' || key === 'd'
-        
+
         if(key === this.direction) return
 
         if(arrowKey || wasdKey){
@@ -337,44 +337,17 @@ class Snake{
     }
 
     move(){
- 
-        let x = this.x
-        let y = this.y
 
         let head = this.head
-        head['x'] += x
-        head['y'] += y
+        let newPart = {x: head.x, y: head.y}
+
+        head.x += this.x
+        head.y += this.y
 
         this.checkBorderProximity(head)
 
-        let parts = this.parts
-        let last = undefined
-
-        for(let i = 0; i < parts.length; i++){
-           
-            if(i == 0){
-                last = {x: head.x , y: head.y}
-            }else{
-                last = parts[i-1]
-            }
-
-            let current = parts[i]
-       
-            // get difference in x and y of each position
-            let dy = current.y - last.y
-            let dx = current.x - last.x
-            
-            // calculate the angle between the two parts of the snake
-            let angle = Math.atan2(dy, dx);
-
-            // get the new x and new y using polar coordinates
-            let nx =  this.partRadius * Math.cos(angle);
-            let ny = this.partRadius * Math.sin(angle);
-
-            current.x = nx + last.x;
-            current.y = ny + last.y;
-
-        }
+        this._parts.unshift(newPart)
+        this._parts.pop()
     }
 
     eatMeatBall(){

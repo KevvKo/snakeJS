@@ -8,7 +8,7 @@ class Game{
 
         this.snake = new Snake()
         this.meatball = new Meatball() 
-        this.gameSpeed = 10
+        this.gameSpeed = 100
     }
 
     get gameAreaWidth(){
@@ -155,7 +155,7 @@ class Game{
         //      1, all parts in range 0-19 intersect with the head => 1px distance
         //      2. by changing the direction, the 27. part of the body touches the head 
 
-        for(let i = 2, l = bodyParts.length; i < l ; i++){
+        for(let i = 10, l = bodyParts.length; i < l ; i++){
             
             let part = bodyParts[i]
             let radiusSum = this.snake.partRadius*2
