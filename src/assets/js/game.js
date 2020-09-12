@@ -36,7 +36,6 @@ class Game{
 
         store.commit('checkHighScore')
         this.clearCanvas()
-        console.log(this.snake.headColor)
         this.drawCanvas()
 
         let meatball = this.meatball
