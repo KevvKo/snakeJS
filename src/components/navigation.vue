@@ -1,6 +1,6 @@
 <template>
   <div class="navigation">
-    <navbarEntry url="domain" text="Home" />
+    <navbarEntry url="https://kevvko.github.io/snakeJS/" text="Home" />
     <navbarEntry @callback="showHighscores" text="HighScores" />
     <navbarEntry url="https://github.com/KevvKo/snakeJS" text="GitHub" />
     <navbarEntry url="https://github.com/KevvKo/snakeJS/issues" text="Report Bugs" />
