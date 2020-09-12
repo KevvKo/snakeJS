@@ -54,7 +54,7 @@
             saveColor: function(){
                 
                 this.closeColorMenu()
-                this.$store.state.db.setSnakeColor(this.selected)
+                this.$store.state.choosenColor = this.selected
             },
 
             closeColorMenu(){

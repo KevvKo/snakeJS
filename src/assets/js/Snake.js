@@ -68,6 +68,18 @@ class Snake{
         this._direction = key
     }
 
+    set headColor(color){
+        this._headColor = color
+    }
+
+    set firstColor(color){
+        this._firstColor = color
+    }
+
+    set secondColor(color){
+        this._secondColor = color
+    }
+
     //PARAM possibleDirections - array with characters
     randomDirection(possibleDirections){
 

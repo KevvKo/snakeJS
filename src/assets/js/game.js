@@ -26,6 +26,7 @@ class Game{
         }.bind(this))
 
         this.snake.createBody()
+        this.setSnakeColorSet()
         this.meatball.newRandomPosition(store.state.width, store.state.height)
         
         this.run()
@@ -35,6 +36,7 @@ class Game{
 
         store.commit('checkHighScore')
         this.clearCanvas()
+        console.log(this.snake.headColor)
         this.drawCanvas()
 
         let meatball = this.meatball
@@ -67,6 +69,16 @@ class Game{
             this.drawCanvas()
             window.requestAnimationFrame(() => this.update(count += 1))
         }
+    }
+
+    setSnakeColorSet(){
+
+        let color = store.state.choosenColor
+        let colorSet = store.state.colorSets[color]
+
+        this.snake.headColor = colorSet['dark']
+        this.snake.firstColor = colorSet['primary']
+        this.snake.secondColor = colorSet['light']
     }
 
     clearCanvas(){

@@ -76,8 +76,6 @@ class MeatBall{
         }
       
         this.y = y
-        console.log(this)
-
     }
 
     set wasEaten(boolean){

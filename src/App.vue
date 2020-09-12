@@ -103,7 +103,32 @@
         scoreHandler: new Score(),
         db: new DbHandler(),
 
-        domain: window.location.href
+        domain: window.location.href,
+
+        choosenColor: 'green',      //default
+        colorSets: {
+
+            green: {
+            
+                primary: '#038c00',
+                light: '#50bd3d',
+                dark: '#005d00'
+            },
+
+            blue:{
+                
+                primary: '#00639e',
+                light: '#4f90cf',
+                dark: '#00396f'
+            },
+            
+            red: {
+                
+                primary: '#a30000',
+                light: '#dc462b',
+                dark: '#6d0000'
+            }
+        } 
 
     },
 
