@@ -6,6 +6,9 @@ snake-js is the classic retro game Snake, build with vue.js and deployed to gith
 **Try it**: [snakeJS](https://kevvko.github.io/snakeJS/)
 
 ![Snake Example](/exp/snake-example.png)
+
+snakeJS will be get small updates, just like refactoring, new colors, ui-improvements etc...
+
 ## Project setup
 ```
 npm install
