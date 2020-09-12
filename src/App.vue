@@ -95,8 +95,9 @@
         showGame: false,
         showGameOver: false,
 
-        width: (window.innerWidth * 0.8) - (window.innerWidth * 0.8)%16,
-        height: (window.innerHeight * 0.7) -(window.innerHeight * 0.7)%16,
+        //modulo 20 for the stepWidth fro mthe snake
+        width: (window.innerWidth * 0.8) - (window.innerWidth * 0.8)%20,
+        height: (window.innerHeight * 0.7) -(window.innerHeight * 0.7)%20,
 
         game: new Game(),
         scoreHandler: new Score(),

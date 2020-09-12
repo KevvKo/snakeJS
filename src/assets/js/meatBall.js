@@ -2,7 +2,7 @@ class MeatBall{
 
     constructor(){
 
-        this._radius = 16
+        this._radius = 10
         this._wasEaten = false
         this._outerColor = '#E46565'
         this._innerColor = '#ad343b'
@@ -47,29 +47,37 @@ class MeatBall{
 
     newRandomPosition(areaWidth, areaHeight){
 
-        let minWidth = this.radius*3
-        let maxWidth = areaWidth - this.radius*3
+        let minWidth = 10
+        let maxWidth = areaWidth -10
 
-        let minHeight = this.radius*3
-        let maxHeight = areaHeight - this.radius*3
+        let minHeight = 10
+        let maxHeight = areaHeight - 10
 
         let x = Math.floor(Math.random() * (maxWidth - minWidth + 1) + minWidth)
-
-        while( x%8 != 0){
+    
+        while( x%10 != 0 ){
             x = Math.floor(Math.random() * (maxWidth - minWidth + 1) + minWidth)
         }
 
+        if(x%20 == 0){
+            x += 10
+        }
+      
         this.x = x
 
         let y = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight)
 
-        while (y%8 != 0){
+        while (y%10 != 0){
             y = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight)
         }
 
+        if(y%20 == 0){
+            y += 10
+        }
+      
         this.y = y
-
         console.log(this)
+
     }
 
     set wasEaten(boolean){
