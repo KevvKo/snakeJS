@@ -103,7 +103,7 @@
         scoreHandler: new Score(),
         db: new DbHandler(),
 
-        domain: window.location.href,
+        domain: 'https://kevvko.github.io/snakeJS/',
 
         choosenColor: 'green',      //default
         colorSets: {
