@@ -266,7 +266,7 @@ class Snake{
           
             case 'a':               //direction left
 
-                return bodyPart['x'] + y < 0
+                return bodyPart['x'] + x < 0
 
             case 'w':               //direction up
 

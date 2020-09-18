@@ -5,3 +5,7 @@ module.exports = {
     : '/'
   }
   
+  module.exports = {
+    publicPath: "/serve-vue-app",
+    outputDir: "docs"
+  };
