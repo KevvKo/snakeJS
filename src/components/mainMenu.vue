@@ -1,7 +1,7 @@
 <template>
-    <div class="mainMenu"  v-bind:style='{width: width}'>
+    <div class="mainMenu"  v-bind:style='{width: width, height: height}'>
         <div class="content">
-          <div class="title">{{title}}</div>
+          <div class="title">SnakeJS</div>
           <menuEntry @callback="startGame" text="Play" id="playButton"/>
           <menuEntry @callback="changeSnakeColor" text="Change color" id="colorButton"/>
         </div>  
@@ -12,7 +12,7 @@
 
   import Vue from 'vue'
   import Vuex from 'vuex'
-
+  import router from '../router'
   Vue.use(Vuex)
   
   //component imports
@@ -22,10 +22,6 @@
 
     name: 'mainMenu',
 
-    props: {
-      title: String
-    },
-    
     components: {
         menuEntry
     },
@@ -41,14 +37,19 @@
       width (){
           
           return this.$store.state.width +'px'
-      }
+      },
+
+      height(){
+          return this.$store.state.height + 'px'
+      },
     },
 
     methods: {
 
       startGame: function(){
+
         this.$store.commit('changeVisibility')
-        
+        router.push('Game')
       },
 
       changeSnakeColor: function() {
@@ -75,6 +76,8 @@
 
   .mainMenu{
 
+      text-align: center;
+      margin: auto;
       height: 100%;
       background-color: var(--main-primary-color);
       color: var(--main-primary-txt);

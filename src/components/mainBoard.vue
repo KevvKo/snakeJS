@@ -1,17 +1,17 @@
 <template>
   <div class="mainBoard" v-bind:style='{width: width}'>
-    <game/>
+    <gameContainer/>
   </div>
 </template>
 
 <script>
-  import game from './game'
+  import gameContainer from './gameContainer'
 
   export default {
 
     name: 'mainBoard',
     components: {
-      game
+      gameContainer
     },
 
     computed: {

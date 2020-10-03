@@ -8,13 +8,13 @@
 
   //import Snake from '../classes/snake'
 
-  export default {
+  export default {  
     name: 'gameBoard',
 
     computed: {
 
         height(){
-          return this.$store.state.height
+          return this.$store.state.height 
         },
 
         width(){

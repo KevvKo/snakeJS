@@ -43,11 +43,10 @@
   /*styling for gameOver-layer */
 
   .gameOver{
-    
-      background-color: var(--main-primary-color);
+  
       color: var(--main-primary-txt);
       width: 100%;
-      height: 100%;
+
       font-size: 2.0vw;
       text-shadow: 3px 3px black;
       overflow: auto;

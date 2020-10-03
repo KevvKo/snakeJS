@@ -20,12 +20,10 @@ class Score{
     }
 
     increaseScore(){
+        
         this._score +=10
-
         if(this._score > this._highscore) this._highscore= this._score
     }
-
-
 }
 
 export{Score as default}

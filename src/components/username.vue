@@ -16,9 +16,6 @@
 
 <script>
 
-    import Game from '../assets/js/game'
-    import Score from '../assets/js/score'
-
     export default{
 
         name: 'username',
@@ -63,16 +60,17 @@
             goToHome(){
 
                 this.saveHighScore()
-                window.open(this.$store.state.domain , '_self')
+                this.$store.commit('resetGame')
+                this.$router.push('/')
+
             },
 
             restartGame(){
 
                 this.saveHighScore()
                 this.$store.state.showGameOver = false
-                this.$store.state.showGame = true
-                this.$store.state.game = new Game()
-                this.$store.state.scoreHandler = new Score()
+                this.$store.commit('resetGame')
+                this.$store.state.game.init()
             }
         }
     }

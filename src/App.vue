@@ -1,11 +1,5 @@
 <template>
-  <div id="app" class="container">
-      <grayout/>
-      <highscoreBoard/>
-      <selectColor/>
-      <navigation/>
-      <mainBoard/>
-  </div>
+    <router-view/>
 </template>
 
 <style>
@@ -74,12 +68,6 @@
   import Score from './assets/js/score'
   import DbHandler from './assets/js/dbHandler'
 
-  import grayout from './components/grayout'
-  import selectColor from './components/selectColor'
-  import navigation from './components/navigation.vue'
-  import highscoreBoard from './components/highscoreBoard'
-  import mainBoard from './components/mainBoard.vue'
-
   Vue.use(Vuex)
 
   const store = new Vuex.Store({
@@ -89,21 +77,17 @@
         grayoutVisible: false,
 
         colorVisible: false,
-        highscoreBoardVisible: false,
 
-        showMenu: true,
-        showGame: false,
+        highscoreBoardVisible: false,
         showGameOver: false,
 
-        //modulo 20 for the stepWidth fro mthe snake
+        //modulo 20 for the stepWidth fromthe snake
         width: (window.innerWidth * 0.8) - (window.innerWidth * 0.8)%20,
-        height: (window.innerHeight * 0.7) -(window.innerHeight * 0.7)%20,
+        height: (window.innerHeight * 0.8) -(window.innerHeight * 0.8)%20,
 
         game: new Game(),
         scoreHandler: new Score(),
         db: new DbHandler(),
-
-        domain: 'https://kevvko.github.io/snakeJS/',
 
         choosenColor: 'green',      //default
         colorSets: {
@@ -137,7 +121,6 @@
         changeVisibility (state) {
 
             state.showMenu = false
-            state.showGame = true
         },
 
         checkHighScore(state){
@@ -150,8 +133,12 @@
         finisheGame (state){
 
             state.showGameOver = true
-            state.showGame = false
             state.game.clearCanvas()
+        },
+
+        resetGame(state){
+            state.game = new Game()
+            state.scoreHandler = new Score()
         }
     },
   })
@@ -167,16 +154,8 @@
     
     name: 'App',
 
-    store,
-
-    components: {
-      
-      grayout,
-      selectColor,
-      navigation,
-      highscoreBoard,
-      mainBoard
-    }
+    store
   }
 
 </script>
+

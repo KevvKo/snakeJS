@@ -91,6 +91,7 @@
         border-radius: 3px;
         overflow: auto;
         font-size: 1.2vw;
+        text-shadow: none;
     }
 
     .holder{

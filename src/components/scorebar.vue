@@ -1,7 +1,7 @@
 <template>
   <div class="scorebar" v-bind:style='{width: width}'>
     <div>
-      <span>Your Highscore:</span>
+      <span>Last Score:</span>
       <span id='highscore'>{{highscore}}</span>
     </div>
     <div>

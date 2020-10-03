@@ -32,6 +32,12 @@ class Game{
         this.run()
     }
 
+    reset(){
+        
+        this.snake = new Snake()
+        this.meatball = new Meatball() 
+    }
+
     run(){
 
         store.commit('checkHighScore')

@@ -104,6 +104,7 @@
         display: flex;
         justify-content: center;
         overflow-y: auto;
+        text-shadow: none;
     }
 
     .flexbox{

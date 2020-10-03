@@ -1,7 +1,6 @@
 <template>
-    <div class="game"  v-bind:style='{width: width}'>
-        <mainMenu v-show="showMenu" title="SnakeJS"/>
-        <div v-show="showGame" class="gameArea">
+    <div class="gameContainer"  v-bind:style='{width: width, height: height}'>
+        <div class="gameArea">
             <scorebar/>
             <gameBoard/>  
         </div>
@@ -16,7 +15,6 @@
 
     //component imports
     import scorebar from './scorebar'
-    import mainMenu from './mainMenu'
     import gameBoard from './gameBoard'
     import gameOver from './gameOver'
     
@@ -29,7 +27,6 @@
         components: {
 
             scorebar,
-            mainMenu,
             gameBoard,
             gameOver
 
@@ -42,40 +39,22 @@
                 return this.$store.state.width +'px'
             },
 
-            showMenu () {
-
-                return this.$store.state.showMenu
+            height(){
+                return this.$store.state.height + 'px'
             },
 
-
-            showGame () {
-
-                return this.$store.state.showGame
-            },
-            
             showGameOver () {
 
                 return this.$store.state.showGameOver
             }
         },
 
-        watch: {
+        mounted:function(){
 
-            //if the gameArea is now visible, the game will be started
-            showGame: function () {
-   
-                this.load()
-            },
-
-            
-        },
-
-        methods:{
-
-            load(){
-                this.$store.state.game.init()
+            if(this.$store.state.showGameOver){
+                this.$store.state.showGameOver = false
             }
-
+            this.$store.state.game.init()
         }
     }
     
@@ -83,15 +62,6 @@
 
 <style>
     /* game-styling*/
-
-    .game{
-        height: 100%;
-    }
-
-    .gameArea{
-
-        height: 100%;
-    }
 
     img{
         display: none;

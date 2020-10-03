@@ -18,7 +18,7 @@
 
 <style>
 
-    .navbarEntry a:hover{
+    .navbarEntry a:hover, a:hover{
         cursor: pointer;
         color: var(--main-light-txt);
         background-color: var(--main-light-color ); 
